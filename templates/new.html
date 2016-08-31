@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Android Survey</title>
+ 
+    
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+ 
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+    <link href="../static/signup.css" rel="stylesheet">
+    
+  </head>
+ 
+  <body>
+ 
+    <div class="container">
+      <div class="header">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation" ><a href="{{ url_for('index') }}">Home</a></li>
+            <!--<li role="presentation"><a href="#">Sign In</a></li>
+            <li role="presentation" class="active"><a href="#">Sign Up</a></li>-->
+          </ul>
+        </nav>
+        <h3 class="text-muted">Android Survey</h3>
+      </div>
+ 
+      <div class="jumbotron">
+        {%- for category, message in get_flashed_messages(with_categories = true) %}
+           <div class = "alert alert-danger">
+              {{ message }}
+           </div>
+        {%- endfor %}
+        <form class="form-signin" action = "{{ request.path }}" method = "post">
+         <label for = "name" class="sr-only">Name</label>
+         <input type = "text" name = "name" class="form-control" placeholder = "name"/>
+         <label for = "surname" class="sr-only">Surname</label>
+         <input type = "text" name = "surname" class="form-control" placeholder = "surname"/>
+         <label for = "email" class="sr-only">Email</label>
+         <textarea name = "email" class="form-control" class="form-control" placeholder = "email"></textarea>
+         <label for = "password" class="sr-only">Password</label>
+         <input type = "password" name = "password" class="form-control" class="form-control" placeholder = "password"/>
+         <!--<label for = "password" class="sr-only">Repeat Password</label>
+         <input type = "text" name = "password" class="form-control" class="form-control" placeholder = "rpassword"/>-->
+         <input id="btnSignUp" class="btn btn-lg btn-primary btn-block" type = "submit" value = "Sign up"/>
+        </form>
+      </div>
+ 
+      <footer class="footer">
+        <p>&copy; SENSE/AUEB 2016</p>
+      </footer>
+ 
+    </div>
+  </body>
+</html>

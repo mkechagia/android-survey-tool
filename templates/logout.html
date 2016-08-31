@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Android Survey</title>
+    
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+ 
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+    <link href="../static/signup.css" rel="stylesheet">
+    
+  </head>
+ 
+  <body>
+ 
+    <div class="container">
+      <div class="header">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation" ><a href="{{ url_for('index') }}">Home</a></li>
+            <!--<li role="presentation"><a href="#">Sign In</a></li>
+            <li role="presentation" class="active"><a href="#">Sign Up</a></li>-->
+          </ul>
+        </nav>
+        <h3 class="text-muted">Android Survey</h3>
+      </div>
+ 
+      <div class="jumbotron">
+        <b><p>
+            <!--Thank you very much {{ session['name'] }} for your participation to the survey!-->
+            Thank you very much for your participation to the survey!
+        </p></b>
+      </div>
+ 
+      <footer class="footer">
+        <p>&copy; SENSE/AUEB 2016</p>
+      </footer>
+ 
+    </div>
+  </body>
+</html>

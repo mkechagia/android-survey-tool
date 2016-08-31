@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <title>Android Survey</title>
+ 
+ 
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+ 
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+ 
+ 
+</head>
+ 
+<body>
+ 
+    <div class="container">
+        <div class="header">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <li role="presentation">
+                        <form action="/login" method="POST">
+                            <span class="nav nav-pills pull-right">
+                                <input type="email" name="email" placeholder="email">
+                                <input type="password" name="password" placeholder="password">
+                                <!--<button type="button"><a href="{{ url_for('login') }}" role="button">Log-in</a></button>-->
+                                <input type="submit" value="Log-in"/>
+                            </span>
+                            {%- for category, message in get_flashed_messages(with_categories = true) %}
+                                <div class = "alert alert-danger">
+                                    {{ message }}
+                                </div>
+                            {%- endfor %}
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+            <h3 class="text-muted">Welcome!</h3>
+        </div>
+ 
+        <div class="jumbotron">
+            <h1>Get access to the Android survey.</h1>
+            <p class="lead"></p>
+            <p><a class="btn btn-lg btn-success" href="{{ url_for('new') }}" role="button">Sign up</a>
+            </p>
+        </div>
+ 
+        <footer class="footer">
+            <p>&copy; SENSE/AUEB 2016</p>
+        </footer>
+ 
+    </div>
+</body>
+ 
+</html>
