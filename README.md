@@ -6,7 +6,7 @@ This is an online survey for Android developers.
 cd android_survey/venv/bin
 source activate
 
-3. To run the app:
+2. To run the app:
 
 cd android_survey
 python routes.py
