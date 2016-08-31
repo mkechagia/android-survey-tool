@@ -3,12 +3,12 @@ This is an online survey for Android developers.
 
 1. To activate the virtual environment:
 
-cd android_env/venv/bin
+cd android_survey/venv/bin
 source activate
 
 3. To run the app:
 
-cd android_env
+cd android_survey
 python routes.py
 
 
