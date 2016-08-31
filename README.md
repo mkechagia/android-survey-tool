@@ -1,12 +1,12 @@
 # android-survey
 This is an online survey for Android developers.
 
-1. To activate the virtual environment:
+A. To activate the virtual environment:
 
 cd android_survey/venv/bin
 source activate
 
-2. To run the app:
+B. To run the app:
 
 cd android_survey
 python routes.py
