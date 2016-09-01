@@ -243,7 +243,7 @@ public class NoteEditor extends Activity {
 		 */
 		final Intent intent = getIntent();
 		
-		$answer_1
+		//$answer_1
 
 		// XXX notification manager
 		//notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);

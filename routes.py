@@ -9,6 +9,7 @@ from sqlalchemy import update
 #from flask_login import login_user , logout_user , current_user , login_required
 import json
 from collections import defaultdict
+from subprocess import check_output
 from glue import glue_answer
 
 global dict
@@ -93,10 +94,13 @@ def login():
 @app.route('/results.html')
 def results():
 	if ('email' in session):
-		answer=answers.query.filter_by(students_email=session['email']).first()
-		answ = answer.answer_1
                 java_file_complete = glue_answer(answ)
-		return render_template('results.html', answ=answ)
+                # XXX: environment-specific path to Android project
+                project_path = "NotePad/src/com/example/android/notepad"
+                with open("%s/NoteEditor.java" % project_path, "w") as f:
+                    f.write("%s" % java_file_complete)
+                javac_output = check_output(["cd", "NotePad", "&&", "ant", "debug"])
+		return render_template('results.html', answ=javac_output)
 
 @app.route('/logout.html')
 def logout():
