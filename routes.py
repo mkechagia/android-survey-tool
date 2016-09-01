@@ -17,6 +17,7 @@ dict = {}
 def index():
    return render_template('index.html')
 
+# new user
 @app.route('/new', methods = ['GET', 'POST'])
 def new():
 	if (request.method == 'POST'):
@@ -42,11 +43,11 @@ def new():
 					flash('The email is not valid.', 'error')
 	return render_template('new.html')
 
-# Define a route for the action of the form, for example '/hello/'
+# Define a route for the action of the form, for example '/survey/'
 # We are also defining which type of requests this route is 
 # accepting: POST requests in this case
-@app.route('/hello/', methods=['POST'])
-def hello():
+@app.route('/survey/', methods=['POST'])
+def survey():
     if ('email' in session):
     	dict = {}
     	answer=answers.query.filter_by(students_email=session['email']).first()
