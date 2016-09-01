@@ -94,6 +94,8 @@ def login():
 @app.route('/results.html')
 def results():
 	if ('email' in session):
+                answer=answers.query.filter_by(students_email=session['email']).first()
+                answ = answer.answer_1
                 java_file_complete = glue_answer(answ)
                 # XXX: environment-specific path to Android project
                 project_path = "NotePad/src/com/example/android/notepad"
