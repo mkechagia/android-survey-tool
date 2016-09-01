@@ -9,6 +9,7 @@ from sqlalchemy import update
 #from flask_login import login_user , logout_user , current_user , login_required
 import json
 from collections import defaultdict
+from glue import glue_answer
 
 global dict
 dict = {}
@@ -88,6 +89,7 @@ def login():
 
 @app.route('/results.html')
 def results():
+    glue_answer({"answer_1": "TRY"})
     return render_template('results.html')
 
 @app.route('/logout.html')
@@ -100,4 +102,4 @@ def logout():
 
 if __name__ == '__main__':
    db.create_all()
-   app.run(debug = True)
+   app.run(host='0.0.0.0', debug = True)
