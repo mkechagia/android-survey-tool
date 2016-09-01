@@ -11,6 +11,7 @@ import json
 from collections import defaultdict
 from subprocess import check_output
 from glue import glue_answer
+import format_answer
 
 global dict
 dict = {}
@@ -19,7 +20,6 @@ dict = {}
 def index():
    return render_template('index.html')
 
-# add new user
 @app.route('/new', methods = ['GET', 'POST'])
 def new():
 	if (request.method == 'POST'):
@@ -56,12 +56,17 @@ def survey():
     	# update user's answers when login, edit answer boxes, and submit
     	if (not db.session.query(answers.id).filter(answers.students_email==session['email']).count() == 0):
     		#update(answers).where(answers.students_email==session['email']).values(answer_1=request.form['hiddeninput_delete'])
-    		answer.answer_1=request.form['hiddeninput_delete']
+    		#answer.answer_1=request.form['hiddeninput_delete']
+    		# format user's answer
+    		first_answer=format_answer.format_answer(request.form['hiddeninput_delete'])
+    		answer.answer_1=first_answer
     		#db.session.add(answer)
     		db.session.commit()
     	else:
+    		# format user's answer
+    		first_answer=format_answer.format_answer(request.form['hiddeninput_delete'])
     		# add user answers to the db
-    		answer = answers(students_email=session['email'], answer_1=request.form['hiddeninput_delete'])
+    		answer = answers(students_email=session['email'], answer_1=first_answer)
     		db.session.add(answer)
     		db.session.commit()
     	# add user answers to .json file
