@@ -17,7 +17,7 @@ dict = {}
 def index():
    return render_template('index.html')
 
-# new user
+# add new user
 @app.route('/new', methods = ['GET', 'POST'])
 def new():
 	if (request.method == 'POST'):
@@ -69,6 +69,7 @@ def survey():
     		json.dump(dict, fp, indent = 4)
     return render_template('form_action.html', answer=answer)
 
+# show all users
 @app.route('/show_all')
 def show_all():
    return render_template('show_all.html', students = students.query.all())
@@ -87,9 +88,13 @@ def login():
 		answ=answers.query.filter_by(students_email=session['email']).first()
 		return render_template('form_submit.html', answ=answ)
 
+# compiler results
 @app.route('/results.html')
 def results():
-    return render_template('results.html')
+	if ('email' in session):
+		answer=answers.query.filter_by(students_email=session['email']).first()
+		answ = answer.answer_1
+		return render_template('results.html', answ=answ)
 
 @app.route('/logout.html')
 def logout():
