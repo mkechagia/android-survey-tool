@@ -74,7 +74,7 @@ def survey():
     	file_name = session['email']+'.json'
     	with open(file_name, 'w') as fp:
     		json.dump(dict, fp, indent = 4)
-    return render_template('form_action.html', answer=answer)
+    return render_template('form_submit.html', answ=answer)
 
 # show all users
 @app.route('/show_all')
