@@ -18,6 +18,7 @@ dict = {}
 def index():
    return render_template('index.html')
 
+# add new user
 @app.route('/new', methods = ['GET', 'POST'])
 def new():
 	if (request.method == 'POST'):
@@ -43,11 +44,11 @@ def new():
 					flash('The email is not valid.', 'error')
 	return render_template('new.html')
 
-# Define a route for the action of the form, for example '/hello/'
+# Define a route for the action of the form, for example '/survey/'
 # We are also defining which type of requests this route is 
 # accepting: POST requests in this case
-@app.route('/hello/', methods=['POST'])
-def hello():
+@app.route('/survey/', methods=['POST'])
+def survey():
     if ('email' in session):
     	dict = {}
     	answer=answers.query.filter_by(students_email=session['email']).first()
@@ -69,6 +70,7 @@ def hello():
     		json.dump(dict, fp, indent = 4)
     return render_template('form_action.html', answer=answer)
 
+# show all users
 @app.route('/show_all')
 def show_all():
    return render_template('show_all.html', students = students.query.all())
@@ -87,10 +89,14 @@ def login():
 		answ=answers.query.filter_by(students_email=session['email']).first()
 		return render_template('form_submit.html', answ=answ)
 
+# compiler results
 @app.route('/results.html')
 def results():
-    glue_answer({"answer_1": "TRY"})
-    return render_template('results.html')
+	if ('email' in session):
+		answer=answers.query.filter_by(students_email=session['email']).first()
+		answ = answer.answer_1
+                java_file_complete = glue_answer(answ)
+		return render_template('results.html', answ=answ)
 
 @app.route('/logout.html')
 def logout():
