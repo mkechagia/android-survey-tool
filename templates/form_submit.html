@@ -1029,7 +1029,7 @@ public class NoteEditor extends Activity {
 
                 <!--<div id="space_delete" class="droptarget">-->
                 <div id="space_delete" class="droptarget" ondrop="drop(event);" ondragover="allowDrop(event);">
-                	<div class="row"><pre><code>{{answ.answer_1}}</code></pre></div>
+                	<div class="row"><code>{{answ.answer_1}}</code></div>
                 	<div class="row"></div>
                     <div class="row"></div>
                     <div class="row"></div>
@@ -1060,9 +1060,9 @@ public class NoteEditor extends Activity {
                 <br>
 
                 <div position:relative; top:50%;left:50%;>
-
-                <a href="{{ url_for('results') }}" onclick="return results('results.html')">&nbsp;&nbsp;Compile&nbsp;&nbsp;</a> 
-                <input type="submit" value="Submit"/>
+ 
+                <input type="submit" value="Save"/>
+                <a href="{{ url_for('results') }}" onclick="return results('results.html')">&nbsp;&nbsp;Compile&nbsp;&nbsp;</a>
 
                 </div>
      
