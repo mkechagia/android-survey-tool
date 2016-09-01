@@ -6,9 +6,10 @@
     <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 	<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>-->
-	<script src="lib/codemirror.js"></script>
-	<link rel="stylesheet" href="lib/codemirror.css">
-	<script src="mode/javascript/javascript.js"></script>
+	<link rel="stylesheet" href="//lib/codemirror.css">
+	<script src="//lib/codemirror.js"></script>
+	<script src="//mode/javascript/javascript.js"></script>
+	<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?lang=javascript&amp;"></script>
     <meta charset="utf-8">
 
 	<title>Android Survey</title>
@@ -182,10 +183,10 @@ input {
     -moz-border-radius:4px;
     -webkit-border-radius:4px;
     border:1px solid #1A87B9;
-    width:auto;
+    /*width: 50px;*/
+    /*height: 30px;*/
+    width: auto;
     height:auto;
-    /*width: 50px; 
-    height: 30px;*/
 }
 
 .styled-button-2 {
@@ -215,18 +216,6 @@ input {
     font-size:12px;
     width: auto;
     /*border: 1px solid red;*/
-}
-
-.styled-button-4 {
-    background-color: #33cc77;
-    color: #fff;
-    display: inline;
-    margin: 0 auto;
-    /*padding: 4px 0;*/
-    width: 100px;
-    font-family:'Arial', sans-serif;
-    font-size:12px;
-    text-align: center;
 }
 
 .col-md-4{
@@ -268,6 +257,7 @@ input {
 <link rel="stylesheet" href="{{ url_for('static', filename='github.css') }}">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?lang=javascript&amp;"></script>
 
 </head>
 
@@ -1039,8 +1029,8 @@ public class NoteEditor extends Activity {
 
                 <!--<div id="space_delete" class="droptarget">-->
                 <div id="space_delete" class="droptarget" ondrop="drop(event);" ondragover="allowDrop(event);">
-                    <div class="row">{{answ.answer_1}}</div>
-                    <div class="row"></div>
+                	<div class="row"><pre><code>{{answ.answer_1}}</code></pre></div>
+                	<div class="row"></div>
                     <div class="row"></div>
                     <div class="row"></div>
                     <div class="row"></div>
@@ -1075,9 +1065,6 @@ public class NoteEditor extends Activity {
                 <input type="submit" value="Submit"/>
 
                 </div>
-
-                <!--<button><a href="{{ url_for('results') }}" onclick="return results('results.html')">Compile</a></button>-->
-                <!--<a href="{{ url_for('results') }}" onclick="return results('results.html')">Results</a>-->
      
     		  </form>
             </div>
@@ -1143,18 +1130,7 @@ public class NoteEditor extends Activity {
             nWindow = window.open(url,'name','height=200,width=150');
             if (window.focus) {nWindow.focus()}
             return false;
-        } 
-
-        /*
-        CodeMirror.fromTextArea(document.getElementById("hiddeninput_delete"), {
-			mode:  "text/x-java",
-			indentWithTabs: true,
-			smartIndent: true,
-			lineNumbers: true,
-			lineWrapping: true,
-			matchBrackets : true,
-			autofocus: true
-		});*/
+        }
     </script>
 
 </body>	
