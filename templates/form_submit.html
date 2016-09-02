@@ -252,6 +252,18 @@ input {
     visibility: visible;
 }
 
+.styled-code {
+    display: block;
+    font-family: monospace;
+    white-space: pre;
+    margin: 1em 0;
+}
+
+/*! Color themes for Google Code Prettify | MIT License | github.com/jmblog/color-themes-for-google-code-prettify */
+.prettyprint{background:#fff;font-family:Menlo,Bitstream Vera Sans Mono,DejaVu Sans Mono,Monaco,Consolas,monospace;border:0!important}.pln{color:#4d4d4c}ol.linenums{margin-top:0;margin-bottom:0;color:#8e908c}li.L0,li.L1,li.L2,li.L3,li.L4,li.L5,li.L6,li.L7,li.L8,li.L9{padding-left:1em;background-color:#fff;list-style-type:decimal}@media screen{.str{color:#718c00}.kwd{color:#8959a8}.com{color:#8e908c}.typ{color:#4271ae}.lit{color:#f5871f}.pun{color:#4d4d4c}.opn{color:#4d4d4c}.clo{color:#4d4d4c}.tag{color:#c82829}.atn{color:#f5871f}.atv{color:#3e999f}.dec{color:#f5871f}.var{color:#c82829}.fun{color:#4271ae}}
+
+
+
 </style>
 
 <link rel="stylesheet" href="{{ url_for('static', filename='github.css') }}">
@@ -278,34 +290,34 @@ input {
 
         <fieldset>
 
-            <!--<b><p>Here is the NotePad app!</p></b>-->
-
             <br>
  
             <p>You are going to update a class of a real Android app, NotePad!
             For this reason, please do not read the source code of the NotePad application.
             On the left side there are methods, keywords, and symbols to drag on the answer boxes (on the right) below.
-            When you point the cursor to a method you can get its API reference documentation.
+            When you point the cursor to an element you can get its API reference documentation.
             Please, scroll down to find the answer boxes in the source code.</p>
 
-            <p>Instructions:</p>
+            <p>Please carefully consider the following instructions:</p>
 
             <ul>
                 
                 <li><p>-To fill an answer box, drag elements from the box on the left to the answer boxes on the right.</p></li>
                 <li><p>-To clear an answer box, you can press the <b>Clear</b> button.</p></li>
-                <li><p>-To delete an element (e.g. a dragged try), click once on the element.</p></li>
+                <li><p>-To delete an element (e.g. a dragged try) just click once on the element.</p></li>
                 <li><p>-To see an answer, you can press the <b>Get Value</b> button.</p></li>
-                <li><p>-To save each of your answers, please, press the <b>Save</b> button, 
+                <li><p>-To update each of your answers, please, press the <b>Update</b> button, 
                         otherwise your answers will not valid!</p></li>
+                <li><p>-To check your program for compile errors, press the <b>Save</b> button and then press the 
+                        <b>Compile</b> button. Remember that first, you should have updated (Update button) all the answer boxes!</p></li>
+                <li><p>-To get help for the above instructions, just press the <b>Help</b> button under each answer box.</li></p>
             </ul>
 
             <br>
 
             <p>Please, take care of the handling of your code, 
             because we know that the methods to be called can lead to application <b>crashes</b>! 
-            Finally, when you fill the answer boxes, please do not forget to press the <b>Submit</b> button.
-            Thank you!</p>
+            Finally, when you fill the answer boxes, please do not forget to press the <b>Save</b> button and then press the log-out link (up and right in the survey). Thank you!</p>
 
             <br>
             
@@ -316,7 +328,11 @@ input {
             <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="{">{&nbsp;</button>
             <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="}">}&nbsp;</button>
             <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id=";">;</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="IOE">IOE</button>
+            <button class="styled-button tooltip" ondragstart="dragStart(event);" draggable="true" id="IndexOutOfBoundsException" name="IndexOutOfBoundsException">IndexOutOfBoundsException
+            <span class="tooltiptext">
+                <p>Thrown to indicate that an index of some sort (such as to an array, to a string, or to a vector) is out of range.</p>
+            </span>
+            </button>
             <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="(">(</button>
             <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id=")">)</button>
             <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="e">e</button>
@@ -344,6 +360,7 @@ input {
 
             <div class="form">
     		  <form method="post" action="{{ url_for('survey') }}">
+                <!--<pre class="prettyprint lang-java"><code class="java">-->
                 <pre><code class="java">
 /*
  * Copyright (C) 2007 The Android Open Source Project
@@ -1027,11 +1044,10 @@ public class NoteEditor extends Activity {
             // TO-DO: Delete a note
                 </pre></code class="java">
 
-                <!--<div id="space_delete" class="droptarget">-->
                 <div id="space_delete" class="droptarget" ondrop="drop(event);" ondragover="allowDrop(event);">
-                	<div class="row"><code>{{answ.answer_1}}</code></div>
-                	<div class="row"></div>
+                    <div class="row"><pre class="java">{{answ.answer_1}}</pre></div>
                     <div class="row"></div>
+                	<div class="row"></div>
                     <div class="row"></div>
                     <div class="row"></div>
 
@@ -1040,9 +1056,16 @@ public class NoteEditor extends Activity {
                 
                 <br>
 
-                <input type="button" id="save_delete" data-id="space_delete" class="styled-button-2" value="Save" onClick="saveDiv('space_delete');" />
+                <input type="button" id="save_delete" data-id="space_delete" class="styled-button-2" value="Update" onClick="saveDiv('space_delete');" />
                 <input type="button" id="clear_delete" class="styled-button-2" value="Clear" onclick="clearDiv('space_delete');"/>
-                <input type="button" class="styled-button-2" id="textarea_value" value="Get Value" onclick="getValDiv('hiddeninput_delete');"/>
+                <!--<input type="button" class="styled-button-2" id="textarea_value" value="Get Value" onclick="getValDiv('hiddeninput_delete');"/>-->
+                <input type="button" class="styled-button-2" value="Help" onClick="return results('/survey/help.html')" />
+                <!--<button class="styled-button-2 tooltip">
+                    Help
+                    <span class="tooltiptext">
+                        Here are some instructions!
+                    </span>
+                </button>-->
 
                 <pre><code>
                     <!--// text input by the user-->
@@ -1062,7 +1085,7 @@ public class NoteEditor extends Activity {
                 <div position:relative; top:50%;left:50%;>
  
                 <input type="submit" value="Save"/>
-                <a href="{{ url_for('results') }}" onclick="return results('results.html')">&nbsp;&nbsp;Compile&nbsp;&nbsp;</a>
+                <a href="{{ url_for('results') }}" onclick="return results('/survey/results.html')">&nbsp;&nbsp;Compile&nbsp;&nbsp;</a>
 
                 </div>
      

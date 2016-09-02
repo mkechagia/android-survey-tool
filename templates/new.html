@@ -7,7 +7,7 @@
     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
  
     <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
-    <link href="../static/signup.css" rel="stylesheet">
+    <!--<link href="../static/signup.css" rel="stylesheet">-->
     
   </head>
  
@@ -23,6 +23,9 @@
           </ul>
         </nav>
         <h3 class="text-muted">Android Survey</h3>
+        <p></p>
+        <p>Please fill all the following fields in order to get access to the survey.
+           Note that if you forget your password, we are going to ask your secret word to retrieve this. Enjoy!</p>
       </div>
  
       <div class="jumbotron">
@@ -37,12 +40,15 @@
          <label for = "surname" class="sr-only">Surname</label>
          <input type = "text" name = "surname" class="form-control" placeholder = "surname"/>
          <label for = "email" class="sr-only">Email</label>
-         <textarea name = "email" class="form-control" class="form-control" placeholder = "email"></textarea>
+         <input type = "text" name = "email" class="form-control" class="form-control" placeholder = "email"></textarea>
          <label for = "password" class="sr-only">Password</label>
          <input type = "password" name = "password" class="form-control" class="form-control" placeholder = "password"/>
+         <label for = "secret" class="sr-only">Secret Word</label>
+         <input type = "password" name = "secret" class="form-control" class="form-control" placeholder = "secret word"/>
          <!--<label for = "password" class="sr-only">Repeat Password</label>
          <input type = "text" name = "password" class="form-control" class="form-control" placeholder = "rpassword"/>-->
-         <input id="btnSignUp" class="btn btn-lg btn-primary btn-block" type = "submit" value = "Sign up"/>
+         <!--<input id="btnSignUp" class="btn btn-lg btn-primary btn-block" type = "submit" value = "Sign up"/>-->
+         <input id="btnSignUp" class="btn btn-lg btn-success btn-block" type = "submit" value = "Sign up"/>
         </form>
       </div>
  
