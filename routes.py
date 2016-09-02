@@ -23,10 +23,10 @@ def index():
 @app.route('/new', methods = ['GET', 'POST'])
 def new():
 	if (request.method == 'POST'):
-		if (not request.form['name'] or not request.form['surname'] or not request.form['email'] or not request.form['password']):
+		if (not request.form['name'] or not request.form['surname'] or not request.form['email'] or not request.form['password'] or not request.form['secret']):
 			flash('Please enter all the fields.', 'error')
 		else:
-			student = students(name=request.form['name'], surname=request.form['surname'], email=request.form['email'], password=request.form['password'])
+			student = students(name=request.form['name'], surname=request.form['surname'], email=request.form['email'], password=request.form['password'], secret=request.form['secret'])
 			# check if the email already exists---unique user
 			if (not db.session.query(students.id).filter(students.email==student.email).count() == 0):
 				flash('The email is already taken.', 'error')
@@ -38,9 +38,10 @@ def new():
 					db.session.add(student)
 					db.session.commit()
 					session['email'] = student.email
-					flash('Record was successfully added.')
-					return redirect(url_for('show_all'))
-					#return render_template('form_submit.html', student=student)
+					#return redirect(url_for('show_all')) -> this is for debugging
+					session['logged_in'] = True
+					answ=answers.query.filter_by(students_email=session['email']).first()
+					return render_template('form_submit.html', answ=answ)
 				else:
 					flash('The email is not valid.', 'error')
 	return render_template('new.html')
@@ -55,12 +56,9 @@ def survey():
     	answer=answers.query.filter_by(students_email=session['email']).first()
     	# update user's answers when login, edit answer boxes, and submit
     	if (not db.session.query(answers.id).filter(answers.students_email==session['email']).count() == 0):
-    		#update(answers).where(answers.students_email==session['email']).values(answer_1=request.form['hiddeninput_delete'])
-    		#answer.answer_1=request.form['hiddeninput_delete']
     		# format user's answer
     		first_answer=format_answer.format_answer(request.form['hiddeninput_delete'])
     		answer.answer_1=first_answer
-    		#db.session.add(answer)
     		db.session.commit()
     	else:
     		# format user's answer
@@ -76,7 +74,7 @@ def survey():
     		json.dump(dict, fp, indent = 4)
     return render_template('form_submit.html', answ=answer)
 
-# show all users
+# show all users -> this method is for debugging
 @app.route('/show_all')
 def show_all():
    return render_template('show_all.html', students = students.query.all())
@@ -96,18 +94,20 @@ def login():
 		return render_template('form_submit.html', answ=answ)
 
 # compiler results
-@app.route('/results.html')
+@app.route('/survey/results.html')
 def results():
 	if ('email' in session):
-                answer=answers.query.filter_by(students_email=session['email']).first()
-                answ = answer.answer_1
-                java_file_complete = glue_answer(answ)
-                # XXX: environment-specific path to Android project
-                project_path = "NotePad/src/com/example/android/notepad"
-                with open("%s/NoteEditor.java" % project_path, "w") as f:
-                    f.write("%s" % java_file_complete)
-                javac_output = check_output(["cd", "NotePad", "&&", "ant", "debug"])
-		return render_template('results.html', answ=javac_output)
+		answer=answers.query.filter_by(students_email=session['email']).first()
+		answ = answer.answer_1
+		'''
+		java_file_complete = glue_answer(answ)
+		# XXX: environment-specific path to Android project
+		project_path = "NotePad/src/com/example/android/notepad"
+		with open("%s/NoteEditor.java" % project_path, "w") as f:
+			f.write("%s" % java_file_complete)
+			javac_output = check_output(["cd", "NotePad", "&&", "ant", "debug"])
+		'''
+	return render_template('results.html', answ=answ)
 
 @app.route('/logout.html')
 def logout():
@@ -116,6 +116,10 @@ def logout():
 
 	session.pop('email', None)
 	return render_template('logout.html')
+
+@app.route('/survey/help.html')
+def help():
+	return render_template('help.html')
 
 if __name__ == '__main__':
    db.create_all()

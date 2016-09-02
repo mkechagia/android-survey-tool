@@ -19,6 +19,7 @@ class students(db.Model):
    name = db.Column(db.String(100))
    surname = db.Column(db.String(100)) 
    password = db.Column(db.String(100))
+   secret = db.Column(db.String(100))
    answers = relationship("answers", uselist=False, back_populates="students")
 
    def __repr__(self):
