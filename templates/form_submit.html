@@ -149,7 +149,27 @@ input {
 .row{
     width: 500px;
     height: 25px;
+    border-bottom: 0.5px dotted #ccc;
     /*border: 0.5px solid red;*/
+    /*display: inline-block;*/
+    display: block;
+    margin: 0 auto;
+}
+
+.row1{
+    width: 500px;
+    height: 150px;
+    /*border-bottom: 0.5px dotted #ccc;*/
+    /*border: 0.5px solid blue;*/
+    /*display: inline-block;*/
+    display: block;
+    margin: 0 auto;
+}
+
+.rowp{
+    width: 485px;
+    height: 135px;
+    /*border: 0.5px solid blue;*/
     /*display: inline-block;*/
     display: block;
     margin: 0 auto;
@@ -1044,12 +1064,11 @@ public class NoteEditor extends Activity {
             // TO-DO: Delete a note
                 </pre></code class="java">
 
-                <div id="space_delete" class="droptarget" ondrop="drop(event);" ondragover="allowDrop(event);">
-                    <div class="row"><pre class="java">{{answ.answer_1}}</pre></div>
-                    <div class="row"></div>
-                	<div class="row"></div>
-                    <div class="row"></div>
-                    <div class="row"></div>
+                <br/>
+
+                <!--<div id="space_delete" class="droptarget" ondrop="drop(event);" ondragover="allowDrop(event);">-->
+                <div id="space_delete" class="droptarget">
+                    <div class="row1" id="row1"><pre class="rowp">{{answ.answer_1}}</pre></div>
 
                     <textarea type="text" style="display:none" name="hiddeninput_delete" id="hiddeninput_delete"></textarea>
                 </div>
@@ -1111,28 +1130,38 @@ public class NoteEditor extends Activity {
             event.preventDefault();
             var data = event.dataTransfer.getData("Text");
             var elmnt = document.getElementById(data).firstChild;
-            var cln = elmnt.cloneNode(true);
-            var para = document.createElement("div")
-            para.setAttribute('class', 'styled-button-3');
-            para.setAttribute('id', elmnt);
-            para.appendChild(cln);
-            event.target.appendChild(para);
+	        var cln = elmnt.cloneNode(true); 
+	        var para = document.createElement("div")
+	        para.setAttribute('class', 'styled-button-3');
+	        para.setAttribute('id', elmnt);
+	        para.appendChild(cln);
+	        event.target.appendChild(para);
         }
+
+        $(document).ready ( function () {
+        	if ($("#row1").text().length <= 0) {
+	            $("#row1").text("//There is not answer yet. Please press Clear and give your answer.");
+        	}
+        });
 
         // event propagation for dynamically added elements
         $(document).ready ( function () {
+        	// click just once on a word to delete
             $(document).on("click", ".styled-button-3", function () {
                 $(this).remove();
             });
         });
 
+        // when clean the div, add 4 empty rows and 1 new textarea
         function clearDiv(divId) {
             //$("#"+divId).remove();
             $("#"+divId).contents().filter(function () {
                 return this.nodeType === 1; 
             }).empty();
             var myclear = $("#"+divId).text();
+            // clean the textarea
             $("#"+divId).find('textarea').val('');
+            $("#"+divId).html('<div class="row" ondrop="drop(event);" ondragover="allowDrop(event);"></div><div class="row" ondrop="drop(event);" ondragover="allowDrop(event);"></div><div class="row" ondrop="drop(event);" ondragover="allowDrop(event);"></div><div class="row" ondrop="drop(event);" ondragover="allowDrop(event);"></div><textarea type="text" style="display:none" name="hiddeninput_delete" id="hiddeninput_delete"></textarea>');
         }
 
         function saveDiv(divId) {

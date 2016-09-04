@@ -90,8 +90,8 @@ def login():
 	else:
 		session['logged_in'] = True
 		session['email'] = email
-		answ=answers.query.filter_by(students_email=session['email']).first()
-		return render_template('form_submit.html', answ=answ)
+		answer = answers.query.filter_by(students_email=session['email']).first()
+		return render_template('form_submit.html', answ=answer)
 
 # compiler results
 @app.route('/survey/results.html')
