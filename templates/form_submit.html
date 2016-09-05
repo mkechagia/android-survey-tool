@@ -6,10 +6,8 @@
     <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 	<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>-->
-	<link rel="stylesheet" href="//lib/codemirror.css">
-	<script src="//lib/codemirror.js"></script>
-	<script src="//mode/javascript/javascript.js"></script>
 	<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?lang=javascript&amp;"></script>
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
     <meta charset="utf-8">
 
 	<title>Android Survey</title>
@@ -108,7 +106,23 @@ input {
 	display: inline;
 	margin: 0 auto;
 	/*padding: 4px 0;*/
-	width: 100px;
+	/*width: 100px;*/
+    width:auto;
+}
+
+#form fieldset input[type="button"] {
+    /*background-color: #f95252;*/
+    background-color: #eee;
+    color: #777;
+    display: inline;
+    margin: 0 auto;
+    /*padding: 4px 0;*/
+    /*width: 100px;*/
+    width:auto;
+    border-radius:4px;
+    -moz-border-radius:4px;
+    -webkit-border-radius:4px;
+    border:1px solid #1A87B9;
 }
 
 #form fieldset a {
@@ -135,6 +149,15 @@ input {
     border-radius: 3px;
 }
 
+.api {
+    float: left; 
+    width: 300px; 
+    height: auto;
+    margin: 0 auto;
+    border-radius: 3px;
+    background: silver;
+}
+
 .droptarget { 
     float: right;
     width: 500px; 
@@ -149,7 +172,7 @@ input {
 .row{
     width: 500px;
     height: 25px;
-    border-bottom: 0.5px dotted #ccc;
+    /*border-bottom: 0.5px dotted #ccc;*/
     /*border: 0.5px solid red;*/
     /*display: inline-block;*/
     display: block;
@@ -302,8 +325,8 @@ input {
 	<div id="form">
         <b><p align="right" class="fontawesome">
             Welcome {{ session['email'] }}! 
-            <a href="{{ url_for('index') }}">Home</a>
-            <a href="{{ url_for('logout') }}">Log-out</a>
+            <a href="{{ url_for('index') }}"><i class="fa fa-home fa-lg" aria-hidden="true"></i></a>
+            <a href="{{ url_for('logout') }}"><i class="fa fa-sign-out fa-lg" aria-hidden="true"></i></a>
         </p></b>
 
 		<h2><span class="fontawesome"></span>Android Survey</h2>
@@ -340,6 +363,12 @@ input {
             Finally, when you fill the answer boxes, please do not forget to press the <b>Save</b> button and then press the log-out link (up and right in the survey). Thank you!</p>
 
             <br>
+
+            <!--<div class="api">
+                <p>This is the API reference</p><br>
+                <li>
+                    <a href="https://developer.android.com/reference/java/lang/IndexOutOfBoundsException.html">IndexOutOfBoundsException</a>
+            </div>-->
             
             <div class= "dragtarget" id="dragtarget">
             <!--<div class="styled-button" id="catch">catch</div>-->            
@@ -1070,15 +1099,15 @@ public class NoteEditor extends Activity {
                 <div id="space_delete" class="droptarget">
                     <div class="row1" id="row1"><pre class="rowp">{{answ.answer_1}}</pre></div>
 
-                    <textarea type="text" style="display:none" name="hiddeninput_delete" id="hiddeninput_delete"></textarea>
+                    <textarea type="text" style="display:none" name="hiddeninput_delete" id="hiddeninput_delete">{{answ.answer_1}}</textarea>
                 </div>
                 
                 <br>
 
-                <input type="button" id="save_delete" data-id="space_delete" class="styled-button-2" value="Update" onClick="saveDiv('space_delete');" />
+                <input type="button" id="save_delete" data-id="space_delete" class="styled-button-2" value="Save" onClick="saveDiv('space_delete', 'row1');" />
                 <input type="button" id="clear_delete" class="styled-button-2" value="Clear" onclick="clearDiv('space_delete');"/>
                 <!--<input type="button" class="styled-button-2" id="textarea_value" value="Get Value" onclick="getValDiv('hiddeninput_delete');"/>-->
-                <input type="button" class="styled-button-2" value="Help" onClick="return results('/survey/help.html')" />
+                <!--<input type="button" class="styled-button-2" value="Help" onClick="return results('/survey/help.html')" />-->
                 <!--<button class="styled-button-2 tooltip">
                     Help
                     <span class="tooltiptext">
@@ -1103,8 +1132,11 @@ public class NoteEditor extends Activity {
 
                 <div position:relative; top:50%;left:50%;>
  
-                <input type="submit" value="Save"/>
-                <a href="{{ url_for('results') }}" onclick="return results('/survey/results.html')">&nbsp;&nbsp;Compile&nbsp;&nbsp;</a>
+                <input type="submit" value="Format"/>
+                <a href="{{ url_for('results') }}" onclick="return results('/survey/results.html')">&nbsp;&nbsp;Check&nbsp;&nbsp;</a>
+                <span class="add-on" onclick="return results('/survey/help.html')">
+                    <i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+                </span>
 
                 </div>
      
@@ -1164,9 +1196,13 @@ public class NoteEditor extends Activity {
             $("#"+divId).html('<div class="row" ondrop="drop(event);" ondragover="allowDrop(event);"></div><div class="row" ondrop="drop(event);" ondragover="allowDrop(event);"></div><div class="row" ondrop="drop(event);" ondragover="allowDrop(event);"></div><div class="row" ondrop="drop(event);" ondragover="allowDrop(event);"></div><textarea type="text" style="display:none" name="hiddeninput_delete" id="hiddeninput_delete"></textarea>');
         }
 
-        function saveDiv(divId) {
-            var mysave = $("#"+divId).text();
-            $("#"+divId).find('textarea').val(mysave);
+        function saveDiv(divId, rowId) {
+            if ($("#"+rowId).length === 0) {
+                var mysave = $("#"+divId).text();
+                $("#"+divId).find('textarea').val(mysave);
+            } else {
+                //clearDiv(divId);
+            }
         }
 
         function getValDiv(textareaId) {

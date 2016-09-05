@@ -5,10 +5,14 @@
     <title>Android Survey</title>
  
  
-    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!--<link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">-->
  
     <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
- 
+
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
  
 </head>
  
@@ -17,14 +21,18 @@
     <div class="container">
         <div class="header">
             <nav>
-                <ul class="nav nav-pills pull-right">
+                <ul class="nav pull-right">
                     <li role="presentation">
                         <form action="/login" method="POST">
                             <span class="nav nav-pills pull-right">
-                                <input type="email" name="email" placeholder="email">
-                                <input type="password" name="password" placeholder="password">
-                                <!--<button type="button"><a href="{{ url_for('login') }}" role="button">Log-in</a></button>-->
-                                <input type="submit" value="Log-in"/>
+                                <span class="add-on"><i class="icon-envelope"></i></span>
+                                <input class="span2" type="email" name="email" placeholder="email"/>
+                                <span class="add-on"><i class="icon-key"></i></span>
+                                <input class="span2" type="password" name="password" placeholder="password"/>
+                                <!--<input type="submit" value="Log-in"/>-->
+                                <button type="submit" class="btn btn-success">
+                                    <i class="icon-circle-arrow-right icon-medium"></i> Log-in
+                                </button>
                             </span>
                             {%- for category, message in get_flashed_messages(with_categories = true) %}
                                 <div class = "alert alert-danger">
@@ -39,9 +47,10 @@
         </div>
  
         <div class="jumbotron">
-            <h1>Get access to the Android survey.</h1>
+            <h1 class="display-3">Get access to the Android survey.</h2>
             <p class="lead"></p>
-            <p><a class="btn btn-lg btn-success" href="{{ url_for('new') }}" role="button">Sign up</a>
+            <p><a class="btn btn-lg btn-success" href="{{ url_for('new') }}" role="button">
+                <i class="icon-circle-arrow-right icon-medium"></i> Sign up</a>
             </p>
         </div>
  
@@ -51,5 +60,5 @@
  
     </div>
 </body>
- 
+
 </html>

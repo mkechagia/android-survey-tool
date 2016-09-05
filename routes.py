@@ -53,26 +53,26 @@ def new():
 def survey():
     if ('email' in session):
     	dict = {}
-    	answer=answers.query.filter_by(students_email=session['email']).first()
+    	answ=answers.query.filter_by(students_email=session['email']).first()
     	# update user's answers when login, edit answer boxes, and submit
     	if (not db.session.query(answers.id).filter(answers.students_email==session['email']).count() == 0):
     		# format user's answer
     		first_answer=format_answer.format_answer(request.form['hiddeninput_delete'])
-    		answer.answer_1=first_answer
+    		answ.answer_1=first_answer
     		db.session.commit()
     	else:
     		# format user's answer
     		first_answer=format_answer.format_answer(request.form['hiddeninput_delete'])
     		# add user answers to the db
-    		answer = answers(students_email=session['email'], answer_1=first_answer)
-    		db.session.add(answer)
+    		answ = answers(students_email=session['email'], answer_1=first_answer)
+    		db.session.add(answ)
     		db.session.commit()
     	# add user answers to .json file
     	dict["answer_1"] = request.form['hiddeninput_delete']
     	file_name = session['email']+'.json'
     	with open(file_name, 'w') as fp:
     		json.dump(dict, fp, indent = 4)
-    return render_template('form_submit.html', answ=answer)
+    return render_template('form_submit.html', answ=answ)
 
 # show all users -> this method is for debugging
 @app.route('/show_all')
@@ -90,8 +90,8 @@ def login():
 	else:
 		session['logged_in'] = True
 		session['email'] = email
-		answer = answers.query.filter_by(students_email=session['email']).first()
-		return render_template('form_submit.html', answ=answer)
+		answ = answers.query.filter_by(students_email=session['email']).first()
+		return render_template('form_submit.html', answ=answ)
 
 # compiler results
 @app.route('/survey/results.html')
