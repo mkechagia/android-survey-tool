@@ -125,6 +125,10 @@ input {
     border:1px solid #1A87B9;
 }
 
+.ic {
+	cursor:pointer;
+}
+
 #form fieldset a {
     background-color: #33cc77;
     color: #fff;
@@ -305,7 +309,11 @@ input {
 /*! Color themes for Google Code Prettify | MIT License | github.com/jmblog/color-themes-for-google-code-prettify */
 .prettyprint{background:#fff;font-family:Menlo,Bitstream Vera Sans Mono,DejaVu Sans Mono,Monaco,Consolas,monospace;border:0!important}.pln{color:#4d4d4c}ol.linenums{margin-top:0;margin-bottom:0;color:#8e908c}li.L0,li.L1,li.L2,li.L3,li.L4,li.L5,li.L6,li.L7,li.L8,li.L9{padding-left:1em;background-color:#fff;list-style-type:decimal}@media screen{.str{color:#718c00}.kwd{color:#8959a8}.com{color:#8e908c}.typ{color:#4271ae}.lit{color:#f5871f}.pun{color:#4d4d4c}.opn{color:#4d4d4c}.clo{color:#4d4d4c}.tag{color:#c82829}.atn{color:#f5871f}.atv{color:#3e999f}.dec{color:#f5871f}.var{color:#c82829}.fun{color:#4271ae}}
 
-
+a:link, a:visited { 
+    color: black;
+    cursor: auto;
+    text-decoration:none;
+}
 
 </style>
 
@@ -323,11 +331,11 @@ input {
     <script>hljs.initHighlightingOnLoad();</script>
 
 	<div id="form">
-        <b><p align="right" class="fontawesome">
+        <p align="right">
             Welcome {{ session['email'] }}! 
             <a href="{{ url_for('index') }}"><i class="fa fa-home fa-lg" aria-hidden="true"></i></a>
             <a href="{{ url_for('logout') }}"><i class="fa fa-sign-out fa-lg" aria-hidden="true"></i></a>
-        </p></b>
+        </p>
 
 		<h2><span class="fontawesome"></span>Android Survey</h2>
 
@@ -364,11 +372,12 @@ input {
 
             <br>
 
-            <!--<div class="api">
+            <div class="api">
                 <p>This is the API reference</p><br>
                 <li>
                     <a href="https://developer.android.com/reference/java/lang/IndexOutOfBoundsException.html">IndexOutOfBoundsException</a>
-            </div>-->
+                </li>
+            </div>
             
             <div class= "dragtarget" id="dragtarget">
             <!--<div class="styled-button" id="catch">catch</div>-->            
@@ -1134,8 +1143,13 @@ public class NoteEditor extends Activity {
  
                 <input type="submit" value="Format"/>
                 <a href="{{ url_for('results') }}" onclick="return results('/survey/results.html')">&nbsp;&nbsp;Check&nbsp;&nbsp;</a>
+                <!--<span class="add-on tooltip" onclick="return results('/survey/help.html')">-->
                 <span class="add-on" onclick="return results('/survey/help.html')">
-                    <i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+                    <i class="fa fa-info-circle fa-lg ic" aria-hidden="true">
+                    	<!--<span class="tooltiptext">
+                    		Press to get help.
+                    	</span>-->
+                    </i>
                 </span>
 
                 </div>
