@@ -15,6 +15,8 @@ import format_answer
 
 global dict
 dict = {}
+global answ
+answ = {}
 
 @app.route('/')
 def index():
@@ -97,8 +99,9 @@ def login():
 @app.route('/survey/results.html')
 def results():
 	if ('email' in session):
-		answer=answers.query.filter_by(students_email=session['email']).first()
-		answ = answer.answer_1
+		answer = answers.query.filter_by(students_email=session['email']).first()
+		# dictionary with user's answers from the database
+		answ = {'answer_1' : answer.answer_1}
 		# Marios: TODO: answ used to be in the form {'answer_1': answer_string}
 		# It's not anymore, now it is just a string
 		# and this will be a problem when calling substitute
@@ -119,6 +122,7 @@ def results():
 				outs, errs = p.communicate()
 			# Format newlines for basic html appearance
 			compile_out = outs.replace('\n', '<br />')
+			# Maria: TO-DO: Check answ=compile_out if it is what we want
 			return render_template('results.html', answ=compile_out)
 
 @app.route('/logout.html')
