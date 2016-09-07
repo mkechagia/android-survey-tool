@@ -7,13 +7,17 @@
     <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 	<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>-->
 	<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?lang=javascript&amp;"></script>
+    <script src="https://cdn.rawgit.com/leafo/sticky-kit/v1.1.2/jquery.sticky-kit.min.js"></script>
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
     <meta charset="utf-8">
-
-	<title>Android Survey</title>
+	
+    <title>Android Survey</title>
 
     <!--<link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">-->
 	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Varela+Round">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js" type="text/javascript"></script>
 
 <style>
 @charset "utf-8";
@@ -60,6 +64,7 @@ input {
 #form {
 	margin: 20px auto;
 	width: 1000px;
+    /*border:2px solid black;*/
 }
 
 #form h2 {
@@ -79,12 +84,14 @@ input {
 }
 
 #form fieldset {
-	background-color: #fff;
+	/*background-color: #fff;*/
+    background-color: #F7F9F9;
 	-webkit-border-radius: 0 0 20px 20px;
 	-moz-border-radius: 0 0 20px 20px;
 	border-radius: 0 0 20px 20px;
 	padding: 20px 26px;
-    height: 19700px;
+    height: 19800px;
+    /*border:2px solid blue;*/
 }
 
 #form fieldset p {
@@ -154,14 +161,39 @@ input {
 }
 */
 
+.wrapper {
+    float: left; 
+    width: 900px;
+    height: 19000px;
+    margin: 15px;
+    padding: 5px;
+    /*border: 1px solid #aaaaaa;*/
+    border-radius: 8px;
+    /*border:2px solid red;*/
+    position: relative;
+}
+
 .dragtarget {
-    position: fixed;
     float: left; 
     width: 300px; 
     padding: 15px;
     background-color: #9EDAD2;
     border-radius: 5px;
     border: none;
+    position:absolute;
+    top: 150px;
+}
+
+.form-code {
+    float: right; 
+    width: 500px; 
+    height: 19000px;
+    margin: 15px;
+    padding: 10px;
+    border: 1px solid #aaaaaa;
+    border-radius: 8px;
+    /*border:2px solid green;*/
+    overflow: scroll;
 }
 
 .api {
@@ -186,6 +218,11 @@ input {
     font-family:'Courier New', monospace;
     font-size:14px;
 }
+
+/*body {
+  overflow: hidden;
+}
+*/
 
 .row{
     width: 500px;
@@ -214,16 +251,6 @@ input {
     /*display: inline-block;*/
     display: block;
     margin: 0 auto;
-}
-
-.form {
-    float: right; 
-    width: 500px; 
-    height: 19200px;
-    margin: 15px;
-    padding: 10px;
-    border: 1px solid #aaaaaa;
-    border-radius: 8px;
 }
 
 .styled-button {
@@ -365,35 +392,30 @@ a:link, a:visited {
 		<h2><span class="fontawesome"></span>Android Survey</h2>
 
         <fieldset>
-
-            <br>
  
-            <p>You are going to update a class of a real Android app, NotePad!
-            For this reason, please do not read the source code of the NotePad application.
-            On the left side there are methods, keywords, and symbols to drag on the answer boxes (on the right) below.
-            When you point the cursor to an element you can get its API reference documentation.
-            Please, scroll down to find the answer boxes in the source code.</p>
+            <p>You are going to update a Java class of a real Android app, NotePad!
+            For this reason, do not read the source code of the NotePad application.
+            Please, take care of the handling of your code, 
+            because we know that the methods to be called can lead to application <b>crashes</b>!<p>
+
+            <p>On the left side there are methods, keywords, and symbols to drag on the answer boxes (on the right) below.
+            Also, there is the API reference documentation of the methods that you should call.
+            Please, scroll down to find the answer boxes in the source code. 
+            Finally, when you fill the answer boxes, press the log-out link (up and right in the survey).</p>
 
             <p>Please carefully consider the following instructions:</p>
 
             <ul>
-                
                 <li><p>-To fill an answer box, drag elements from the box on the left to the answer boxes on the right.</p></li>
                 <li><p>-To clear an answer box, you can press the <b>Clear</b> button.</p></li>
                 <li><p>-To delete an element (e.g. a dragged try) just click once on the element.</p></li>
-                <li><p>-To see an answer, you can press the <b>Get Value</b> button.</p></li>
-                <li><p>-To update each of your answers, please, press the <b>Update</b> button, 
+                <li><p>-To save each of your answers, please, always press the <b>Save</b> button, 
                         otherwise your answers will not valid!</p></li>
-                <li><p>-To check your program for compile errors, press the <b>Save</b> button and then press the 
-                        <b>Compile</b> button. Remember that first, you should have updated (Update button) all the answer boxes!</p></li>
-                <li><p>-To get help for the above instructions, just press the <b>Help</b> button under each answer box.</li></p>
+                <li><p>-To check your program for syntax errors, press the <b>Format</b> button and then press the 
+                        <b>Check</b> button.</p></li>
             </ul>
 
-            <br>
-
-            <p>Please, take care of the handling of your code, 
-            because we know that the methods to be called can lead to application <b>crashes</b>! 
-            Finally, when you fill the answer boxes, please do not forget to press the <b>Save</b> button and then press the log-out link (up and right in the survey). Thank you!</p>
+            <div class="wrapper">
 
             <div class="api">
                 <p>API reference documentation</p>
@@ -438,7 +460,7 @@ a:link, a:visited {
             </button>
             </div>
 
-            <div class="form">
+            <div class="form-code">
     		  <form method="post" action="{{ url_for('survey') }}">
                 <!--<pre class="prettyprint lang-java"><code class="java">-->
                 <pre><code class="java">
@@ -1178,6 +1200,9 @@ public class NoteEditor extends Activity {
                 </div>
      
     		  </form>
+
+            </div>
+
             </div>
 
         </fieldset>
@@ -1256,6 +1281,10 @@ public class NoteEditor extends Activity {
             if (window.focus) {nWindow.focus()}
             return false;
         }
+
+        $(window).scroll(function(){
+            $("#dragtarget").stop().animate({"marginTop": ($(window).scrollTop()) + "px", "marginLeft":($(window).scrollLeft()) + "px"}, "slow" );
+        });
     </script>
 
 </body>	
