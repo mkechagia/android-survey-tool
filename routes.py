@@ -10,7 +10,7 @@ from sqlalchemy import update
 import json
 from collections import defaultdict
 from subprocess import Popen, PIPE, TimeoutExpired
-from glue import glue_answer
+from glue import glue_answer, replace_methods
 import format_answer
 
 global dict
@@ -18,6 +18,7 @@ dict = {}
 global answ
 answ = {}
 
+# Glue user's answers to the NoteEditor.java
 @app.route('/')
 def index():
    return render_template('index.html')
@@ -102,16 +103,10 @@ def results():
 		answer = answers.query.filter_by(students_email=session['email']).first()
 		# dictionary with user's answers from the database
 		answ = {'answer_1' : answer.answer_1}
-		# Marios: TODO: answ used to be in the form {'answer_1': answer_string}
-		# It's not anymore, now it is just a string
-		# and this will be a problem when calling substitute
-		# in glue.py
-		# For now I am doing it manually before calling substitute()
-		# see glue.py
 		filename = 'NoteEditor.java'
 		java_file_complete = glue_answer(filename, answ)
-		project_path = 'NotePad/src/com/example/android/notepad'
-		with open("%s/%s" % (project_path, filename), 'w') as f:
+		file_path = 'NotePad/src/com/example/android/notepad'
+		with open("%s/%s" % (file_path, filename), 'w') as f:
 			f.write("%s" % java_file_complete)
 		with Popen(['bash', 'compile.sh'], stdout = PIPE, stderr = PIPE, \
 				universal_newlines = True) as p:
@@ -120,9 +115,10 @@ def results():
 			except TimeoutExpired:
 				p.kill()
 				outs, errs = p.communicate()
+			# Substitute references to real methods with fake methods
+			compile_out = replace_methods(outs)
 			# Format newlines for basic html appearance
-			compile_out = outs.replace('\n', '<br />')
-			# Maria: TO-DO: Check answ=compile_out if it is what we want
+			compile_out = compile_out.replace('\n', '<br />')
 			return render_template('results.html', answ=compile_out)
 
 @app.route('/logout.html')
