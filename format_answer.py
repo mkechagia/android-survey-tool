@@ -16,4 +16,6 @@ def format_answer(answer):
 		answ = re.sub(r'catch\(', "catch (", answ)
 	if re.search(',', answ):
 		answ = re.sub("," , ", ", answ)
+	if re.search('aExc', answ):
+		answ = re.sub("aExc" , " aExc", answ)
 	return answ
