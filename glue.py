@@ -7,7 +7,7 @@ from string import Template
 global method_dict
 # initialize the dictionary
 # Marios: I changed the method mapping. I thought {fake : real} was more rational
-method_dict = {'getContentResolver().delete(mUri, null, null)' : 'getContentResolver().deleteRecord(mUri, null, null)'}
+method_dict = {'getContentResolver().deleteRecord(mUri, null, null)' : 'getContentResolver().delete(mUri, null, null)'}
 
 # For each given answer by the user
 def glue_answer(filepath, answer_block):
