@@ -24,6 +24,7 @@ def glue_answer(filepath, answer_block):
 	# of answers to substitute and this should not happen here
 	# as is the case now. The answer_block argument to this
 	# function should already be a dict, i.e. {'answer_1': real_answer}
+	# Maria: TO-DO: check if the substitute method works with the dictionary now
 	result = src.substitute(real_answers)
 	return result
 
