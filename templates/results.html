@@ -4,8 +4,10 @@
     </head>
     <body>
         <div>
-            Hello compiler!
-            <p>Here are the results for answer {{answ}}</p>
+	    <h2 style="text-align:center;">Compiler output</h2>
+	    <!-- safe is a filter that allows html formatting found in the
+	     string to go through -->
+            <p>{{answ|safe}}</p>
             <p><a href="javascript:window.close()">Close</a> the popup.</p>
         </div>
     </body>

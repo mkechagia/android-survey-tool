@@ -6,6 +6,13 @@ A. To activate the virtual environment:
 cd android_survey/venv/bin
 source activate
 
+B. To setup the NotePad app from the command-line (requires the Android SDK):
+
+unzip NotePad.zip
+cd NotePad
+android update project --path . --subprojects --target android-XX
+ant clean debug
+
 B. To run the app:
 
 cd android_survey

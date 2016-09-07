@@ -9,7 +9,7 @@ from sqlalchemy import update
 #from flask_login import login_user , logout_user , current_user , login_required
 import json
 from collections import defaultdict
-from subprocess import check_output
+from subprocess import Popen, PIPE, TimeoutExpired
 from glue import glue_answer
 import format_answer
 
@@ -99,15 +99,27 @@ def results():
 	if ('email' in session):
 		answer=answers.query.filter_by(students_email=session['email']).first()
 		answ = answer.answer_1
-		'''
-		java_file_complete = glue_answer(answ)
-		# XXX: environment-specific path to Android project
-		project_path = "NotePad/src/com/example/android/notepad"
-		with open("%s/NoteEditor.java" % project_path, "w") as f:
+		# Marios: TODO: answ used to be in the form {'answer_1': answer_string}
+		# It's not anymore, now it is just a string
+		# and this will be a problem when calling substitute
+		# in glue.py
+		# For now I am doing it manually before calling substitute()
+		# see glue.py
+		filename = 'NoteEditor.java'
+		java_file_complete = glue_answer(filename, answ)
+		project_path = 'NotePad/src/com/example/android/notepad'
+		with open("%s/%s" % (project_path, filename), 'w') as f:
 			f.write("%s" % java_file_complete)
-			javac_output = check_output(["cd", "NotePad", "&&", "ant", "debug"])
-		'''
-	return render_template('results.html', answ=answ)
+		with Popen(['bash', 'compile.sh'], stdout = PIPE, stderr = PIPE, \
+				universal_newlines = True) as p:
+			try:
+				outs, errs = p.communicate(timeout = 5)
+			except TimeoutExpired:
+				p.kill()
+				outs, errs = p.communicate()
+			# Format newlines for basic html appearance
+			compile_out = outs.replace('\n', '<br />')
+			return render_template('results.html', answ=compile_out)
 
 @app.route('/logout.html')
 def logout():
@@ -124,3 +136,5 @@ def help():
 if __name__ == '__main__':
    db.create_all()
    app.run(host='0.0.0.0', debug = True)
+
+# vim: tabstop=8 noexpandtab shiftwidth=8 softtabstop=0
