@@ -205,13 +205,13 @@ public class NoteEditor extends Activity {
          * the block will be momentary, but in a real app you should use
          * android.content.AsyncQueryHandler or android.os.AsyncTask.
          */
-        mCursor = managedQuery(
-            mUri,         // The URI that gets multiple notes from the provider.
-            PROJECTION,   // A projection that returns the note ID and note content for each note.
-            null,         // No "where" clause selection criteria.
-            null,         // No "where" clause selection values.
-            null          // Use the default sort order (modification date, descending)
-        );
+        //mCursor = managedQuery(
+          //  mUri,         // The URI that gets multiple notes from the provider.
+          //  PROJECTION,   // A projection that returns the note ID and note content for each note.
+          //  null,         // No "where" clause selection criteria.
+          //  null,         // No "where" clause selection values.
+          //  null          // Use the default sort order (modification date, descending)
+        //);
 
         // For a paste, initializes the data from clipboard.
         // (Must be done after mCursor is initialized.)
@@ -255,7 +255,7 @@ public class NoteEditor extends Activity {
          */
         if (mCursor != null) {
             // Requery in case something changed while paused (such as the title)
-            mCursor.requery();
+            //mCursor.requery();
 
             /* Moves to the first record. Always call moveToFirst() before accessing data in
              * a Cursor for the first time. The semantics of using a Cursor are that when it is
