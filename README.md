@@ -13,7 +13,7 @@ cd NotePad
 android update project --path . --subprojects --target android-XX
 ant clean debug
 
-B. To run the app:
+C. To run the app:
 
 cd android_survey
 python routes.py
