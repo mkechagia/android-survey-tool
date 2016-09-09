@@ -6,7 +6,8 @@ from string import Template
 
 # initialize the dictionary such as {fake method: real method}
 method_dict = {'getContentResolver().deleteRecord(mUri, null, null)' : \
-		'getContentResolver().delete(mUri, null, null)'}
+		'getContentResolver().delete(mUri, null, null)', \
+		'setTextBox(Char [], int, int)' : 'setText(Char [], int, int)'}
 
 # answer_block is a dict of user's answers,
 # i.e. answer_block = {'answer_1' : fake_answer}

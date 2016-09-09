@@ -30,10 +30,12 @@ class answers(db.Model):
    id = Column(Integer, primary_key=True)
    students_email = Column(Integer, ForeignKey('students.email'))
    answer_1 = db.Column(db.String(1000))
+   answer_2 = db.Column(db.String(1000))
    students = relationship("students", back_populates="answers")
 
    def __repr__(self):
         return '<Answer %r>' % (self.students_email)
+
 
 '''
 def __init__(self, name, surname, email, password):
