@@ -48,5 +48,25 @@
             </dl>
         </ul>
 
+        <br\>
+
+        <ul class="blockList">
+            <h4 id="deleteRecord">setTextBox</h4>
+            <pre class="sig-block">void&nbsp;setTextBox(char[]&nbsp;text, 
+                                int&nbsp;start, 
+                                int&nbsp;len)
+            </pre>
+
+            <div>
+             Sets the TextView to display the specified slice of the specified char array. 
+             You must promise that you will not change the contents of the array except for right before another call to setTextBox(), since the TextView has no way to know that the text has changed and that it needs to invalidate and re-layout.
+            </div>
+            <dl>
+                <dt><span class="paramLabel">Parameters:</span></dt>
+                <dd><code>text</code> char </dd>
+                <dd><code>start</code> int </dd>
+                <dd><code>len</code> int </dd>
+            </dl>
+        </ul>
 </body>
 </html>
