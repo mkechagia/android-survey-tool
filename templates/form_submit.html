@@ -247,7 +247,7 @@ input {
 .rowp{
     width: 485px;
     height: 135px;
-    /*border: 0.5px solid blue;*/
+    /*border: 0.5px solid black;*/
     /*display: inline-block;*/
     display: block;
     margin: 0 auto;
@@ -420,7 +420,8 @@ a:link, a:visited {
             <div class="api">
                 <p>API reference documentation</p>
                     <a href="https://developer.android.com/reference/java/lang/IndexOutOfBoundsException.html">-IndexOutOfBoundsException</a><br>
-                    <a href="{{ url_for('api') }}" onclick="return results('/survey/api.html#deleteRecord')">-deleteRecord (Uri, String, String[])</a>
+                    <a href="{{ url_for('api') }}" onclick="return results('/survey/api.html#deleteRecord')">-deleteRecord (Uri, String, String[])</a><br>
+                    <a href="{{ url_for('api') }}" onclick="return results('/survey/api.html#setTextBox')">-setTextBox(Char [], int, int)</a>
             </div>
             
             <div class= "dragtarget" id="dragtarget">
@@ -438,7 +439,7 @@ a:link, a:visited {
             <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="(">(</button>
             <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id=")">)</button>
             <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="aExc">&nbsp;aExc&nbsp;</button>
-            <!--<button class="styled-button tooltip" ondragstart="dragStart(event);" draggable="true" id="mText.setTextBox(chAr, 0, 1)">mText.setTextBox(chAr, 0, 1)
+            <button class="styled-button tooltip" ondragstart="dragStart(event);" draggable="true" id="mText.setTextBox(chAr, 20, 30)">mText.setTextBox(chAr, 20, 30)
                 <span class="tooltiptext">
                     <b>void setTextBox (char[] text, 
                                      int start, 
@@ -448,7 +449,7 @@ a:link, a:visited {
                     You must promise that you will not change the contents of the array except for right before another call to setTextBox(), 
                     since the TextView has no way to know that the text has changed and that it needs to invalidate and re-layout.</p>
                 </span>
-            </button>-->
+            </button>
             <button class="styled-button tooltip" ondragstart="dragStart(event);" draggable="true" id="getContentResolver().deleteRecord(mUri, null, null)" name="getContentResolver().deleteRecord(mUri, null, null)" value="getContentResolver().deleteRecord(mUri, null, null)">getContentResolver().deleteRecord(mUri, null, null)
             <span class="tooltiptext">
                 <b>int deleteRecord (Uri url, 
@@ -802,7 +803,30 @@ public class NoteEditor extends Activity {
                 for (int i = 0; i < chAr.length; i++) {
                     chAr[i] = (char) cs.charAt(i);
                 }
-                mText.setText(chAr, 20, 30);
+                //mText.setText(chAr, 20, 30);
+
+                </pre></code>
+
+                <br/>
+
+                <!--<div id="space_delete" class="droptarget" ondrop="drop(event);" ondragover="allowDrop(event);">-->
+                <div id="answer_2" class="droptarget">
+                    <div class="row1" id="r_answer_2"><pre class="rowp">{{answ.answer_2}}</pre></div>
+
+                    <textarea type="text" style="display:none" name="t_answer_2" id="ti_answer_2" placeholder="tp_answer_2">{{answ.answer_2}}</textarea>
+                </div>
+                
+                <br>
+
+                <input type="button" name="s_answer_2" data-id="si_answer_2" class="styled-button-2" value="Save" onClick="saveDiv('answer_2', 'r_answer_2');" />
+                <input type="button" class="styled-button-2" value="Clear" name="c_answer_2" onclick="clearDiv('answer_2');"/>
+                <input type="button" class="styled-button-2" id="textarea_value" value="Get Value" onclick="getValDiv('ti_answer_2');"/>
+
+                <br>
+                <br>
+
+                <pre><code>
+
             }
         }
     }
@@ -1144,22 +1168,22 @@ public class NoteEditor extends Activity {
             mCursor = null;
             
             // TO-DO: Delete a note
-                </pre></code class="java">
+                </pre></code>
 
                 <br/>
 
                 <!--<div id="space_delete" class="droptarget" ondrop="drop(event);" ondragover="allowDrop(event);">-->
-                <div id="space_delete" class="droptarget">
-                    <div class="row1" id="row1"><pre class="rowp">{{answ.answer_1}}</pre></div>
+                <div id="answer_1" class="droptarget">
+                    <div class="row1" id="r_answer_1"><pre class="rowp">{{answ.answer_1}}</pre></div>
 
-                    <textarea type="text" style="display:none" name="hiddeninput_delete" id="hiddeninput_delete">{{answ.answer_1}}</textarea>
+                    <textarea type="text" style="display:none" name="t_answer_1" id="ti_answer_1" placeholder="tp_answer_1">{{answ.answer_1}}</textarea>
                 </div>
                 
                 <br>
 
-                <input type="button" id="save_delete" data-id="space_delete" class="styled-button-2" value="Save" onClick="saveDiv('space_delete', 'row1');" />
-                <input type="button" id="clear_delete" class="styled-button-2" value="Clear" onclick="clearDiv('space_delete');"/>
-                <!--<input type="button" class="styled-button-2" id="textarea_value" value="Get Value" onclick="getValDiv('hiddeninput_delete');"/>-->
+                <input type="button" name="s_answer_1" data-id="si_answer_1" class="styled-button-2" value="Save" onClick="saveDiv('answer_1', 'r_answer_1');" />
+                <input type="button" class="styled-button-2" value="Clear" name="c_answer_1" onclick="clearDiv('answer_1');"/>
+                <input type="button" class="styled-button-2" id="textarea_value" value="Get Value" onclick="getValDiv('ti_answer_1');"/>
                 <!--<input type="button" class="styled-button-2" value="Help" onClick="return results('/survey/help.html')" />-->
                 <!--<button class="styled-button-2 tooltip">
                     Help
@@ -1232,30 +1256,30 @@ public class NoteEditor extends Activity {
 	        event.target.appendChild(para);
         }
 
-        $(document).ready ( function () {
-        	if ($("#row1").text().length <= 0) {
-	            $("#row1").text("//There is not answer yet. Please press Clear and give your answer.");
-        	}
-        });
-
         // event propagation for dynamically added elements
         $(document).ready ( function () {
-        	// click just once on a word to delete
+            // click just once on a word to delete
             $(document).on("click", ".styled-button-3", function () {
                 $(this).remove();
             });
         });
 
+        $(document).ready ( function () {
+            // use row1 as class not id to apply the functionality to all row1
+            if ($(".row1").text().length <= 0) {
+                $(".row1").text("//There is no answer yet. Please press Clear and give your answer.");
+            }
+        });
+
         // when clean the div, add 4 empty rows and 1 new textarea
         function clearDiv(divId) {
-            //$("#"+divId).remove();
             $("#"+divId).contents().filter(function () {
                 return this.nodeType === 1; 
             }).empty();
             var myclear = $("#"+divId).text();
             // clean the textarea
             $("#"+divId).find('textarea').val('');
-            $("#"+divId).html('<div class="row" ondrop="drop(event);" ondragover="allowDrop(event);"></div><div class="row" ondrop="drop(event);" ondragover="allowDrop(event);"></div><div class="row" ondrop="drop(event);" ondragover="allowDrop(event);"></div><div class="row" ondrop="drop(event);" ondragover="allowDrop(event);"></div><textarea type="text" style="display:none" name="hiddeninput_delete" id="hiddeninput_delete"></textarea>');
+            $("#"+divId).html('<div class="row" ondrop="drop(event);" ondragover="allowDrop(event);"></div><div class="row" ondrop="drop(event);" ondragover="allowDrop(event);"></div><div class="row" ondrop="drop(event);" ondragover="allowDrop(event);"></div><div class="row" ondrop="drop(event);" ondragover="allowDrop(event);"></div><div class="row" ondrop="drop(event);" ondragover="allowDrop(event);"></div><textarea type="text" style="display:none" name="t_'+divId+'" id="ti_'+divId+'" placeholder="tp_'+divId+'"></textarea>');
         }
 
         function saveDiv(divId, rowId) {
@@ -1272,7 +1296,7 @@ public class NoteEditor extends Activity {
             if (textarea_value.length == 0) {
                 alert("Your answer box is empty!");
             } else {
-                alert(textarea_value);
+                alert(textareaId+":"+textarea_value);
             }
         }
 

@@ -301,7 +301,21 @@ public class NoteEditor extends Activity {
          */
         } else {
             setTitle(getText(R.string.error_title));
-            mText.setText(getText(R.string.error_message));
+
+            // XXX: Add some text
+            // mText.setText(getText(R.string.error_message));
+            // It can throw IndexOutOfBounds exception; when there is an
+            // array in the arguments
+            CharSequence cs = getText(R.string.error_message);
+            if (cs != null) {
+                char[] chAr = new char[cs.length()];
+                for (int i = 0; i < chAr.length; i++) {
+                    chAr[i] = (char) cs.charAt(i);
+                }
+                // XXX: Add some text
+                //mText.setText(chAr, 20, 30);
+                $answer_2
+            }
         }
     }
 
@@ -610,8 +624,9 @@ public class NoteEditor extends Activity {
             mCursor.close();
             mCursor = null;
             
-            // Delete a note
-            //getContentResolver().delete(mUri, null, null);
+            // XXX: Delete a note
+            // getContentResolver().delete(mUri, null, null);
+            // It can throw an IllegalArgumentException
             
             $answer_1
 
