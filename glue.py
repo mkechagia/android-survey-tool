@@ -5,9 +5,8 @@ from collections import defaultdict
 from string import Template
 
 # initialize the dictionary such as {fake method: real method}
-method_dict = {'getContentResolver().deleteRecord(mUri, null, null)' : \
-		'getContentResolver().delete(mUri, null, null)', \
-		'setTextBox(Char [], int, int)' : 'setText(Char [], int, int)'}
+method_dict = {'deleteRecord' : 'delete', \
+		'setTextBox' : 'setText'}
 
 # answer_block is a dict of user's answers,
 # i.e. answer_block = {'answer_1' : fake_answer}
@@ -30,16 +29,26 @@ def bind_method(answers):
 	real_answers = {}
 	a_keys = list(answers.keys())
 	m_keys = list(method_dict.keys())
-	# process each answer
+	# for each user answer
+	for k, l in enumerate(a_keys):
+		# get the value of the answer
+		an = answers.get(a_keys[k])
+		# for each fake method
+		for m, n in enumerate(m_keys):
+			# search for fake method in the answer
+			fake = m_keys[m]
+			if (re.search(fake, an)):
+				print ("find fake :" + fake)
+				# get real method
+				real = method_dict.get(fake)
+				if (a_keys[k] not in list(real_answers.keys())):
+					real_answers[a_keys[k]] = re.sub(fake+'\(', real+'(', an)
+					break
+	# check if finally there exists fake method in user's answer
 	for d, f in enumerate(a_keys):
-		answer = answers.get(a_keys[d])
-		for l, m in enumerate(m_keys):
-			if (answer.find(m_keys[l])):
-				real_answers[a_keys[d]] = answer.replace(m_keys[l], \
-						method_dict.get(m_keys[l]))
-				break
-			else:
-				real_answers[a_keys[d]] = answer
+		if (a_keys[d] not in list(real_answers.keys())):
+			real_answers[a_keys[d]] = answers.get(a_keys[d])
+	print (real_answers)
 	return real_answers
 
 def replace_methods(compiler_output):
