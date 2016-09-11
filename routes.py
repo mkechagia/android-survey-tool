@@ -1,4 +1,4 @@
-from flask import Flask, request, flash, url_for, redirect, render_template, session
+from flask import Flask, request, flash, url_for, redirect, render_template, session, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from signup import SignupForm
 from models import app, db, students, answers
@@ -22,10 +22,10 @@ def index():
 @app.route('/new', methods = ['GET', 'POST'])
 def new():
 	if (request.method == 'POST'):
-		if (not request.form['name'] or not request.form['surname'] or not request.form['email'] or not request.form['password'] or not request.form['secret']):
-			flash('Please enter all the fields.', 'error')
+		if (not request.form['email'] or not request.form['password'] or not request.form['secret'] or not request.form['job'] or not request.form['code'] or not request.form['android']):
+			flash('Please enter all the fields and update the selection boxes.', 'error')
 		else:
-			student = students(name = request.form['name'], surname = request.form['surname'], email = request.form['email'], password=request.form['password'], secret=request.form['secret'])
+			student = students(email = request.form['email'], password=request.form['password'], secret=request.form['secret'], job=request.form['job'], code=request.form['code'], android=request.form['android'])
 			# check if the email already exists---unique user
 			if (not db.session.query(students.id).filter(students.email == student.email).count() == 0):
 				flash('The email is already taken.', 'error')

@@ -1,33 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+
     <title>Android Survey</title>
- 
-    
-    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
- 
+
     <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
-    <!--<link href="../static/signup.css" rel="stylesheet">-->
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="http://vsn4ik.github.io/bootstrap-checkbox/dist/js/bootstrap-checkbox.min.js" ></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.5/css/bootstrap-select.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.5/js/bootstrap-select.min.js"></script>
   </head>
- 
+
   <body>
- 
     <div class="container">
       <div class="header">
         <nav>
           <ul class="nav nav-pills pull-right">
             <li role="presentation" ><a href="{{ url_for('index') }}">Home</a></li>
-            <!--<li role="presentation"><a href="#">Sign In</a></li>
-            <li role="presentation" class="active"><a href="#">Sign Up</a></li>-->
           </ul>
         </nav>
         <h3 class="text-muted">Android Survey</h3>
         <p></p>
-        <p>Please fill all the following fields in order to get access to the survey.
-           Note that if you forget your password, we are going to ask your secret word to retrieve this. Enjoy!</p>
       </div>
- 
       <div class="jumbotron">
         {%- for category, message in get_flashed_messages(with_categories = true) %}
            <div class = "alert alert-danger">
@@ -35,19 +32,51 @@
            </div>
         {%- endfor %}
         <form class="form-signin" action = "{{ request.path }}" method = "post">
-         <label for = "name" class="sr-only">Name</label>
-         <input type = "text" name = "name" class="form-control" placeholder = "name"/>
-         <label for = "surname" class="sr-only">Surname</label>
-         <input type = "text" name = "surname" class="form-control" placeholder = "surname"/>
+         <h4>Personal Details</h4>
+         <br>
+         <div align="left">
+            Please fill all the following fields in order to get access to the survey.
+            Note that if you forget your password, we are going to ask your secret word to retrieve this.
+         </div>
+         <br>
          <label for = "email" class="sr-only">Email</label>
-         <input type = "text" name = "email" class="form-control" class="form-control" placeholder = "email"></textarea>
+         <input type = "text" name = "email" class="form-control" placeholder = "email"/>
          <label for = "password" class="sr-only">Password</label>
-         <input type = "password" name = "password" class="form-control" class="form-control" placeholder = "password"/>
+         <input type = "password" name = "password" class="form-control" placeholder = "password"/>
          <label for = "secret" class="sr-only">Secret Word</label>
-         <input type = "password" name = "secret" class="form-control" class="form-control" placeholder = "secret word"/>
-         <!--<label for = "password" class="sr-only">Repeat Password</label>
-         <input type = "text" name = "password" class="form-control" class="form-control" placeholder = "rpassword"/>-->
-         <!--<input id="btnSignUp" class="btn btn-lg btn-primary btn-block" type = "submit" value = "Sign up"/>-->
+         <input type = "password" name = "secret" class="form-control" placeholder = "secret"/>
+         <br>
+         <h4>Programming Experience</h4>
+         <br>
+         <div align="left"> 
+            What is your current job? Please, write down your job title and if you like include for which company are you working for. If you are a student, please let us know your level (BSc, MSc or PhD student).
+            <br>
+            <br>
+            <textarea name = "job" class="form-control"></textarea>
+         </div>
+         <br>
+         <div align="left"> How many years do you write code?
+          <br>
+          <br>
+          <div align="center">
+          <select class="selectpicker" data-width="fit" class="form-control">
+            <option></option>
+            <option> < 3 years</option>
+            <option> > 3 and < 6 years</option>
+            <option> > 6 years and < 9 years</option>
+            <option> > 9 years</option>
+          </select>
+          <textarea id="t_code" name="code" class="form-control" style="display:none;"></textarea>
+          </div>
+         </div>
+         <br>
+         <div align="left"> Have you ever developed an Android application? </div>
+         <br>
+         <input type="checkbox" id="id_android" name="android_box" data-group-cls="btn-group-lg" class="form-control"/>
+         <textarea id="t_android" name="android" class="form-control" style="display:none;"></textarea>
+         <br>
+         <br>
+         <br>
          <input id="btnSignUp" class="btn btn-lg btn-success btn-block" type = "submit" value = "Sign up"/>
         </form>
       </div>
@@ -55,7 +84,26 @@
       <footer class="footer">
         <p>&copy; SENSE/AUEB 2016</p>
       </footer>
- 
     </div>
+
+    <script type="text/javascript">
+        // check box
+        $(':checkbox').checkboxpicker({onLabel:"YES", offLabel:"NO"});
+        $('#id_android').change(function() {
+          var data = $(this).is(':checked');
+          $('#t_android').text(data);
+        });
+
+        // select picker
+        //$(document).ready(function() {
+          //$('.selectpicker').selectpicker();
+        //});
+
+        $("select.selectpicker").change(function(){
+          var selected = $(".selectpicker option:selected").val();
+          $('#t_code').text(selected);
+        });
+    </script>
+
   </body>
 </html>

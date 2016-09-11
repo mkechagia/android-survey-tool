@@ -15,11 +15,12 @@ db = SQLAlchemy(app)
 class students(db.Model):
    __tablename__ = 'students'
    id = db.Column('student_id', db.Integer, unique=True)
-   email = db.Column(db.String(200), unique=True, primary_key = True)
-   name = db.Column(db.String(100))
-   surname = db.Column(db.String(100)) 
+   email = db.Column(db.String(200), unique=True, primary_key = True) 
    password = db.Column(db.String(100))
    secret = db.Column(db.String(100))
+   job = db.Column(db.String(1000))
+   code = db.Column(db.String(100))
+   android = db.Column(db.String(100))
    answers = relationship("answers", uselist=False, back_populates="students")
 
    def __repr__(self):
