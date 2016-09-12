@@ -10,6 +10,7 @@ from collections import defaultdict
 from subprocess import Popen, PIPE, TimeoutExpired
 from glue import glue_answer, replace_methods
 import format_answer
+import re
 
 global answ
 answ = {}
@@ -69,7 +70,10 @@ def survey():
     	db.session.commit()
     	# get user's current aswers
     	answ = answers.query.filter_by(students_email = session['email']).first()
-    	return render_template('form_submit.html', answ = answ)
+    	# It is better to also add this when press compile
+    	if (re.search("//", first_answer) and re.search("//", first_answer)):
+    		flash('Please fill all the answer boxes.', 'error')
+    return render_template('form_submit.html', answ = answ)
 
 # show all users -> this method is for debugging
 @app.route('/show_all')

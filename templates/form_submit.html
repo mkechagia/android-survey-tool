@@ -9,6 +9,7 @@
 	<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?lang=javascript&amp;"></script>
     <script src="https://cdn.rawgit.com/leafo/sticky-kit/v1.1.2/jquery.sticky-kit.min.js"></script>
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
     <meta charset="utf-8">
 	
     <title>Android Survey</title>
@@ -42,6 +43,7 @@
 
 /* ---------- GENERAL ---------- */
 
+
 body {
 	background-color: #C0C0C0;
 	color: #000;
@@ -63,7 +65,8 @@ input {
 
 #form {
 	margin: 20px auto;
-	width: 1000px;
+	width: 1100px;
+    height:18100px;
     /*border:2px solid black;*/
 }
 
@@ -90,7 +93,8 @@ input {
 	-moz-border-radius: 0 0 20px 20px;
 	border-radius: 0 0 20px 20px;
 	padding: 20px 26px;
-    height: 19800px;
+    height: 17900px;
+    /*height: 19800px;*/
     /*border:2px solid blue;*/
 }
 
@@ -163,8 +167,9 @@ input {
 
 .wrapper {
     float: left; 
-    width: 900px;
-    height: 19000px;
+    width: 1000px;
+    /*height: 19000px;*/
+    height: auto;
     margin: 15px;
     padding: 5px;
     /*border: 1px solid #aaaaaa;*/
@@ -175,19 +180,32 @@ input {
 
 .dragtarget {
     float: left; 
-    width: 300px; 
-    padding: 15px;
+    width: 330px;
+    height: auto;
+    padding: 12px;
     background-color: #9EDAD2;
     border-radius: 5px;
     border: none;
-    position:absolute;
-    top: 150px;
+    position: absolute;
+    top: auto;
+}
+
+.api {
+    position: absolute;
+    float: left; 
+    width: 330px; 
+    height: auto;
+    margin: 0 auto;
+    border-radius: 5px;
+    background: #CEDBD8;
+    padding: 12px;
 }
 
 .form-code {
     float: right; 
-    width: 500px; 
-    height: 19000px;
+    width: 600px; 
+    height: auto;
+    /*height: 19000px;*/
     margin: 15px;
     padding: 10px;
     border: 1px solid #aaaaaa;
@@ -196,21 +214,9 @@ input {
     /*overflow: scroll;*/
 }
 
-.api {
-    position: absolute;
-    float: left; 
-    width: 300px; 
-    height: auto;
-    margin: 0 auto;
-    border-radius: 5px;
-    background: #CEDBD8;
-    padding: 15px;
-    /*transform: translateX(-2%);*/
-}
-
 .droptarget { 
     float: right;
-    width: 500px; 
+    width: 600px; 
     height: 150px;
     border: 1px solid #aaaaaa;
     font-size: 1.2em;
@@ -225,7 +231,7 @@ input {
 */
 
 .row{
-    width: 500px;
+    width: 600px;
     height: 25px;
     /*border-bottom: 0.5px dotted #ccc;*/
     /*border: 0.5px solid red;*/
@@ -235,7 +241,7 @@ input {
 }
 
 .row1{
-    width: 500px;
+    width: 600px;
     height: 150px;
     /*border-bottom: 0.5px dotted #ccc;*/
     /*border: 0.5px solid blue;*/
@@ -245,9 +251,11 @@ input {
 }
 
 .rowp{
-    width: 485px;
+	width: 585px;
     height: 135px;
-    /*border: 0.5px solid black;*/
+    /*width: 485px;
+    height: 135px;
+    border: 0.5px solid black;*/
     /*display: inline-block;*/
     display: block;
     margin: 0 auto;
@@ -394,71 +402,100 @@ a:link, a:visited {
         <fieldset>
  
             <p>You are going to update a Java class of a real Android app, NotePad!
-            For this reason, do not read the source code of the NotePad application.
-            Please, take care of the handling of your code, 
-            because we know that the methods to be called can lead to application <b>crashes</b>!<p>
+            For this reason, please, do not read the source code of the NotePad application.
+            Also, mind the handling of your code, because we know that the methods 
+            to be called can lead to application <b>crashes</b>!<p>
 
-            <p>On the left side there are methods, keywords, and symbols to drag on the answer boxes (on the right) below.
-            Also, there is the API reference documentation of the methods that you should call.
-            Please, scroll down to find the answer boxes in the source code. 
-            Finally, when you fill the answer boxes, press the log-out link (up and right in the survey).</p>
+            <p>In the following, on the left side there is a box of methods,
+            keywords, and symbols to drag on the answer boxes (on the right). 
+            Scroll down to find the TO-DO comments and accordingly 
+            fill the answer boxes to complete the source code. 
+            When you fill and save all the answer boxes, 
+            press the log-out link (up and right in the survey). 
+            Please carefully consider the 
+            <a href="{{ url_for('help') }}" onclick="return results('/survey/help.html')">instructions</a>
+            and our
+            <a href="{{ url_for('api') }}" onclick="return results('/survey/api.html')">API reference documentation</a>.</p>
+
+            <!--
 
             <p>Please carefully consider the following instructions:</p>
 
             <ul>
                 <li><p>-To fill an answer box, drag elements from the box on the left to the answer boxes on the right.</p></li>
-                <li><p>-To clear an answer box, you can press the <b>Clear</b> button.</p></li>
-                <li><p>-To delete an element (e.g. a dragged try) just click once on the element.</p></li>
-                <li><p>-To save each of your answers, please, always press the <b>Save</b> button, 
-                        otherwise your answers will not valid!</p></li>
+                <li><p>-To clear an answer box, press the <b>Clear</b> button.</p></li>
+                <li><p>-To delete an element (e.g. a dragged try) just click once with the pointer on the element.</p></li>
+                <li><p>-To save each of your answers, please, always press the <b>Save</b> button; 
+                        otherwise, your answers will not valid!</p></li>
                 <li><p>-To check your program for syntax errors, press the <b>Format</b> button and then press the 
-                        <b>Check</b> button.</p></li>
+                        <b>Check</b> button in the end of the form.</p></li>
             </ul>
+            -->
 
             <div class="wrapper">
 
+            <!--
             <div class="api">
                 <p>API reference documentation</p>
                     <a href="https://developer.android.com/reference/java/lang/IndexOutOfBoundsException.html">-IndexOutOfBoundsException</a><br>
                     <a href="{{ url_for('api') }}" onclick="return results('/survey/api.html#deleteRecord')">-deleteRecord (Uri, String, String[])</a><br>
-                    <a href="{{ url_for('api') }}" onclick="return results('/survey/api.html#setTextBox')">-setTextBox(Char [], int, int)</a>
+                    <a href="{{ url_for('api') }}" onclick="return results('/survey/api.html#setTextBox')">-setTextBox(Char [], int, int)</a><br>
             </div>
+            -->
             
             <div class= "dragtarget" id="dragtarget">
             <!--<div class="styled-button" id="catch">catch</div>-->            
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="catch">catch&nbsp;</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="catch">&nbsp;catch&nbsp;</button>
             <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="try">try&nbsp;</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="{">{&nbsp;</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="}">}&nbsp;</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="{">&nbsp;{&nbsp;</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="}">&nbsp;}&nbsp;</button>
             <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id=";">;</button>
-            <button class="styled-button tooltip" ondragstart="dragStart(event);" draggable="true" id="IndexOutOfBoundsException" name="IndexOutOfBoundsException">IndexOutOfBoundsException
-            <span class="tooltiptext">
-                <p>Thrown to indicate that an index of some sort (such as to an array, to a string, or to a vector) is out of range.</p>
-            </span>
-            </button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="(">(</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id=")">)</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="(">&nbsp;(&nbsp;</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id=")">&nbsp;)&nbsp;</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="=">&nbsp;=&nbsp;</button>
             <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="aExc">&nbsp;aExc&nbsp;</button>
-            <button class="styled-button tooltip" ondragstart="dragStart(event);" draggable="true" id="mText.setTextBox(chAr, 20, 30)">mText.setTextBox(chAr, 20, 30)
-                <span class="tooltiptext">
-                    <b>void setTextBox (char[] text, 
-                                     int start, 
-                                     int len)<b>
-                    <br>
-                    <p>Sets the TextView to display the specified slice of the specified char array. 
-                    You must promise that you will not change the contents of the array except for right before another call to setTextBox(), 
-                    since the TextView has no way to know that the text has changed and that it needs to invalidate and re-layout.</p>
-                </span>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="IllegalArgumentException">IllegalArgumentException</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="mUri">mUri</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id=".">.</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="mUri">cr</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="mUri">orig</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="mText">mText</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="IndexOutOfBoundsException" name="IndexOutOfBoundsException">IndexOutOfBoundsException</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="RuntimeException">RuntimeException</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="NotFoundException">NotFoundException</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="IllegalStateException">IllegalStateException</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="getContentResolver()">getContentResolver()
             </button>
-            <button class="styled-button tooltip" ondragstart="dragStart(event);" draggable="true" id="getContentResolver().deleteRecord(mUri, null, null)" name="getContentResolver().deleteRecord(mUri, null, null)" value="getContentResolver().deleteRecord(mUri, null, null)">getContentResolver().deleteRecord(mUri, null, null)
-            <span class="tooltiptext">
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="setContentView(R.layout.note_editor)">setContentView(R.layout.note_editor)</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="title">title</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="message">message</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="intent">intent</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="setTextBox(chAr,20,30)">setTextBox(chAr,20,30)
+            </button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="mCursor.getString(colTitleIndex)">mCursor.getString(colTitleIndex)</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="canvas">canvas</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="drawText(tmp,0,9,20,30,paint)">drawText(tmp,0,9,20,30,paint)</button>
+            <!--<button class="styled-button tooltip"-->
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="insert(intent.getData(),null);">insert(intent.getData(), null);
+            </button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="update">update(mUri,values,null,null);
+	        </button>
+	        <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="query">query(Uri,PROJECTION,null,null,null);
+	        </button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="getText(R.string.error_message)">getText(R.string.error_message)
+            </button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="getStringExtra("Hi")">getStringExtra("Hi")
+            </button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="deleteRecord(mUri,null,null)" name="deleteRecord(mUri, null, null)">deleteRecord(mUri,null,null)
+            <!--<span class="tooltiptext">
                 <b>int deleteRecord (Uri url, 
                             String where, 
                             String[] selectionArgs)<b>
                 <br>
                 <p>Deletes row(s) specified by a content URI.</p>
-            </span>
+            </span>-->
             </button>
+            <br>
             </div>
 
             <div class="form-code">
@@ -820,7 +857,7 @@ public class NoteEditor extends Activity {
 
                 <input type="button" name="s_answer_2" data-id="si_answer_2" class="styled-button-2" value="Save" onClick="saveDiv('answer_2', 'r_answer_2');" />
                 <input type="button" class="styled-button-2" value="Clear" name="c_answer_2" onclick="clearDiv('answer_2');"/>
-                <input type="button" class="styled-button-2" id="textarea_value" value="Get Value" onclick="getValDiv('ti_answer_2');"/>
+                <!--<input type="button" class="styled-button-2" id="textarea_value" value="Get Value" onclick="getValDiv('ti_answer_2');"/>-->
 
                 <br>
                 <br>
@@ -1183,7 +1220,7 @@ public class NoteEditor extends Activity {
 
                 <input type="button" name="s_answer_1" data-id="si_answer_1" class="styled-button-2" value="Save" onClick="saveDiv('answer_1', 'r_answer_1');" />
                 <input type="button" class="styled-button-2" value="Clear" name="c_answer_1" onclick="clearDiv('answer_1');"/>
-                <input type="button" class="styled-button-2" id="textarea_value" value="Get Value" onclick="getValDiv('ti_answer_1');"/>
+                <!--<input type="button" class="styled-button-2" id="textarea_value" value="Get Value" onclick="getValDiv('ti_answer_1');"/>-->
                 <!--<input type="button" class="styled-button-2" value="Help" onClick="return results('/survey/help.html')" />-->
                 <!--<button class="styled-button-2 tooltip">
                     Help
@@ -1222,6 +1259,14 @@ public class NoteEditor extends Activity {
                 </span>
 
                 </div>
+
+                <br>
+
+                {%- for category, message in get_flashed_messages(with_categories = true) %}
+           		<div class = "alert alert-danger">
+              		{{ message }}
+           		</div>
+        		{%- endfor %}
      
     		  </form>
 
@@ -1248,12 +1293,12 @@ public class NoteEditor extends Activity {
             event.preventDefault();
             var data = event.dataTransfer.getData("Text");
             var elmnt = document.getElementById(data).firstChild;
-	        var cln = elmnt.cloneNode(true); 
-	        var para = document.createElement("div")
-	        para.setAttribute('class', 'styled-button-3');
-	        para.setAttribute('id', elmnt);
-	        para.appendChild(cln);
-	        event.target.appendChild(para);
+            var cln = elmnt.cloneNode(true); 
+            var para = document.createElement("div")
+            para.setAttribute('class', 'styled-button-3');
+            para.setAttribute('id', elmnt);
+            para.appendChild(cln);
+            event.target.appendChild(para);
         }
 
         // event propagation for dynamically added elements
@@ -1307,7 +1352,9 @@ public class NoteEditor extends Activity {
         }
 
         $(window).scroll(function(){
-            $("#dragtarget").stop().animate({"marginTop": ($(window).scrollTop()) + "px", "marginLeft":($(window).scrollLeft()) + "px"}, "slow" );
+        	if ($(window).scrollTop() < 16800) {
+            	$("#dragtarget").stop().animate({"marginTop": ($(window).scrollTop()) + "px"}, "slow");
+        	}
         });
     </script>
 
