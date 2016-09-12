@@ -93,7 +93,7 @@ input {
 	-moz-border-radius: 0 0 20px 20px;
 	border-radius: 0 0 20px 20px;
 	padding: 20px 26px;
-    height: 17900px;
+    height: 17950px;
     /*height: 19800px;*/
     /*border:2px solid blue;*/
 }
@@ -210,7 +210,7 @@ input {
     padding: 10px;
     border: 1px solid #aaaaaa;
     border-radius: 8px;
-    /*border:2px solid green;*/
+    border:2px solid green;
     /*overflow: scroll;*/
 }
 
@@ -463,6 +463,7 @@ a:link, a:visited {
             <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="IndexOutOfBoundsException" name="IndexOutOfBoundsException">IndexOutOfBoundsException</button>
             <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="RuntimeException">RuntimeException</button>
             <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="NotFoundException">NotFoundException</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="new">new</button>
             <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="IllegalStateException">IllegalStateException</button>
             <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="getContentResolver()">getContentResolver()
             </button>
@@ -475,16 +476,17 @@ a:link, a:visited {
             <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="mCursor.getString(colTitleIndex)">mCursor.getString(colTitleIndex)</button>
             <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="canvas">canvas</button>
             <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="drawText(tmp,0,9,20,30,paint)">drawText(tmp,0,9,20,30,paint)</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="throw">throw</button>
             <!--<button class="styled-button tooltip"-->
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="insert(intent.getData(),null);">insert(intent.getData(), null);
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="insert(intent.getData(),null)">insert(intent.getData(), null)
             </button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="update">update(mUri,values,null,null);
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="update">update(mUri,values,null,null)
 	        </button>
-	        <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="query">query(Uri,PROJECTION,null,null,null);
+	        <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="query">query(Uri,PROJECTION,null,null,null)
 	        </button>
             <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="getText(R.string.error_message)">getText(R.string.error_message)
             </button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="getStringExtra("Hi")">getStringExtra("Hi")
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="getStringExtra("Hi")">getStringExtra("new note")
             </button>
             <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="deleteRecord(mUri,null,null)" name="deleteRecord(mUri, null, null)">deleteRecord(mUri,null,null)
             <!--<span class="tooltiptext">
@@ -506,22 +508,19 @@ a:link, a:visited {
  * Copyright (C) 2007 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
- *
+ * 
  * [...]
+ * 
  */
 
-package com.example.android.notepad;
-
-import android.app.*;
+import android.app.Activity;
 import android.content.*;
 import android.database.Cursor;
 import android.graphics.*;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.AttributeSet;
-import android.util.Log;
+import android.util.*;
 import android.view.*;
-import android.widget.Button;
 import android.widget.EditText;
 
 /**
@@ -530,15 +529,9 @@ import android.widget.EditText;
  * {@link Intent#ACTION_EDIT}, create a note {@link Intent#ACTION_INSERT}, or
  * create a new note from the current contents of the clipboard
  * {@link Intent#ACTION_PASTE}.
- *
  * NOTE: Notice that the provider operations in this Activity are taking place
- * on the UI thread. This is not a good practice. It is only done here to make
- * the code more readable. A real application should use the
- * {@link android.content.AsyncQueryHandler} or {@link android.os.AsyncTask}
- * object to perform operations asynchronously on a separate thread.
  */
 public class NoteEditor extends Activity {
-
     // For logging and debugging purposes
     private static final String TAG = "NoteEditor";
 
@@ -581,12 +574,18 @@ public class NoteEditor extends Activity {
             mRect = new Rect();
             mPaint = new Paint();
             mPaint.setStyle(Paint.Style.STROKE);
-            // XXX replace color code with parseColor
-            // mPaint.setColor(0x800000FF);
-            // XXX parseColor can throw IAE (in doc but not in @throws comments)
-            mPaint.setColor(Color.parseColor("#519c3f"));
-            // mPaint.setColor(Color.parseColor("0x800000FF")); -> application
-            // crash!
+            int c = 0;
+            // TO-DO: Parse color
+            </pre></code>
+                <div id="answer_1" class="droptarget">
+                    <div class="row1" id="r_answer_1"><pre class="rowp">{{answ.answer_1}}</pre></div>
+                    <textarea type="text" style="display:none" name="t_answer_1" id="ti_answer_1" placeholder="tp_answer_1">{{answ.answer_1}}</textarea>
+                </div>
+            <br>
+                <input type="button" name="s_answer_1" data-id="si_answer_1" class="styled-button-2" value="Save" onClick="saveDiv('answer_1', 'r_answer_1');" />
+                <input type="button" class="styled-button-2" value="Clear" name="c_answer_1" onclick="clearDiv('answer_1');"/>
+            <pre><code>
+            mPaint.setColor(c);
         }
 
         /**
@@ -605,15 +604,20 @@ public class NoteEditor extends Activity {
             Rect r = mRect;
             Paint paint = mPaint;
 
-            /*
-             * XXX Case for API method: drawText and IOOB
-             */
-            // String for drawText
-            String tmp = "Android!!!!";
+            // String to add before each new note
+            String tmp = "Hello Android!";
             // Define the text size
             paint.setTextSize(100);
-            // drawText -> it can throw IndexOutOfBounds
-            canvas.drawText(tmp, 0, 9, 20, 30, paint);
+            // TO-DO: Draw the text
+            </pre></code>
+                <div id="answer_2" class="droptarget">
+                    <div class="row1" id="r_answer_2"><pre class="rowp">{{answ.answer_2}}</pre></div>
+                    <textarea type="text" style="display:none" name="t_answer_2" id="ti_answer_2" placeholder="tp_answer_2">{{answ.answer_2}}</textarea>
+                </div>
+            <br>
+                <input type="button" name="s_answer_2" data-id="si_answer_2" class="styled-button-2" value="Save" onClick="saveDiv('answer_2', 'r_answer_2');" />
+                <input type="button" class="styled-button-2" value="Clear" name="c_answer_2" onclick="clearDiv('answer_2');"/>
+            <pre><code>
 
             /*
              * Draws one line in the rectangle for every line of text in the
@@ -675,9 +679,17 @@ public class NoteEditor extends Activity {
             // inserts an
             // empty record in the provider
             mState = STATE_INSERT;
-            // XXX insert can throw IAE for incorrect URI
-            mUri = getContentResolver().insert(intent.getData(), null);
 
+            // TO-DO: Insert a new note
+            </pre></code>
+                <div id="answer_3" class="droptarget">
+                    <div class="row1" id="r_answer_3"><pre class="rowp">{{answ.answer_3}}</pre></div>
+                    <textarea type="text" style="display:none" name="t_answer_3" id="ti_answer_3" placeholder="tp_answer_3">{{answ.answer_3}}</textarea>
+                </div>
+                <br>
+                <input type="button" name="s_answer_3" data-id="si_answer_3" class="styled-button-2" value="Save" onClick="saveDiv('answer_3', 'r_answer_3');" />
+                <input type="button" class="styled-button-2" value="Clear" name="c_answer_3" onclick="clearDiv('answer_3');"/>
+            <pre><code>
             /*
              * If the attempt to insert the new note fails, shuts down this
              * Activity. The originating Activity receives back RESULT_CANCELED
@@ -718,14 +730,12 @@ public class NoteEditor extends Activity {
          * will be momentary, but in a real app you should use
          * android.content.AsyncQueryHandler or android.os.AsyncTask.
          */
-        mCursor = managedQuery(mUri, // The URI that gets multiple notes from
-                                        // the provider.
-                PROJECTION, // A projection that returns the note ID and note
-                            // content for each note.
-                null, // No "where" clause selection criteria.
-                null, // No "where" clause selection values.
-                null // Use the default sort order (modification date,
-                        // descending)
+         mCursor = managedQuery(
+             mUri, // The URI that gets multiple notes from the provider.
+             PROJECTION, // A projection that returns the note ID and note content for each note.
+             null, // No "where" clause selection criteria.
+             null, // No "where" clause selection values.
+             null // Use the default sort order (modification date, descending)
         );
 
         // For a paste, initializes the data from clipboard.
@@ -737,13 +747,26 @@ public class NoteEditor extends Activity {
             mState = STATE_EDIT;
         }
 
-        // Sets the layout for this Activity. See res/layout/note_editor.xml
-        // XXX setContentView can throw RuntimeException
-        setContentView(R.layout.note_editor);
-
-        // Gets a handle to the EditText in the the layout.
-        mText = (EditText) findViewById(R.id.note);
-
+        // TO-DO: Set the layout for this Activity. See res/layout/note_editor.xml
+        </pre></code>
+        <div id="answer_4" class="droptarget">
+            <div class="row1" id="r_answer_4"><pre class="rowp">{{answ.answer_4}}</pre></div>
+            <textarea type="text" style="display:none" name="t_answer_4" id="ti_answer_4" placeholder="tp_answer_4">{{answ.answer_4}}</textarea>
+        </div>
+        <br>
+        <input type="button" name="s_answer_4" data-id="si_answer_4" class="styled-button-2" value="Save" onClick="saveDiv('answer_4', 'r_answer_4');" />
+        <input type="button" class="styled-button-2" value="Clear" name="c_answer_4" onclick="clearDiv('answer_4');"/>
+        <pre><code>        
+        // TO-DO: Get a handle to the EditText in the the layout.
+        </pre></code>
+        <div id="answer_5" class="droptarget">
+            <div class="row1" id="r_answer_5"><pre class="rowp">{{answ.answer_5}}</pre></div>
+            <textarea type="text" style="display:none" name="t_answer_5" id="ti_answer_5" placeholder="tp_answer_5">{{answ.answer_5}}</textarea>
+        </div>
+        <br>
+        <input type="button" name="s_answer_5" data-id="si_answer_5" class="styled-button-2" value="Save" onClick="saveDiv('answer_5', 'r_answer_5');" />
+        <input type="button" class="styled-button-2" value="Clear" name="c_answer_5" onclick="clearDiv('answer_5');"/>
+        <pre><code>
         /*
          * If this Activity had stopped previously, its state was written the
          * ORIGINAL_CONTENT location in the saved Instance state. This gets the
@@ -752,10 +775,6 @@ public class NoteEditor extends Activity {
         if (savedInstanceState != null) {
             mOriginalContent = savedInstanceState.getString(ORIGINAL_CONTENT);
         }
-        
-        // XXX getStringExtra throws RE (add for the study)
-        //String message = intent.getStringExtra("Hello");
-        //System.out.println(message);
     }
 
     /**
@@ -779,7 +798,7 @@ public class NoteEditor extends Activity {
         if (mCursor != null) {
             // Requery in case something changed while paused (such as the
             // title)
-            mCursor.requery();
+            // mCursor.requery();
 
             /*
              * Moves to the first record. Always call moveToFirst() before
@@ -830,41 +849,19 @@ public class NoteEditor extends Activity {
              */
         } else {
             setTitle(getText(R.string.error_title));
-
-            // XXX It can throw IndexOutOfBounds exception; when there is an
-            // array in the arguments
-            // mText.setText(getText(R.string.error_message));
-            CharSequence cs = getText(R.string.error_message);
-            if (cs != null) {
-                char[] chAr = new char[cs.length()];
-                for (int i = 0; i < chAr.length; i++) {
-                    chAr[i] = (char) cs.charAt(i);
-                }
-                //mText.setText(chAr, 20, 30);
-
-                </pre></code>
-
-                <br/>
-
-                <!--<div id="space_delete" class="droptarget" ondrop="drop(event);" ondragover="allowDrop(event);">-->
-                <div id="answer_2" class="droptarget">
-                    <div class="row1" id="r_answer_2"><pre class="rowp">{{answ.answer_2}}</pre></div>
-
-                    <textarea type="text" style="display:none" name="t_answer_2" id="ti_answer_2" placeholder="tp_answer_2">{{answ.answer_2}}</textarea>
-                </div>
-                
-                <br>
-
-                <input type="button" name="s_answer_2" data-id="si_answer_2" class="styled-button-2" value="Save" onClick="saveDiv('answer_2', 'r_answer_2');" />
-                <input type="button" class="styled-button-2" value="Clear" name="c_answer_2" onclick="clearDiv('answer_2');"/>
-                <!--<input type="button" class="styled-button-2" id="textarea_value" value="Get Value" onclick="getValDiv('ti_answer_2');"/>-->
-
-                <br>
-                <br>
-
-                <pre><code>
-
-            }
+            // TO-DO: Set an error message
+            </pre></code>
+            <br/>
+            <div id="answer_6" class="droptarget">
+                <div class="row1" id="r_answer_6"><pre class="rowp">{{answ.answer_6}}</pre></div>
+                <textarea type="text" style="display:none" name="t_answer_6" id="ti_answer_6" placeholder="tp_answer_6">{{answ.answer_6}}</textarea>
+            </div>
+            <br>
+            <input type="button" name="s_answer_6" data-id="si_answer_6" class="styled-button-2" value="Save" onClick="saveDiv('answer_6', 'r_answer_6');" />
+            <input type="button" class="styled-button-2" value="Clear" name="c_answer_6" onclick="clearDiv('answer_6');"/>
+            <br>
+            <br>
+            <pre><code>
         }
     }
 
@@ -970,8 +967,6 @@ public class NoteEditor extends Activity {
             intent.addCategory(Intent.CATEGORY_ALTERNATIVE);
             menu.addIntentOptions(Menu.CATEGORY_ALTERNATIVE, 0, 0, new ComponentName(this, NoteEditor.class), null,
                     intent, 0, null);
-            // New notification here
-            //getNotif("New Notification", "");
         }
 
         return super.onCreateOptionsMenu(menu);
@@ -1006,11 +1001,6 @@ public class NoteEditor extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle all of the possible menu actions.
         switch (item.getItemId()) {
-        //case R.drawable.button:
-            // Notify
-            //getNotif("Hello Notification!", "");
-            //finish();
-            //break;
         case R.id.menu_save:
             String text = mText.getText().toString();
             updateNote(text, null);
@@ -1052,24 +1042,24 @@ public class NoteEditor extends Activity {
             // Tries to get the item's contents as a URI pointing to a note
             Uri uri = item.getUri();
 
+            Cursor orig = null;
             // Tests to see that the item actually is an URI, and that the URI
             // is a content URI pointing to a provider whose MIME type is the
             // same
             // as the MIME type supported by the Note pad provider.
             if (uri != null && NotePad.Notes.CONTENT_ITEM_TYPE.equals(cr.getType(uri))) {
-
-                // XXX It can throw a RuntimeException
-                // The clipboard holds a reference to data with a note MIME
-                // type. This copies it.
-                Cursor orig = cr.query(uri, // URI for the content provider
-                        PROJECTION, // Get the columns referred to in the
-                                    // projection
-                        null, // No selection variables
-                        null, // No selection variables, so no criteria are
-                                // needed
-                        null // Use the default sort order
-                        );
-
+                    // The clipboard holds a reference to data with a note MIME
+                    // type. This copies it.
+                    // TO-DO: Copy the data
+                    </pre></code>
+                    <div id="answer_7" class="droptarget">
+                        <div class="row1" id="r_answer_7"><pre class="rowp">{{answ.answer_7}}</pre></div>
+                        <textarea type="text" style="display:none" name="t_answer_7" id="ti_answer_7" placeholder="tp_answer_7">{{answ.answer_7}}</textarea>
+                    </div>
+                    <br>
+                    <input type="button" name="s_answer_7" data-id="si_answer_7" class="styled-button-2" value="Save" onClick="saveDiv('answer_7', 'r_answer_7');" />
+                    <input type="button" class="styled-button-2" value="Clear" name="c_answer_7" onclick="clearDiv('answer_7');"/>
+                    <pre><code>
                 // If the Cursor is not null, and it contains at least one
                 // record
                 // (moveToFirst() returns true), then this gets the note data
@@ -1152,25 +1142,28 @@ public class NoteEditor extends Activity {
         values.put(NotePad.Notes.COLUMN_NAME_NOTE, text);
 
         /*
-         * Updates the provider with the new values in the map. The ListView is
-         * updated automatically. The provider sets this up by setting the
-         * notification URI for query Cursor objects to the incoming URI. The
-         * content resolver is thus automatically notified when the Cursor for
-         * the URI changes, and the UI is updated. Note: This is being done on
-         * the UI thread. It will block the thread until the update completes.
-         * In a sample app, going against a simple provider based on a local
-         * database, the block will be momentary, but in a real app you should
-         * use android.content.AsyncQueryHandler or android.os.AsyncTask.
+         * Updates the provider with the new values in the map. The ListView
+         * is updated automatically. The provider sets this up by setting
+         * the notification URI for query Cursor objects to the incoming
+         * URI. The content resolver is thus automatically notified when the
+         * Cursor for the URI changes, and the UI is updated. Note: This is
+         * being done on the UI thread. It will block the thread until the
+         * update completes. In a sample app, going against a simple
+         * provider based on a local database, the block will be momentary,
+         * but in a real app you should use
+         * android.content.AsyncQueryHandler or android.os.AsyncTask.
          */
-        // XXX It can throw an IllegalArgumentException
-        getContentResolver().update(mUri, // The URI for the record to update.
-                values, // The map of column names and new values to apply to
-                        // them.
-                null, // No selection criteria are used, so no where columns are
-                        // necessary.
-                null // No where columns are used, so no where arguments are
-                        // necessary.
-                );
+
+        // TO-DO: Update a note given a specific URI
+        </pre></code>
+        <div id="answer_8" class="droptarget">
+            <div class="row1" id="r_answer_8"><pre class="rowp">{{answ.answer_8}}</pre></div>
+            <textarea type="text" style="display:none" name="t_answer_8" id="ti_answer_8" placeholder="tp_answer_8">{{answ.answer_8}}</textarea>
+        </div>
+        <br>
+        <input type="button" name="s_answer_8" data-id="si_answer_8" class="styled-button-2" value="Save" onClick="saveDiv('answer_8', 'r_answer_8');" />
+        <input type="button" class="styled-button-2" value="Clear" name="c_answer_8" onclick="clearDiv('answer_8');"/>
+        <pre><code>
     }
 
     /**
@@ -1185,7 +1178,6 @@ public class NoteEditor extends Activity {
                 mCursor = null;
                 ContentValues values = new ContentValues();
                 values.put(NotePad.Notes.COLUMN_NAME_NOTE, mOriginalContent);
-                // XXX It can throw an IllegalArguementException
                 getContentResolver().update(mUri, values, null, null);
             } else if (mState == STATE_INSERT) {
                 // We inserted an empty note, make sure to delete it
@@ -1203,59 +1195,44 @@ public class NoteEditor extends Activity {
         if (mCursor != null) {
             mCursor.close();
             mCursor = null;
-            
             // TO-DO: Delete a note
-                </pre></code>
-
-                <br/>
-
-                <!--<div id="space_delete" class="droptarget" ondrop="drop(event);" ondragover="allowDrop(event);">-->
-                <div id="answer_1" class="droptarget">
-                    <div class="row1" id="r_answer_1"><pre class="rowp">{{answ.answer_1}}</pre></div>
-
-                    <textarea type="text" style="display:none" name="t_answer_1" id="ti_answer_1" placeholder="tp_answer_1">{{answ.answer_1}}</textarea>
-                </div>
-                
-                <br>
-
-                <input type="button" name="s_answer_1" data-id="si_answer_1" class="styled-button-2" value="Save" onClick="saveDiv('answer_1', 'r_answer_1');" />
-                <input type="button" class="styled-button-2" value="Clear" name="c_answer_1" onclick="clearDiv('answer_1');"/>
-                <!--<input type="button" class="styled-button-2" id="textarea_value" value="Get Value" onclick="getValDiv('ti_answer_1');"/>-->
-                <!--<input type="button" class="styled-button-2" value="Help" onClick="return results('/survey/help.html')" />-->
-                <!--<button class="styled-button-2 tooltip">
-                    Help
-                    <span class="tooltiptext">
-                        Here are some instructions!
-                    </span>
-                </button>-->
-
-                <pre><code>
-                    <!--// text input by the user-->
-                    char[] chAr = { ' ' };
-
-                    // TO-DO: Add box for text input by the user
-                </pre></code>
-
-                <pre><code>
+            </pre></code>
+            <br/>
+            <div id="answer_9" class="droptarget">
+                <div class="row1" id="r_answer_9"><pre class="rowp">{{answ.answer_9}}</pre></div>
+                <textarea type="text" style="display:none" name="t_answer_9" id="ti_answer_9" placeholder="tp_answer_9">{{answ.answer_9}}</textarea>
+            </div>
+            <br>
+            <input type="button" name="s_answer_9" data-id="si_answer_9" class="styled-button-2" value="Save" onClick="saveDiv('answer_9', 'r_answer_9');" />
+            <input type="button" class="styled-button-2" value="Clear" name="c_answer_9" onclick="clearDiv('answer_9');"/>
+            <br>
+            <br>
+            <pre><code>
+            char[] chAr = { ' ' };
+            // TO-DO: Clear the text of the note
+            </pre></code>
+            <div id="answer_10" class="droptarget">
+                <div class="row1" id="r_answer_10"><pre class="rowp">{{answ.answer_10}}</pre></div>
+                <textarea type="text" style="display:none" name="t_answer_10" id="ti_answer_10" placeholder="tp_answer_10">{{answ.answer_10}}</textarea>
+            </div>
+            <br>
+            <input type="button" name="s_answer_10" data-id="si_answer_10" class="styled-button-2" value="Save" onClick="saveDiv('answer_10', 'r_answer_10');" />
+            <input type="button" class="styled-button-2" value="Clear" name="c_answer_10" onclick="clearDiv('answer_10');"/>
+            <br>
+            <br>
+            <pre><code>
         }
     }
-}    
+}
                 </pre></code>
-
                 <br>
-
                 <div position:relative; top:50%;left:50%;>
- 
                 <input type="submit" value="Format"/>
                 <!--<a href="{{ url_for('results') }}" onclick="return results('/survey/results.html')">&nbsp;&nbsp;Check&nbsp;&nbsp;</a>-->
                 <input class="check-btn" type="button" value="&nbsp;&nbsp;Check&nbsp;&nbsp;" onclick="return results('/survey/results.html')">
                 <!--<span class="add-on tooltip" onclick="return results('/survey/help.html')">-->
                 <span class="add-on" onclick="return results('/survey/help.html')">
-                    <i class="fa fa-info-circle fa-lg ic" aria-hidden="true">
-                    	<!--<span class="tooltiptext">
-                    		Press to get help.
-                    	</span>-->
-                    </i>
+                    <i class="fa fa-info-circle fa-lg ic" aria-hidden="true"></i>
                 </span>
 
                 </div>
@@ -1352,7 +1329,7 @@ public class NoteEditor extends Activity {
         }
 
         $(window).scroll(function(){
-        	if ($(window).scrollTop() < 16800) {
+        	if ($(window).scrollTop() < 17200) {
             	$("#dragtarget").stop().animate({"marginTop": ($(window).scrollTop()) + "px"}, "slow");
         	}
         });

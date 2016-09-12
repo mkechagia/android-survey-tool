@@ -43,7 +43,15 @@ def new():
 					# create a new answer
 					answ = answers(students_email = session['email'], \
 						answer_1 = '// There is no answer yet. Please press Clear and give your answer.', \
-						answer_2 = '// There is no answer yet. Please press Clear and give your answer.')
+						answer_2 = '// There is no answer yet. Please press Clear and give your answer.',
+						answer_3 = '// There is no answer yet. Please press Clear and give your answer.', \
+						answer_4 = '// There is no answer yet. Please press Clear and give your answer.',
+						answer_5 = '// There is no answer yet. Please press Clear and give your answer.', \
+						answer_6 = '// There is no answer yet. Please press Clear and give your answer.',
+						answer_7 = '// There is no answer yet. Please press Clear and give your answer.', \
+						answer_8 = '// There is no answer yet. Please press Clear and give your answer.',
+						answer_9 = '// There is no answer yet. Please press Clear and give your answer.', \
+						answer_10 = '// There is no answer yet. Please press Clear and give your answer.')
 					db.session.add(answ)
 					db.session.commit()
 					# get answer with session's email
@@ -64,14 +72,30 @@ def survey():
     	# format user's answer; request.form based on the name of the textarea
     	first_answer = format_answer.format_answer(request.form['t_answer_1'])
     	second_answer = format_answer.format_answer(request.form['t_answer_2'])
+    	a3_answer = format_answer.format_answer(request.form['t_answer_3'])
+    	a4_answer = format_answer.format_answer(request.form['t_answer_4'])
+    	a5_answer = format_answer.format_answer(request.form['t_answer_5'])
+    	a6_answer = format_answer.format_answer(request.form['t_answer_6'])
+    	a7_answer = format_answer.format_answer(request.form['t_answer_7'])
+    	a8_answer = format_answer.format_answer(request.form['t_answer_8'])
+    	a9_answer = format_answer.format_answer(request.form['t_answer_9'])
+    	a10_answer = format_answer.format_answer(request.form['t_answer_10'])
     	# update user's answers to the db
     	answ.answer_1 = first_answer
     	answ.answer_2 = second_answer
+    	answ.answer_3 = a3_answer
+    	answ.answer_4 = a4_answer
+    	answ.answer_5 = a5_answer
+    	answ.answer_6 = a6_answer
+    	answ.answer_7 = a7_answer
+    	answ.answer_8 = a8_answer
+    	answ.answer_9 = a9_answer
+    	answ.answer_10 = a10_answer
     	db.session.commit()
     	# get user's current aswers
     	answ = answers.query.filter_by(students_email = session['email']).first()
-    	# It is better to also add this when press compile
-    	if (re.search("//", first_answer) and re.search("//", first_answer)):
+    	# It is better to also add this when press compile TO-DO: remaining answers
+    	if (re.search("//", first_answer) and re.search("//", second_answer)):
     		flash('Please fill all the answer boxes.', 'error')
     return render_template('form_submit.html', answ = answ)
 
