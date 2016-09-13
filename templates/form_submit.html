@@ -187,6 +187,7 @@ input {
     border-radius: 5px;
     border: none;
     position: absolute;
+    /*top: 20px;*/
     top: auto;
 }
 
@@ -208,9 +209,9 @@ input {
     /*height: 19000px;*/
     margin: 15px;
     padding: 10px;
-    border: 1px solid #aaaaaa;
+    /*border: 1px solid #aaaaaa;*/
     border-radius: 8px;
-    border:2px solid green;
+    border:2px solid #7ABF58;
     /*overflow: scroll;*/
 }
 
@@ -407,7 +408,7 @@ a:link, a:visited {
             to be called can lead to application <b>crashes</b>!<p>
 
             <p>In the following, on the left side there is a box of methods,
-            keywords, and symbols to drag on the answer boxes (on the right). 
+            keywords, and symbols to drag on the answer boxes on the right. 
             Scroll down to find the TO-DO comments and accordingly 
             fill the answer boxes to complete the source code. 
             When you fill and save all the answer boxes, 
@@ -454,41 +455,45 @@ a:link, a:visited {
             <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id=")">&nbsp;)&nbsp;</button>
             <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="=">&nbsp;=&nbsp;</button>
             <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="aExc">&nbsp;aExc&nbsp;</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="IllegalArgumentException">IllegalArgumentException</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="mUri">mUri</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="mUri">&nbsp;mUri&nbsp;</button>
             <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id=".">.</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="mUri">cr</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="mUri">orig</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="mText">mText</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="orig">&nbsp;orig&nbsp;</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="mText">&nbsp;mText&nbsp;</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="color">&nbsp;color&nbsp;</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="if">&nbsp;if&nbsp;</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="0">&nbsp;0&nbsp;</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="null">&nbsp;null&nbsp;</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id=":">&nbsp;:&nbsp;</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="new">new</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="IllegalArgumentException">IllegalArgumentException</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="InflateException" name="InflateException">InflateException</button>
             <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="IndexOutOfBoundsException" name="IndexOutOfBoundsException">IndexOutOfBoundsException</button>
             <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="RuntimeException">RuntimeException</button>
             <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="NotFoundException">NotFoundException</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="new">new</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="IllegalStateException">IllegalStateException</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="NullPointerException">NullPointerException</button>
             <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="getContentResolver()">getContentResolver()
             </button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="setContentView(R.layout.note_editor)">setContentView(R.layout.note_editor)</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="setTextBox(chAr, 0, 1)">setTextBox(chAr,0,1)</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="deleteRecord(mUri,null,null)" name="deleteRecord(mUri, null, null)">deleteRecord(mUri,null,null)</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="printStackTrace()" name="printStackTrace()">printStackTrace()</button>
             <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="title">title</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="setContentView(R.layout.note_editor)">setContentView(R.layout.note_editor)</button>
             <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="message">message</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="intent">intent</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="setTextBox(chAr,20,30)">setTextBox(chAr,20,30)
-            </button>
             <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="mCursor.getString(colTitleIndex)">mCursor.getString(colTitleIndex)</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="canvas">canvas</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="drawText(tmp,0,9,20,30,paint)">drawText(tmp,0,9,20,30,paint)</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="canvas.drawPaintText(tmp,0,9,20,30,paint)">canvas.drawPaintText(tmp,0,9,20,30,paint)</button>
             <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="throw">throw</button>
             <!--<button class="styled-button tooltip"-->
             <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="insert(intent.getData(),null)">insert(intent.getData(), null)
             </button>
             <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="update">update(mUri,values,null,null)
 	        </button>
-	        <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="query">query(Uri,PROJECTION,null,null,null)
+	        <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="query">cr.query(Uri,PROJECTION,null,null,null)
 	        </button>
             <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="getText(R.string.error_message)">getText(R.string.error_message)
             </button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="getStringExtra("Hi")">getStringExtra("new note")
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="(EditText)findViewById(R.id.note)">(EditText)findViewById(R.id.note)
             </button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="deleteRecord(mUri,null,null)" name="deleteRecord(mUri, null, null)">deleteRecord(mUri,null,null)
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="Color.parseColorCode("#bdbdbd")" name="Color.parseColorCode("#bdbdbd")">Color.parseColorCode("#bdbdbd")
             <!--<span class="tooltiptext">
                 <b>int deleteRecord (Uri url, 
                             String where, 
@@ -574,7 +579,7 @@ public class NoteEditor extends Activity {
             mRect = new Rect();
             mPaint = new Paint();
             mPaint.setStyle(Paint.Style.STROKE);
-            int c = 0;
+            int color = 0;
             // TO-DO: Parse color
             </pre></code>
                 <div id="answer_1" class="droptarget">
@@ -584,8 +589,9 @@ public class NoteEditor extends Activity {
             <br>
                 <input type="button" name="s_answer_1" data-id="si_answer_1" class="styled-button-2" value="Save" onClick="saveDiv('answer_1', 'r_answer_1');" />
                 <input type="button" class="styled-button-2" value="Clear" name="c_answer_1" onclick="clearDiv('answer_1');"/>
+            <br>
             <pre><code>
-            mPaint.setColor(c);
+            mPaint.setColor(color);
         }
 
         /**
@@ -617,8 +623,8 @@ public class NoteEditor extends Activity {
             <br>
                 <input type="button" name="s_answer_2" data-id="si_answer_2" class="styled-button-2" value="Save" onClick="saveDiv('answer_2', 'r_answer_2');" />
                 <input type="button" class="styled-button-2" value="Clear" name="c_answer_2" onclick="clearDiv('answer_2');"/>
+            <br>
             <pre><code>
-
             /*
              * Draws one line in the rectangle for every line of text in the
              * EditText
@@ -757,7 +763,7 @@ public class NoteEditor extends Activity {
         <input type="button" name="s_answer_4" data-id="si_answer_4" class="styled-button-2" value="Save" onClick="saveDiv('answer_4', 'r_answer_4');" />
         <input type="button" class="styled-button-2" value="Clear" name="c_answer_4" onclick="clearDiv('answer_4');"/>
         <pre><code>        
-        // TO-DO: Get a handle to the EditText in the the layout.
+        // TO-DO: Get a handle to the EditText (mText) in the the layout.
         </pre></code>
         <div id="answer_5" class="droptarget">
             <div class="row1" id="r_answer_5"><pre class="rowp">{{answ.answer_5}}</pre></div>
@@ -848,7 +854,7 @@ public class NoteEditor extends Activity {
              * an error in the note.
              */
         } else {
-            setTitle(getText(R.string.error_title));
+            CharSequence cq = null;
             // TO-DO: Set an error message
             </pre></code>
             <br/>
@@ -860,8 +866,8 @@ public class NoteEditor extends Activity {
             <input type="button" name="s_answer_6" data-id="si_answer_6" class="styled-button-2" value="Save" onClick="saveDiv('answer_6', 'r_answer_6');" />
             <input type="button" class="styled-button-2" value="Clear" name="c_answer_6" onclick="clearDiv('answer_6');"/>
             <br>
-            <br>
             <pre><code>
+            mText.setText(cq);
         }
     }
 
@@ -1050,7 +1056,7 @@ public class NoteEditor extends Activity {
             if (uri != null && NotePad.Notes.CONTENT_ITEM_TYPE.equals(cr.getType(uri))) {
                     // The clipboard holds a reference to data with a note MIME
                     // type. This copies it.
-                    // TO-DO: Copy the data
+                    // TO-DO: Query for the data
                     </pre></code>
                     <div id="answer_7" class="droptarget">
                         <div class="row1" id="r_answer_7"><pre class="rowp">{{answ.answer_7}}</pre></div>
@@ -1154,7 +1160,7 @@ public class NoteEditor extends Activity {
          * android.content.AsyncQueryHandler or android.os.AsyncTask.
          */
 
-        // TO-DO: Update a note given a specific URI
+        // TO-DO: Update a note (using the ContentResolver) given a specific URI
         </pre></code>
         <div id="answer_8" class="droptarget">
             <div class="row1" id="r_answer_8"><pre class="rowp">{{answ.answer_8}}</pre></div>
@@ -1195,9 +1201,8 @@ public class NoteEditor extends Activity {
         if (mCursor != null) {
             mCursor.close();
             mCursor = null;
-            // TO-DO: Delete a note
+            // TO-DO: Delete a note (using the ContentResolver)
             </pre></code>
-            <br/>
             <div id="answer_9" class="droptarget">
                 <div class="row1" id="r_answer_9"><pre class="rowp">{{answ.answer_9}}</pre></div>
                 <textarea type="text" style="display:none" name="t_answer_9" id="ti_answer_9" placeholder="tp_answer_9">{{answ.answer_9}}</textarea>
@@ -1205,11 +1210,9 @@ public class NoteEditor extends Activity {
             <br>
             <input type="button" name="s_answer_9" data-id="si_answer_9" class="styled-button-2" value="Save" onClick="saveDiv('answer_9', 'r_answer_9');" />
             <input type="button" class="styled-button-2" value="Clear" name="c_answer_9" onclick="clearDiv('answer_9');"/>
-            <br>
-            <br>
             <pre><code>
             char[] chAr = { ' ' };
-            // TO-DO: Clear the text of the note
+            // TO-DO: Clear the text (mText) of the note
             </pre></code>
             <div id="answer_10" class="droptarget">
                 <div class="row1" id="r_answer_10"><pre class="rowp">{{answ.answer_10}}</pre></div>
@@ -1218,14 +1221,11 @@ public class NoteEditor extends Activity {
             <br>
             <input type="button" name="s_answer_10" data-id="si_answer_10" class="styled-button-2" value="Save" onClick="saveDiv('answer_10', 'r_answer_10');" />
             <input type="button" class="styled-button-2" value="Clear" name="c_answer_10" onclick="clearDiv('answer_10');"/>
-            <br>
-            <br>
             <pre><code>
         }
     }
 }
                 </pre></code>
-                <br>
                 <div position:relative; top:50%;left:50%;>
                 <input type="submit" value="Format"/>
                 <!--<a href="{{ url_for('results') }}" onclick="return results('/survey/results.html')">&nbsp;&nbsp;Check&nbsp;&nbsp;</a>-->

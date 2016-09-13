@@ -6,7 +6,9 @@ from string import Template
 
 # initialize the dictionary such as {fake method: real method}
 method_dict = {'deleteRecord' : 'delete', \
-		'setTextBox' : 'setText'}
+		'setTextBox' : 'setText', \
+		'parseColorCode' : 'parseColor', \
+		'drawPaintText' : 'drawText'}
 
 # answer_block is a dict of user's answers,
 # i.e. answer_block = {'answer_1' : fake_answer}

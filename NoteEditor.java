@@ -17,25 +17,13 @@
 package com.example.android.notepad;
 
 import android.app.Activity;
-import android.content.ClipData;
-import android.content.ClipboardManager;
-import android.content.ComponentName;
-import android.content.ContentResolver;
-import android.content.ContentValues;
-import android.content.Context;
-import android.content.Intent;
-import android.content.res.Resources;
+import android.content.*;
 import android.database.Cursor;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
+import android.graphics.*;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.AttributeSet;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
+import android.util.*;
+import android.view.*;
 import android.widget.EditText;
 
 /**
@@ -93,7 +81,11 @@ public class NoteEditor extends Activity {
             mRect = new Rect();
             mPaint = new Paint();
             mPaint.setStyle(Paint.Style.STROKE);
-            mPaint.setColor(0x800000FF);
+            int color = 0;
+
+            $answer_1
+            
+            mPaint.setColor(color);
         }
 
         /**
@@ -109,6 +101,15 @@ public class NoteEditor extends Activity {
             // Gets the global Rect and Paint objects
             Rect r = mRect;
             Paint paint = mPaint;
+
+            // XXX: draw some text!
+            // Case for API method: drawText and IOOB
+            // String for drawText
+            String tmp = "Hello Android!";
+            // Define the text size -> it can trow IllegalArgumentException
+            paint.setTextSize(100);
+            
+            $answer_2
 
             /*
              * Draws one line in the rectangle for every line of text in the EditText
@@ -314,7 +315,6 @@ public class NoteEditor extends Activity {
                 }
                 // XXX: Add some text
                 //mText.setText(chAr, 20, 30);
-                $answer_2
             }
         }
     }
@@ -627,8 +627,6 @@ public class NoteEditor extends Activity {
             // XXX: Delete a note
             // getContentResolver().delete(mUri, null, null);
             // It can throw an IllegalArgumentException
-            
-            $answer_1
 
             mText.setText("");
         }

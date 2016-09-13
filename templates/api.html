@@ -14,6 +14,16 @@
             color: #F4F6F7;
         }
 
+        .method { 
+            width: 700px;
+            height: auto;
+        }
+
+        .method-doc { 
+            width: 700px;
+            height: auto;
+        }
+
         .sig-block { 
             width: 700px;
             height: auto;
@@ -25,7 +35,7 @@
 
 <body>
 <h2 class = "topic">API reference documentation</h2>
-
+        <div class="method">
         <ul class="blockList">
             <h4 id="deleteRecord">deleteRecord</h4>
             <pre class="sig-block">public final&nbsp;int&nbsp;deleteRecord(Uri&nbsp;url, 
@@ -33,7 +43,7 @@
                                 java.lang.String[]&nbsp;selectionArgs)
             </pre>
 
-            <div>
+            <div class="method-doc">
              Deletes row(s) specified by a content URI.
              <br/>
              If the content provider supports transactions, the deletion will be atomic.
@@ -47,26 +57,85 @@
                 <dd>The number of rows deleted.</dd>
             </dl>
         </ul>
+        </div>
 
         <br\>
 
+        <div class="method">
         <ul class="blockList">
             <h4 id="deleteRecord">setTextBox</h4>
             <pre class="sig-block">void&nbsp;setTextBox(char[]&nbsp;text, 
-                                int&nbsp;start, 
-                                int&nbsp;len)
+                    int&nbsp;start, 
+                    int&nbsp;len)
             </pre>
 
-            <div>
+            <div class="method-doc">
              Sets the TextView to display the specified slice of the specified char array. 
              You must promise that you will not change the contents of the array except for right before another call to setTextBox(), since the TextView has no way to know that the text has changed and that it needs to invalidate and re-layout.
             </div>
             <dl>
                 <dt><span class="paramLabel">Parameters:</span></dt>
-                <dd><code>text</code> char </dd>
-                <dd><code>start</code> int </dd>
-                <dd><code>len</code> int </dd>
+                <dd><code>text</code>: char</dd>
+                <dd><code>start</code>: int</dd>
+                <dd><code>len</code>: int</dd>
             </dl>
         </ul>
+        </div>
+
+        <div class="method">
+        <ul class="blockList">
+            <h4 id="parseColorCode">parseColorCode</h4>
+            <pre class="sig-block">int&nbsp;parseColorCode(String&nbsp;colorString)
+            </pre>
+
+            <div class="method-doc">
+             Parse the color string, and return the corresponding color-int.
+             If the string cannot be parsed, throws an IllegalArgumentException
+             exception. Supported formats are:
+             #RRGGBB
+             #AARRGGBB
+             or one of the following names:
+             'red', 'blue', 'green', 'black', 'white', 'gray', 'cyan', 'magenta',
+             'yellow', 'lightgray', 'darkgray', 'grey', 'lightgrey', 'darkgrey',
+             'aqua', 'fuchsia', 'lime', 'maroon', 'navy', 'olive', 'purple',
+             'silver', 'teal'.
+            </div>
+            <dl>
+                <dt><span class="paramLabel">Parameters:</span></dt>
+                <dd><code>colorString</code>: String</dd>
+                <dt><span class="returnLabel">Returns:</span></dt>
+                <dd>int</dd>
+            </dl>
+        </ul>
+        </div>
+
+        <div class="method">
+        <ul class="blockList">
+            <h4 id="drawPaintBox">drawPaintBox</h4>
+            <pre class="sig-block">void&nbsp;drawText&nbsp;(String text, 
+                int&nbsp;start, 
+                int&nbsp;end, 
+                float&nbsp;x, 
+                float&nbsp;y, 
+                Paint&nbsp;paint)
+            </pre>
+
+            <div class="method-doc">
+             Draw the text, with origin at (x,y), using the specified paint. 
+             The origin is interpreted based on the Align setting in the paint.
+            </div>
+            <dl>
+                <dt><span class="paramLabel">Parameters:</span></dt>
+                <dd><code>text</code>: String: The text to be drawn</dd>
+                <dd><code>start</code>: int: The index of the first character in text to draw</dd>
+                <dd><code>end</code>: (end - 1) is the index of the last character in text to draw</dd>
+                <dd><code>x</code>: The x-coordinate of the origin of the text being drawn</dd>
+                <dd><code>y</code>: The y-coordinate of the baseline of the text being drawn</dd>
+                <dd><code>paint</code>: Paint: The paint used for the text (e.g. color, size, style)</dd>
+            </dl>
+        </ul>
+        </div>
+
+</div>
 </body>
 </html>

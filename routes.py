@@ -95,7 +95,7 @@ def survey():
     	# get user's current aswers
     	answ = answers.query.filter_by(students_email = session['email']).first()
     	# It is better to also add this when press compile TO-DO: remaining answers
-    	if (re.search("//", first_answer) and re.search("//", second_answer)):
+    	if re.search("//", first_answer) or re.search("//", second_answer) or re.search("//", a3_answer):
     		flash('Please fill all the answer boxes.', 'error')
     return render_template('form_submit.html', answ = answ)
 
@@ -125,7 +125,11 @@ def results():
 	if ('email' in session):
 		answer = answers.query.filter_by(students_email=session['email']).first()
 		# dictionary with user's answers from the database
-		answ = {'answer_1' : answer.answer_1, 'answer_2' : answer.answer_2}
+		answ = {'answer_1' : answer.answer_1, 'answer_2' : answer.answer_2, \
+				'answer_3' : answer.answer_3, 'answer_4' : answer.answer_4, \
+				'answer_5' : answer.answer_5, 'answer_6' : answer.answer_6, \
+				'answer_7' : answer.answer_7, 'answer_8' : answer.answer_8, \
+				'answer_9' : answer.answer_9, 'answer_10' : answer.answer_10}
 		filename = 'NoteEditor.java'
 		java_file_complete = glue_answer(filename, answ)
 		file_path = 'NotePad/src/com/example/android/notepad'
