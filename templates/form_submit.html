@@ -398,7 +398,7 @@ a:link, a:visited {
             <a href="{{ url_for('logout') }}"><i class="fa fa-sign-out fa-lg" aria-hidden="true"></i></a>
         </p>
 
-		<h2><span class="fontawesome"></span>Android Survey</h2>
+		<h2><span class="fontawesome"></span>Android Programming Survey</h2>
 
         <fieldset>
  
@@ -487,7 +487,7 @@ a:link, a:visited {
             </button>
             <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="update">update(mUri,values,null,null)
 	        </button>
-	        <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="query">cr.query(Uri,PROJECTION,null,null,null)
+	        <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="query">cr.query(uri,PROJECTION,null,null,null)
 	        </button>
             <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="getText(R.string.error_message)">getText(R.string.error_message)
             </button>
@@ -587,7 +587,7 @@ public class NoteEditor extends Activity {
                     <textarea type="text" style="display:none" name="t_answer_1" id="ti_answer_1" placeholder="tp_answer_1">{{answ.answer_1}}</textarea>
                 </div>
             <br>
-                <input type="button" name="s_answer_1" data-id="si_answer_1" class="styled-button-2" value="Save" onClick="saveDiv('answer_1', 'r_answer_1');" />
+                <!--<input type="button" name="s_answer_1" data-id="si_answer_1" class="styled-button-2" value="Save" onClick="saveDiv('answer_1', 'r_answer_1');" />-->
                 <input type="button" class="styled-button-2" value="Clear" name="c_answer_1" onclick="clearDiv('answer_1');"/>
             <br>
             <pre><code>
@@ -621,7 +621,7 @@ public class NoteEditor extends Activity {
                     <textarea type="text" style="display:none" name="t_answer_2" id="ti_answer_2" placeholder="tp_answer_2">{{answ.answer_2}}</textarea>
                 </div>
             <br>
-                <input type="button" name="s_answer_2" data-id="si_answer_2" class="styled-button-2" value="Save" onClick="saveDiv('answer_2', 'r_answer_2');" />
+                <!--<input type="button" name="s_answer_2" data-id="si_answer_2" class="styled-button-2" value="Save" onClick="saveDiv('answer_2', 'r_answer_2');" />-->
                 <input type="button" class="styled-button-2" value="Clear" name="c_answer_2" onclick="clearDiv('answer_2');"/>
             <br>
             <pre><code>
@@ -693,7 +693,7 @@ public class NoteEditor extends Activity {
                     <textarea type="text" style="display:none" name="t_answer_3" id="ti_answer_3" placeholder="tp_answer_3">{{answ.answer_3}}</textarea>
                 </div>
                 <br>
-                <input type="button" name="s_answer_3" data-id="si_answer_3" class="styled-button-2" value="Save" onClick="saveDiv('answer_3', 'r_answer_3');" />
+                <!--<input type="button" name="s_answer_3" data-id="si_answer_3" class="styled-button-2" value="Save" onClick="saveDiv('answer_3', 'r_answer_3');" />-->
                 <input type="button" class="styled-button-2" value="Clear" name="c_answer_3" onclick="clearDiv('answer_3');"/>
             <pre><code>
             /*
@@ -760,7 +760,7 @@ public class NoteEditor extends Activity {
             <textarea type="text" style="display:none" name="t_answer_4" id="ti_answer_4" placeholder="tp_answer_4">{{answ.answer_4}}</textarea>
         </div>
         <br>
-        <input type="button" name="s_answer_4" data-id="si_answer_4" class="styled-button-2" value="Save" onClick="saveDiv('answer_4', 'r_answer_4');" />
+        <!--<input type="button" name="s_answer_4" data-id="si_answer_4" class="styled-button-2" value="Save" onClick="saveDiv('answer_4', 'r_answer_4');" />-->
         <input type="button" class="styled-button-2" value="Clear" name="c_answer_4" onclick="clearDiv('answer_4');"/>
         <pre><code>        
         // TO-DO: Get a handle to the EditText (mText) in the the layout.
@@ -770,7 +770,7 @@ public class NoteEditor extends Activity {
             <textarea type="text" style="display:none" name="t_answer_5" id="ti_answer_5" placeholder="tp_answer_5">{{answ.answer_5}}</textarea>
         </div>
         <br>
-        <input type="button" name="s_answer_5" data-id="si_answer_5" class="styled-button-2" value="Save" onClick="saveDiv('answer_5', 'r_answer_5');" />
+        <!--<input type="button" name="s_answer_5" data-id="si_answer_5" class="styled-button-2" value="Save" onClick="saveDiv('answer_5', 'r_answer_5');" />-->
         <input type="button" class="styled-button-2" value="Clear" name="c_answer_5" onclick="clearDiv('answer_5');"/>
         <pre><code>
         /*
@@ -863,7 +863,7 @@ public class NoteEditor extends Activity {
                 <textarea type="text" style="display:none" name="t_answer_6" id="ti_answer_6" placeholder="tp_answer_6">{{answ.answer_6}}</textarea>
             </div>
             <br>
-            <input type="button" name="s_answer_6" data-id="si_answer_6" class="styled-button-2" value="Save" onClick="saveDiv('answer_6', 'r_answer_6');" />
+            <!--<input type="button" name="s_answer_6" data-id="si_answer_6" class="styled-button-2" value="Save" onClick="saveDiv('answer_6', 'r_answer_6');" />-->
             <input type="button" class="styled-button-2" value="Clear" name="c_answer_6" onclick="clearDiv('answer_6');"/>
             <br>
             <pre><code>
@@ -1063,7 +1063,7 @@ public class NoteEditor extends Activity {
                         <textarea type="text" style="display:none" name="t_answer_7" id="ti_answer_7" placeholder="tp_answer_7">{{answ.answer_7}}</textarea>
                     </div>
                     <br>
-                    <input type="button" name="s_answer_7" data-id="si_answer_7" class="styled-button-2" value="Save" onClick="saveDiv('answer_7', 'r_answer_7');" />
+                    <!--<input type="button" name="s_answer_7" data-id="si_answer_7" class="styled-button-2" value="Save" onClick="saveDiv('answer_7', 'r_answer_7');" />-->
                     <input type="button" class="styled-button-2" value="Clear" name="c_answer_7" onclick="clearDiv('answer_7');"/>
                     <pre><code>
                 // If the Cursor is not null, and it contains at least one
@@ -1167,7 +1167,7 @@ public class NoteEditor extends Activity {
             <textarea type="text" style="display:none" name="t_answer_8" id="ti_answer_8" placeholder="tp_answer_8">{{answ.answer_8}}</textarea>
         </div>
         <br>
-        <input type="button" name="s_answer_8" data-id="si_answer_8" class="styled-button-2" value="Save" onClick="saveDiv('answer_8', 'r_answer_8');" />
+        <!--<input type="button" name="s_answer_8" data-id="si_answer_8" class="styled-button-2" value="Save" onClick="saveDiv('answer_8', 'r_answer_8');" />-->
         <input type="button" class="styled-button-2" value="Clear" name="c_answer_8" onclick="clearDiv('answer_8');"/>
         <pre><code>
     }
@@ -1208,7 +1208,7 @@ public class NoteEditor extends Activity {
                 <textarea type="text" style="display:none" name="t_answer_9" id="ti_answer_9" placeholder="tp_answer_9">{{answ.answer_9}}</textarea>
             </div>
             <br>
-            <input type="button" name="s_answer_9" data-id="si_answer_9" class="styled-button-2" value="Save" onClick="saveDiv('answer_9', 'r_answer_9');" />
+            <!--<input type="button" name="s_answer_9" data-id="si_answer_9" class="styled-button-2" value="Save" onClick="saveDiv('answer_9', 'r_answer_9');" />-->
             <input type="button" class="styled-button-2" value="Clear" name="c_answer_9" onclick="clearDiv('answer_9');"/>
             <pre><code>
             char[] chAr = { ' ' };
@@ -1219,7 +1219,7 @@ public class NoteEditor extends Activity {
                 <textarea type="text" style="display:none" name="t_answer_10" id="ti_answer_10" placeholder="tp_answer_10">{{answ.answer_10}}</textarea>
             </div>
             <br>
-            <input type="button" name="s_answer_10" data-id="si_answer_10" class="styled-button-2" value="Save" onClick="saveDiv('answer_10', 'r_answer_10');" />
+            <!--<input type="button" name="s_answer_10" data-id="si_answer_10" class="styled-button-2" value="Save" onClick="saveDiv('answer_10', 'r_answer_10');" />-->
             <input type="button" class="styled-button-2" value="Clear" name="c_answer_10" onclick="clearDiv('answer_10');"/>
             <pre><code>
         }
@@ -1227,9 +1227,10 @@ public class NoteEditor extends Activity {
 }
                 </pre></code>
                 <div position:relative; top:50%;left:50%;>
-                <input type="submit" value="Format"/>
+                <!--<input class="check-btn" type="button" value="&nbsp;&nbsp;Save&nbsp;&nbsp;" onClick="save();" />-->
+                <input type="submit" value="Format" onclick="save();"/>
                 <!--<a href="{{ url_for('results') }}" onclick="return results('/survey/results.html')">&nbsp;&nbsp;Check&nbsp;&nbsp;</a>-->
-                <input class="check-btn" type="button" value="&nbsp;&nbsp;Check&nbsp;&nbsp;" onclick="return results('/survey/results.html')">
+                <input class="check-btn" type="button" value="&nbsp;&nbsp;Check&nbsp;&nbsp;" onclick="return results('/survey/results.html')"/>
                 <!--<span class="add-on tooltip" onclick="return results('/survey/help.html')">-->
                 <span class="add-on" onclick="return results('/survey/help.html')">
                     <i class="fa fa-info-circle fa-lg ic" aria-hidden="true"></i>
@@ -1286,12 +1287,14 @@ public class NoteEditor extends Activity {
             });
         });
 
-        $(document).ready ( function () {
+        //$(document).ready ( function () {
             // use row1 as class not id to apply the functionality to all row1
-            if ($(".row1").text().length <= 0) {
-                $(".row1").text("//There is no answer yet. Please press Clear and give your answer.");
-            }
-        });
+          //  if ($("r_answer_10").text().length <= 0) {
+                //$(".row1").text("//There is no answer yet. Please press Clear and give your answer.");
+            //    var parentTag = $("r_answer_10").parent().get(0).tagName;
+              //  clearDiv(parentTag);
+            //}
+        //});
 
         // when clean the div, add 4 empty rows and 1 new textarea
         function clearDiv(divId) {
@@ -1304,6 +1307,7 @@ public class NoteEditor extends Activity {
             $("#"+divId).html('<div class="row" ondrop="drop(event);" ondragover="allowDrop(event);"></div><div class="row" ondrop="drop(event);" ondragover="allowDrop(event);"></div><div class="row" ondrop="drop(event);" ondragover="allowDrop(event);"></div><div class="row" ondrop="drop(event);" ondragover="allowDrop(event);"></div><div class="row" ondrop="drop(event);" ondragover="allowDrop(event);"></div><textarea type="text" style="display:none" name="t_'+divId+'" id="ti_'+divId+'" placeholder="tp_'+divId+'"></textarea>');
         }
 
+        /*
         function saveDiv(divId, rowId) {
             if ($("#"+rowId).length === 0) {
                 var mysave = $("#"+divId).text();
@@ -1311,6 +1315,18 @@ public class NoteEditor extends Activity {
             } else {
                 //clearDiv(divId);
             }
+        }
+        */
+
+        function save() {
+        	for (i = 1; i <= 10; i++) { 
+    			if ($("#r_answer_"+i).length === 0) {
+	                var mysave = $("#answer_"+i).text();
+	                $("#answer_"+i).find('textarea').val(mysave);
+            	} else {
+                	//clearDiv(divId);
+            	}
+			}
         }
 
         function getValDiv(textareaId) {

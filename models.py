@@ -17,7 +17,6 @@ class students(db.Model):
    id = db.Column('student_id', db.Integer, unique=True)
    email = db.Column(db.String(200), unique=True, primary_key = True) 
    password = db.Column(db.String(100))
-   secret = db.Column(db.String(100))
    job = db.Column(db.String(1000))
    code = db.Column(db.String(100))
    android = db.Column(db.String(100))

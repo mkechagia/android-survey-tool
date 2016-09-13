@@ -23,10 +23,12 @@ def index():
 @app.route('/new', methods = ['GET', 'POST'])
 def new():
 	if (request.method == 'POST'):
-		if (not request.form['email'] or not request.form['password'] or not request.form['secret'] or not request.form['job'] or not request.form['code'] or not request.form['android']):
+		if (not request.form['email'] or not request.form['password'] or not request.form['password_2'] or not request.form['job'] or not request.form['code'] or not request.form['android']):
 			flash('Please enter all the fields and update the selection boxes.', 'error')
+		if (request.form['password'] != request.form['password_2']):
+			flash('Your passwords should be the same.', 'error')
 		else:
-			student = students(email = request.form['email'], password=request.form['password'], secret=request.form['secret'], job=request.form['job'], code=request.form['code'], android=request.form['android'])
+			student = students(email = request.form['email'], password=request.form['password'], job=request.form['job'], code=request.form['code'], android=request.form['android'])
 			# check if the email already exists---unique user
 			if (not db.session.query(students.id).filter(students.email == student.email).count() == 0):
 				flash('The email is already taken.', 'error')

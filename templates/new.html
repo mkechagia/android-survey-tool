@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
 
-    <title>Android Survey</title>
+    <title>Android Programming Survey</title>
 
     <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -22,7 +22,7 @@
             <li role="presentation" ><a href="{{ url_for('index') }}">Home</a></li>
           </ul>
         </nav>
-        <h3 class="text-muted">Android Survey</h3>
+        <h3 class="text-muted">Android Programming Survey</h3>
         <p></p>
       </div>
       <div class="jumbotron">
@@ -36,15 +36,14 @@
          <br>
          <div align="left">
             Please fill all the following fields in order to get access to the survey.
-            Note that if you forget your password, we are going to ask your secret word to retrieve this.
          </div>
          <br>
          <label for = "email" class="sr-only">Email</label>
          <input type = "text" name = "email" class="form-control" placeholder = "email"/>
          <label for = "password" class="sr-only">Password</label>
          <input type = "password" name = "password" class="form-control" placeholder = "password"/>
-         <label for = "secret" class="sr-only">Secret Word</label>
-         <input type = "password" name = "secret" class="form-control" placeholder = "secret"/>
+         <label for = "password_2" class="sr-only">Password</label>
+         <input type = "password" name = "password_2" class="form-control" placeholder = "repeat password"/>
          <br>
          <h4>Programming Experience</h4>
          <br>
