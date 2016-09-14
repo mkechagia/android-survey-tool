@@ -588,7 +588,7 @@ public class NoteEditor extends Activity {
                 </div>
             <br>
                 <!--<input type="button" name="s_answer_1" data-id="si_answer_1" class="styled-button-2" value="Save" onClick="saveDiv('answer_1', 'r_answer_1');" />-->
-                <input type="button" class="styled-button-2" value="Clear" name="c_answer_1" onclick="clearDiv('answer_1');"/>
+                <input type="button" class="check-btn" value="Clear" name="c_answer_1" onclick="clearDiv('answer_1');"/>
             <br>
             <pre><code>
             mPaint.setColor(color);
@@ -622,7 +622,7 @@ public class NoteEditor extends Activity {
                 </div>
             <br>
                 <!--<input type="button" name="s_answer_2" data-id="si_answer_2" class="styled-button-2" value="Save" onClick="saveDiv('answer_2', 'r_answer_2');" />-->
-                <input type="button" class="styled-button-2" value="Clear" name="c_answer_2" onclick="clearDiv('answer_2');"/>
+                <input type="button" class="check-btn" value="Clear" name="c_answer_2" onclick="clearDiv('answer_2');"/>
             <br>
             <pre><code>
             /*
@@ -694,7 +694,7 @@ public class NoteEditor extends Activity {
                 </div>
                 <br>
                 <!--<input type="button" name="s_answer_3" data-id="si_answer_3" class="styled-button-2" value="Save" onClick="saveDiv('answer_3', 'r_answer_3');" />-->
-                <input type="button" class="styled-button-2" value="Clear" name="c_answer_3" onclick="clearDiv('answer_3');"/>
+                <input type="button" class="check-btn" value="Clear" name="c_answer_3" onclick="clearDiv('answer_3');"/>
             <pre><code>
             /*
              * If the attempt to insert the new note fails, shuts down this
@@ -761,7 +761,7 @@ public class NoteEditor extends Activity {
         </div>
         <br>
         <!--<input type="button" name="s_answer_4" data-id="si_answer_4" class="styled-button-2" value="Save" onClick="saveDiv('answer_4', 'r_answer_4');" />-->
-        <input type="button" class="styled-button-2" value="Clear" name="c_answer_4" onclick="clearDiv('answer_4');"/>
+        <input type="button" class="check-btn" value="Clear" name="c_answer_4" onclick="clearDiv('answer_4');"/>
         <pre><code>        
         // TO-DO: Get a handle to the EditText (mText) in the the layout.
         </pre></code>
@@ -771,7 +771,7 @@ public class NoteEditor extends Activity {
         </div>
         <br>
         <!--<input type="button" name="s_answer_5" data-id="si_answer_5" class="styled-button-2" value="Save" onClick="saveDiv('answer_5', 'r_answer_5');" />-->
-        <input type="button" class="styled-button-2" value="Clear" name="c_answer_5" onclick="clearDiv('answer_5');"/>
+        <input type="button" class="check-btn" value="Clear" name="c_answer_5" onclick="clearDiv('answer_5');"/>
         <pre><code>
         /*
          * If this Activity had stopped previously, its state was written the
@@ -864,7 +864,7 @@ public class NoteEditor extends Activity {
             </div>
             <br>
             <!--<input type="button" name="s_answer_6" data-id="si_answer_6" class="styled-button-2" value="Save" onClick="saveDiv('answer_6', 'r_answer_6');" />-->
-            <input type="button" class="styled-button-2" value="Clear" name="c_answer_6" onclick="clearDiv('answer_6');"/>
+            <input type="button" class="check-btn" value="Clear" name="c_answer_6" onclick="clearDiv('answer_6');"/>
             <br>
             <pre><code>
             mText.setText(cq);
@@ -1064,7 +1064,7 @@ public class NoteEditor extends Activity {
                     </div>
                     <br>
                     <!--<input type="button" name="s_answer_7" data-id="si_answer_7" class="styled-button-2" value="Save" onClick="saveDiv('answer_7', 'r_answer_7');" />-->
-                    <input type="button" class="styled-button-2" value="Clear" name="c_answer_7" onclick="clearDiv('answer_7');"/>
+                    <input type="button" class="check-btn" value="Clear" name="c_answer_7" onclick="clearDiv('answer_7');"/>
                     <pre><code>
                 // If the Cursor is not null, and it contains at least one
                 // record
@@ -1168,7 +1168,7 @@ public class NoteEditor extends Activity {
         </div>
         <br>
         <!--<input type="button" name="s_answer_8" data-id="si_answer_8" class="styled-button-2" value="Save" onClick="saveDiv('answer_8', 'r_answer_8');" />-->
-        <input type="button" class="styled-button-2" value="Clear" name="c_answer_8" onclick="clearDiv('answer_8');"/>
+        <input type="button" class="check-btn" value="Clear" name="c_answer_8" onclick="clearDiv('answer_8');"/>
         <pre><code>
     }
 
@@ -1209,7 +1209,7 @@ public class NoteEditor extends Activity {
             </div>
             <br>
             <!--<input type="button" name="s_answer_9" data-id="si_answer_9" class="styled-button-2" value="Save" onClick="saveDiv('answer_9', 'r_answer_9');" />-->
-            <input type="button" class="styled-button-2" value="Clear" name="c_answer_9" onclick="clearDiv('answer_9');"/>
+            <input type="button" class="check-btn" value="Clear" name="c_answer_9" onclick="clearDiv('answer_9');"/>
             <pre><code>
             char[] chAr = { ' ' };
             // TO-DO: Clear the text (mText) of the note
@@ -1220,7 +1220,7 @@ public class NoteEditor extends Activity {
             </div>
             <br>
             <!--<input type="button" name="s_answer_10" data-id="si_answer_10" class="styled-button-2" value="Save" onClick="saveDiv('answer_10', 'r_answer_10');" />-->
-            <input type="button" class="styled-button-2" value="Clear" name="c_answer_10" onclick="clearDiv('answer_10');"/>
+            <input type="button" class="check-btn" value="Clear" name="c_answer_10" onclick="clearDiv('answer_10');"/>
             <pre><code>
         }
     }
@@ -1287,14 +1287,16 @@ public class NoteEditor extends Activity {
             });
         });
 
-        //$(document).ready ( function () {
-            // use row1 as class not id to apply the functionality to all row1
-          //  if ($("r_answer_10").text().length <= 0) {
-                //$(".row1").text("//There is no answer yet. Please press Clear and give your answer.");
-            //    var parentTag = $("r_answer_10").parent().get(0).tagName;
-              //  clearDiv(parentTag);
-            //}
-        //});
+        // clear format of empty boxes for the new user
+        $(document).ready(function(){
+            for (i = 1; i <= 10; i++) {
+                var mystring = $("#answer_"+i).text()
+                // check for any single character in the div
+                if (/^\s+$/.test(mystring)) {
+                    clearDiv("answer_"+i)
+                }
+            }                                           
+        });
 
         // when clean the div, add 4 empty rows and 1 new textarea
         function clearDiv(divId) {
@@ -1318,20 +1320,20 @@ public class NoteEditor extends Activity {
         }
         */
 
+        // final save for all the answer boxes
         function save() {
         	for (i = 1; i <= 10; i++) { 
     			if ($("#r_answer_"+i).length === 0) {
 	                var mysave = $("#answer_"+i).text();
 	                $("#answer_"+i).find('textarea').val(mysave);
-            	} else {
-                	//clearDiv(divId);
-            	}
+                }
 			}
         }
 
+        // method for debugging
         function getValDiv(textareaId) {
             var textarea_value = $("#"+textareaId).val();
-            if (textarea_value.length == 0) {
+            if (textarea_value.length === 0) {
                 alert("Your answer box is empty!");
             } else {
                 alert(textareaId+":"+textarea_value);

@@ -10,10 +10,12 @@ from collections import defaultdict
 from subprocess import Popen, PIPE, TimeoutExpired
 from glue import glue_answer, replace_methods
 import format_answer
-import re
 
 global answ
 answ = {}
+global form_list
+form_list = ['t_answer_1', 't_answer_2', 't_answer_3', 't_answer_4', 't_answer_5', 't_answer_6', \
+				't_answer_7', 't_answer_8', 't_answer_9', 't_answer_10']
 
 @app.route('/')
 def index():
@@ -44,16 +46,16 @@ def new():
 					session['logged_in'] = True
 					# create a new answer
 					answ = answers(students_email = session['email'], \
-						answer_1 = '// There is no answer yet. Please press Clear and give your answer.', \
-						answer_2 = '// There is no answer yet. Please press Clear and give your answer.',
-						answer_3 = '// There is no answer yet. Please press Clear and give your answer.', \
-						answer_4 = '// There is no answer yet. Please press Clear and give your answer.',
-						answer_5 = '// There is no answer yet. Please press Clear and give your answer.', \
-						answer_6 = '// There is no answer yet. Please press Clear and give your answer.',
-						answer_7 = '// There is no answer yet. Please press Clear and give your answer.', \
-						answer_8 = '// There is no answer yet. Please press Clear and give your answer.',
-						answer_9 = '// There is no answer yet. Please press Clear and give your answer.', \
-						answer_10 = '// There is no answer yet. Please press Clear and give your answer.')
+						answer_1 = '', \
+						answer_2 = '',
+						answer_3 = '', \
+						answer_4 = '',
+						answer_5 = '', \
+						answer_6 = '',
+						answer_7 = '', \
+						answer_8 = '',
+						answer_9 = '', \
+						answer_10 = '')
 					db.session.add(answ)
 					db.session.commit()
 					# get answer with session's email
@@ -69,36 +71,34 @@ def new():
 @app.route('/survey/', methods=['POST'])
 def survey():
     if ('email' in session):
+    	# list for the formated answers from the survey form
+    	formatted_answers = []
     	# find answers of the user with the email in the session
     	answ = answers.query.filter_by(students_email = session['email']).first()
     	# format user's answer; request.form based on the name of the textarea
-    	first_answer = format_answer.format_answer(request.form['t_answer_1'])
-    	second_answer = format_answer.format_answer(request.form['t_answer_2'])
-    	a3_answer = format_answer.format_answer(request.form['t_answer_3'])
-    	a4_answer = format_answer.format_answer(request.form['t_answer_4'])
-    	a5_answer = format_answer.format_answer(request.form['t_answer_5'])
-    	a6_answer = format_answer.format_answer(request.form['t_answer_6'])
-    	a7_answer = format_answer.format_answer(request.form['t_answer_7'])
-    	a8_answer = format_answer.format_answer(request.form['t_answer_8'])
-    	a9_answer = format_answer.format_answer(request.form['t_answer_9'])
-    	a10_answer = format_answer.format_answer(request.form['t_answer_10'])
-    	# update user's answers to the db
-    	answ.answer_1 = first_answer
-    	answ.answer_2 = second_answer
-    	answ.answer_3 = a3_answer
-    	answ.answer_4 = a4_answer
-    	answ.answer_5 = a5_answer
-    	answ.answer_6 = a6_answer
-    	answ.answer_7 = a7_answer
-    	answ.answer_8 = a8_answer
-    	answ.answer_9 = a9_answer
-    	answ.answer_10 = a10_answer
+    	for k, l in enumerate(form_list):
+    		# format user's answer; request.form based on the name of the textarea
+    		formatted_answer = format_answer.format_answer(request.form[form_list[k]])
+    		formatted_answers.append(formatted_answer)
+    	# add formatted answers to the db
+    	answ.answer_1 = formatted_answers[0]
+    	answ.answer_2 = formatted_answers[1]
+    	answ.answer_3 = formatted_answers[2]
+    	answ.answer_4 = formatted_answers[3]
+    	answ.answer_5 = formatted_answers[4]
+    	answ.answer_6 = formatted_answers[5]
+    	answ.answer_7 = formatted_answers[6]
+    	answ.answer_8 = formatted_answers[7]
+    	answ.answer_9 = formatted_answers[8]
+    	answ.answer_10 = formatted_answers[9]
+    	# commit all user's answers to the db
     	db.session.commit()
     	# get user's current aswers
     	answ = answers.query.filter_by(students_email = session['email']).first()
-    	# It is better to also add this when press compile TO-DO: remaining answers
-    	if re.search("//", first_answer) or re.search("//", second_answer) or re.search("//", a3_answer):
-    		flash('Please fill all the answer boxes.', 'error')
+    	# check for empty answer boxes when format
+    	for d, f in enumerate(formatted_answers):
+    		if (formatted_answers[d] == ''):
+    			flash('Please fill all the answer boxes.', 'error')
     return render_template('form_submit.html', answ = answ)
 
 # show all users -> this method is for debugging
