@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
     <meta charset="utf-8">
 	
-    <title>Android Survey</title>
+    <title>Android Programming Survey</title>
 
     <!--<link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">-->
 	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Varela+Round">
@@ -409,9 +409,9 @@ a:link, a:visited {
 
             <p>In the following, on the left side there is a box of methods,
             keywords, and symbols to drag on the answer boxes on the right. 
-            Scroll down to find the TO-DO comments and accordingly 
+            Scroll down to find the TODO comments and accordingly 
             fill the answer boxes to complete the source code. 
-            When you fill and save all the answer boxes, 
+            When you fill and format all the answer boxes, 
             press the log-out link (up and right in the survey). 
             Please carefully consider the 
             <a href="{{ url_for('help') }}" onclick="return results('/survey/help.html')">instructions</a>
@@ -477,21 +477,21 @@ a:link, a:visited {
             <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="deleteRecord(mUri,null,null)" name="deleteRecord(mUri, null, null)">deleteRecord(mUri,null,null)</button>
             <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="printStackTrace()" name="printStackTrace()">printStackTrace()</button>
             <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="title">title</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="setContentView(R.layout.note_editor)">setContentView(R.layout.note_editor)</button>
             <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="message">message</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="mCursor.getString(colTitleIndex)">mCursor.getString(colTitleIndex)</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="setContentLayout(R.layout.note_editor)">setContentLayout(R.layout.note_editor)</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="mCursor.getCursorString(colTitleIndex)">mCursor.getCursorString(colTitleIndex)</button>
             <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="canvas.drawPaintText(tmp,0,9,20,30,paint)">canvas.drawPaintText(tmp,0,9,20,30,paint)</button>
             <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="throw">throw</button>
             <!--<button class="styled-button tooltip"-->
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="insert(intent.getData(),null)">insert(intent.getData(), null)
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="insertData(intent.getData(),null)">insertData(intent.getData(), null)
             </button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="update">update(mUri,values,null,null)
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="updateRecord">updateRecord(mUri,values,null,null)
 	        </button>
-	        <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="query">cr.query(uri,PROJECTION,null,null,null)
+	        <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="query">cr.queryData(uri,PROJECTION,null,null,null)
 	        </button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="(EditText)findViewId(R.id.note)">(EditText)findViewId(R.id.note)
+            </button>
             <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="getText(R.string.error_message)">getText(R.string.error_message)
-            </button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="(EditText)findViewById(R.id.note)">(EditText)findViewById(R.id.note)
             </button>
             <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="Color.parseColorCode("#bdbdbd")" name="Color.parseColorCode("#bdbdbd")">Color.parseColorCode("#bdbdbd")
             <!--<span class="tooltiptext">

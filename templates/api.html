@@ -15,21 +15,10 @@
         }
 
         .method { 
-            width: 700px;
+            width: 100px;
             height: auto;
         }
 
-        .method-doc { 
-            width: 700px;
-            height: auto;
-        }
-
-        .sig-block { 
-            width: 700px;
-            height: auto;
-            background: #EAF2F8;
-            border: none;
-        }
     </style>
 </head>
 
@@ -37,25 +26,7 @@
 <h2 class = "topic">API reference documentation</h2>
         <div class="method">
         <ul class="blockList">
-            <h4 id="deleteRecord">deleteRecord</h4>
-            <pre class="sig-block">public final&nbsp;int&nbsp;deleteRecord(Uri&nbsp;url, 
-                                java.lang.String&nbsp;where, 
-                                java.lang.String[]&nbsp;selectionArgs)
-            </pre>
-
-            <div class="method-doc">
-             Deletes row(s) specified by a content URI.
-             <br/>
-             If the content provider supports transactions, the deletion will be atomic.
-            </div>
-            <dl>
-                <dt><span class="paramLabel">Parameters:</span></dt>
-                <dd><code>url</code> - The URL of the row to delete.</dd>
-                <dd><code>where</code> - A filter to apply to rows before deleting, formatted as an SQL WHERE clause
-                                    (excluding the WHERE itself).</dd>
-                <dt><span class="returnLabel">Returns:</span></dt>
-                <dd>The number of rows deleted.</dd>
-            </dl>
+            <a href="{{ url_for('content_resolver')}}" onclick="return results('/ContentResolver.html#deleteRecord-Uri-java.lang.String-java.lang.String:A-')"><h4 id="deleteRecord">deleteRecord</h4></a>
         </ul>
         </div>
 
@@ -63,79 +34,72 @@
 
         <div class="method">
         <ul class="blockList">
-            <h4 id="deleteRecord">setTextBox</h4>
-            <pre class="sig-block">void&nbsp;setTextBox(char[]&nbsp;text, 
-                    int&nbsp;start, 
-                    int&nbsp;len)
-            </pre>
-
-            <div class="method-doc">
-             Sets the TextView to display the specified slice of the specified char array. 
-             You must promise that you will not change the contents of the array except for right before another call to setTextBox(), since the TextView has no way to know that the text has changed and that it needs to invalidate and re-layout.
-            </div>
-            <dl>
-                <dt><span class="paramLabel">Parameters:</span></dt>
-                <dd><code>text</code>: char</dd>
-                <dd><code>start</code>: int</dd>
-                <dd><code>len</code>: int</dd>
-            </dl>
+            <a href="{{ url_for('canvas')}}" onclick="return results('/Canvas.html#drawPaintText-java.lang.String-int-int-float-float-Paint-')"><h4 id="drawPaintText">drawPaintText</h4></a>
         </ul>
         </div>
+
+        <br\>
 
         <div class="method">
         <ul class="blockList">
-            <h4 id="parseColorCode">parseColorCode</h4>
-            <pre class="sig-block">int&nbsp;parseColorCode(String&nbsp;colorString)
-            </pre>
-
-            <div class="method-doc">
-             Parse the color string, and return the corresponding color-int.
-             If the string cannot be parsed, throws an IllegalArgumentException
-             exception. Supported formats are:
-             #RRGGBB
-             #AARRGGBB
-             or one of the following names:
-             'red', 'blue', 'green', 'black', 'white', 'gray', 'cyan', 'magenta',
-             'yellow', 'lightgray', 'darkgray', 'grey', 'lightgrey', 'darkgrey',
-             'aqua', 'fuchsia', 'lime', 'maroon', 'navy', 'olive', 'purple',
-             'silver', 'teal'.
-            </div>
-            <dl>
-                <dt><span class="paramLabel">Parameters:</span></dt>
-                <dd><code>colorString</code>: String</dd>
-                <dt><span class="returnLabel">Returns:</span></dt>
-                <dd>int</dd>
-            </dl>
+            <a href="{{ url_for('view')}}" onclick="return results('/View.html#findViewId-int-')"><h4 id="findViewId">findViewId</h4></a>
         </ul>
         </div>
+
+        <br\>
 
         <div class="method">
         <ul class="blockList">
-            <h4 id="drawPaintBox">drawPaintBox</h4>
-            <pre class="sig-block">void&nbsp;drawText&nbsp;(String text, 
-                int&nbsp;start, 
-                int&nbsp;end, 
-                float&nbsp;x, 
-                float&nbsp;y, 
-                Paint&nbsp;paint)
-            </pre>
-
-            <div class="method-doc">
-             Draw the text, with origin at (x,y), using the specified paint. 
-             The origin is interpreted based on the Align setting in the paint.
-            </div>
-            <dl>
-                <dt><span class="paramLabel">Parameters:</span></dt>
-                <dd><code>text</code>: String: The text to be drawn</dd>
-                <dd><code>start</code>: int: The index of the first character in text to draw</dd>
-                <dd><code>end</code>: (end - 1) is the index of the last character in text to draw</dd>
-                <dd><code>x</code>: The x-coordinate of the origin of the text being drawn</dd>
-                <dd><code>y</code>: The y-coordinate of the baseline of the text being drawn</dd>
-                <dd><code>paint</code>: Paint: The paint used for the text (e.g. color, size, style)</dd>
-            </dl>
+            <a href="{{ url_for('cursor')}}" onclick="return results('/Cursor.html#getCursorString-int-')"><h4 id="getCursorString">getCursorString</h4></a>
         </ul>
         </div>
 
+        <br\>
+
+        <div class="method">
+        <ul class="blockList">
+            <a href="{{ url_for('content_resolver')}}" onclick="return results('/ContentResolver.html#insertData-Uri-ContentValues-')"><h4 id="insertData">insertData</h4></a>
+        </ul>
+        </div>
+
+        <br\>
+
+        <div class="method">
+        <ul class="blockList">
+            <a href="{{ url_for('content_resolver')}}" onclick="return results('/ContentResolver.html#queryData-Uri-java.lang.String:A-java.lang.String-java.lang.String:A-java.lang.String-')"><h4 id="queryData">queryData</h4></a>
+        </ul>
+        </div>
+
+        <br\>
+
+        <div class="method">
+        <ul class="blockList">
+            <a href="{{ url_for('activity')}}" onclick="return results('/Activity.html#setContentLayout-int-')"><h4 id="setContentLayout">setContentLayout</h4></a>
+        </ul>
+        </div>
+
+        <br\>
+
+        <div class="method">
+        <ul class="blockList">
+            <a href="{{ url_for('text_view')}}" onclick="return results('/TextView.html#setTextBox-char:A-int-int-')"><h4 id="setTextBox">setTextBox</h4></a>
+        </ul>
+        </div>
+
+        <br\>
+
+        <div class="method">
+        <ul class="blockList">
+            <a href="{{ url_for('content_resolver')}}" onclick="return results('/ContentResolver.html#updateRecord-Uri-ContentValues-java.lang.String-java.lang.String:A-')"><h4 id="updateRecord">updateRecord</h4></a>
+        </ul>
+        </div>
 </div>
+<script>
+    function results(url) {
+        nWindow = window.open(url,'name','height=800,width=1200');
+        if (window.focus) {nWindow.focus()}
+            return false;
+    }
+</script>
 </body>
 </html>
