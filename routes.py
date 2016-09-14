@@ -17,6 +17,16 @@ global form_list
 form_list = ['t_answer_1', 't_answer_2', 't_answer_3', 't_answer_4', 't_answer_5', 't_answer_6', \
 				't_answer_7', 't_answer_8', 't_answer_9', 't_answer_10']
 
+@app.route('/static/stylesheet.css')
+def serve_static_css(filename):
+    root_dir = os.path.dirname(os.getcwd())
+    return send_from_directory(os.path.join(root_dir, 'static', 'css'), filename)
+
+@app.route('/static/script.js')
+def serve_static_js(filename):
+    root_dir = os.path.dirname(os.getcwd())
+    return send_from_directory(os.path.join(root_dir, 'static', 'js'), filename)
+
 @app.route('/')
 def index():
    return render_template('index.html')
@@ -165,6 +175,30 @@ def help():
 @app.route('/survey/api.html')
 def api():
 	return render_template('api.html')
+
+@app.route('/TextView.html')
+def text_view():
+	return render_template('TextView.html')
+
+@app.route('/ContentResolver.html')
+def content_resolver():
+	return render_template('ContentResolver.html')
+
+@app.route('/Canvas.html')
+def canvas():
+	return render_template('Canvas.html')
+
+@app.route('/View.html')
+def view():
+	return render_template('View.html')
+
+@app.route('/Activity.html')
+def activity():
+	return render_template('Activity.html')
+
+@app.route('/Cursor.html')
+def cursor():
+	return render_template('Cursor.html')
 
 if __name__ == '__main__':
    db.create_all()
