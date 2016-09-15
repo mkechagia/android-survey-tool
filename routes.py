@@ -15,6 +15,8 @@ from collections import defaultdict
 from subprocess import Popen, PIPE, TimeoutExpired
 from glue import glue_answer, replace_methods
 import format_answer
+import random
+import re
 
 global answ
 answ = {}
@@ -40,12 +42,15 @@ def index():
 @app.route('/new', methods = ['GET', 'POST'])
 def new():
 	if (request.method == 'POST'):
+		ticket = 0
 		if (not request.form['email'] or not request.form['password'] or not request.form['password_2'] or not request.form['job'] or not request.form['code'] or not request.form['android']):
-			flash('Please enter all the fields and update the selection boxes.', 'error')
-		if (request.form['password'] != request.form['password_2']):
+			flash('Please fill all the fields and selection boxes.', 'error')
+		elif (request.form['password'] != request.form['password_2']):
 			flash('Your passwords should be the same.', 'error')
 		else:
-			student = students(email = request.form['email'], password=request.form['password'], job=request.form['job'], code=request.form['code'], android=request.form['android'])
+			# create a random number (0-100) for the student
+			rnd = random.randrange(101)
+			student = students(email = request.form['email'], password=request.form['password'], job=request.form['job'], code=request.form['code'], android=request.form['android'], ticket=rnd)
 			# check if the email already exists---unique user
 			if (not db.session.query(students.id).filter(students.email == student.email).count() == 0):
 				flash('The email is already taken.', 'error')
@@ -59,6 +64,8 @@ def new():
 					session['email'] = student.email
 					#return redirect(url_for('show_all')) -> this is for debugging
 					session['logged_in'] = True
+					# student's ticket for the different API pages
+					ticket = student.ticket
 					# create a new answer
 					answ = answers(students_email = session['email'], \
 						answer_1 = '', \
@@ -113,7 +120,7 @@ def survey():
     	# check for empty answer boxes when format
     	for d, f in enumerate(formatted_answers):
     		if (formatted_answers[d] == ''):
-    			flash('Please fill all the answer boxes.', 'error')
+    			flash('Please fill answer box '+str(d+1)+'.', 'error')
     return render_template('form_submit.html', answ = answ)
 
 # show all users -> this method is for debugging
@@ -177,33 +184,50 @@ def logout():
 def help():
 	return render_template('help.html')
 
-@app.route('/survey/api.html')
+@app.route('/survey/api/')
 def api():
-	return render_template('api.html')
+	if ('email' in session):
+		# get the number of the student's ticket
+		student = students.query.filter_by(email = session['email']).first()
+		ticket = student.ticket
+		# case for undocumented and unchecked exceptions (as-is)
+		if (int(float(ticket)) <= 30):
+			return render_template('api-android.html')
+		# case for documented and unchecked exceptions (to-be)
+		elif (int(float(ticket)) > 30 and int(float(ticket)) <= 60):
+			return render_template('api-explore.html')
+		# case for checked exceptions
+		else:
+			# TODO
+			print ("OK")
 
-@app.route('/TextView.html')
+@app.route('/api-android/TextView.html')
 def text_view():
-	return render_template('TextView.html')
+	return render_template('/api-android/TextView.html')
 
-@app.route('/ContentResolver.html')
+@app.route('/api-android/ContentResolver.html')
 def content_resolver():
-	return render_template('ContentResolver.html')
+	return render_template('/api-android/ContentResolver.html')
 
-@app.route('/Canvas.html')
+@app.route('/api-explore/ContentResolver.html')
+def content_resolver_explore():
+	return render_template('/api-explore/ContentResolver.html')
+
+@app.route('/api-android/Canvas.html')
 def canvas():
-	return render_template('Canvas.html')
+	return render_template('/api-android/Canvas.html')
 
-@app.route('/View.html')
+@app.route('/api-android/View.html')
 def view():
-	return render_template('View.html')
+	return render_template('/api-android/View.html')
 
-@app.route('/Activity.html')
+@app.route('/api-android/Activity.html')
 def activity():
-	return render_template('Activity.html')
+	return render_template('/api-android/Activity.html')
 
-@app.route('/Cursor.html')
+@app.route('/api-android/Cursor.html')
 def cursor():
-	return render_template('Cursor.html')
+	return render_template('/api-android/Cursor.html')
 
 if __name__ == '__main__':
    db.create_all()
