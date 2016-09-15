@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_wtf import Form
-from wtforms import TextField, TextAreaField, SubmitField, PasswordField, validators, ValidationError
+from wtforms import TextField, BooleanField, StringField, TextAreaField, SubmitField, PasswordField, validators, ValidationError
 from wtforms.fields.html5 import EmailField
 from models import db, students
 

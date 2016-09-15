@@ -170,8 +170,8 @@ input {
     width: 1000px;
     /*height: 19000px;*/
     height: auto;
-    margin: 15px;
-    padding: 5px;
+    /*margin: 10px;*/
+    padding: auto;
     /*border: 1px solid #aaaaaa;*/
     border-radius: 8px;
     /*border:2px solid red;*/
@@ -180,9 +180,9 @@ input {
 
 .dragtarget {
     float: left; 
-    width: 330px;
+    width: 350px;
     height: auto;
-    padding: 12px;
+    padding: 5px;
     background-color: #9EDAD2;
     border-radius: 5px;
     border: none;
@@ -207,7 +207,7 @@ input {
     width: 600px; 
     height: auto;
     /*height: 19000px;*/
-    margin: 15px;
+    /*margin: 15px;*/
     padding: 10px;
     /*border: 1px solid #aaaaaa;*/
     border-radius: 8px;
@@ -401,18 +401,18 @@ a:link, a:visited {
 		<h2><span class="fontawesome"></span>Android Programming Survey</h2>
 
         <fieldset>
- 
-            <p>You are going to update a Java class of a real Android app, NotePad!
-            For this reason, please, do not read the source code of the NotePad application.
-            Also, mind the handling of your code, because we know that the methods 
-            to be called can lead to application <b>crashes</b>!<p>
+            <p>You are going to update a Java class of a real Android application, NotePad!
+            For this reason, please do not read the source code of the NotePad application.
+            We will ask you to call ten experimental methods from the Android platform's API.
+            Mind the handling of your code, because we know that
+            in some cases these methods might cause crashes to NotePad!</p>
 
-            <p>In the following, on the left side there is a box of methods,
-            keywords, and symbols to drag on the answer boxes on the right. 
-            Scroll down to find the TODO comments and accordingly 
-            fill the answer boxes to complete the source code. 
-            When you fill and format all the answer boxes, 
-            press the log-out link (up and right in the survey). 
+            <p>In the following, on the left there is a box of methods,
+            keywords, and symbols that you can drag on the answer boxes on the right. 
+            Scroll down to find the TODO comments and
+            accordingly fill the answer boxes to complete the source code. 
+            After you fill and format all the answer boxes, 
+            press log-out (up and right in the survey). 
             Please carefully consider the 
             <a href="{{ url_for('help') }}" onclick="return results('/survey/help.html')">instructions</a>
             and our
@@ -446,63 +446,51 @@ a:link, a:visited {
             
             <div class= "dragtarget" id="dragtarget">
             <!--<div class="styled-button" id="catch">catch</div>-->            
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="catch">&nbsp;catch&nbsp;</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="try">try&nbsp;</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="{">&nbsp;{&nbsp;</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="}">&nbsp;}&nbsp;</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="{">{</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="}">}</button>
             <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id=";">;</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="(">&nbsp;(&nbsp;</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id=")">&nbsp;)&nbsp;</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="=">&nbsp;=&nbsp;</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="aExc">&nbsp;aExc&nbsp;</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="mUri">&nbsp;mUri&nbsp;</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="(">(</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id=")">)</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="=">=</button>
             <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id=".">.</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="orig">&nbsp;orig&nbsp;</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="mText">&nbsp;mText&nbsp;</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="color">&nbsp;color&nbsp;</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="if">&nbsp;if&nbsp;</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id=":">:</button>
             <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="0">&nbsp;0&nbsp;</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="null">&nbsp;null&nbsp;</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id=":">&nbsp;:&nbsp;</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="new">new</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="IllegalArgumentException">IllegalArgumentException</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="InflateException" name="InflateException">InflateException</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="IndexOutOfBoundsException" name="IndexOutOfBoundsException">IndexOutOfBoundsException</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="RuntimeException">RuntimeException</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="NotFoundException">NotFoundException</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="NullPointerException">NullPointerException</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="getContentResolver()">getContentResolver()
-            </button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="setTextBox(chAr, 0, 1)">setTextBox(chAr,0,1)</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="aExc">&nbsp;aExc&nbsp;</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="canvas">&nbsp;canvas&nbsp;</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="catch">&nbsp;catch&nbsp;</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="cl">&nbsp;cl&nbsp;</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="Color">&nbsp;Color&nbsp;</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="cr">&nbsp;cr&nbsp;</button>
             <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="deleteRecord(mUri,null,null)" name="deleteRecord(mUri, null, null)">deleteRecord(mUri,null,null)</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="drawPaintText(tmp,0,9,20,30,paint)">drawPaintText(tmp,0,9,20,30,paint)</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="(EditText)findViewId(R.id.note)">(EditText)findViewId(R.id.note)</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="getContentResolver()">getContentResolver()</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="getCursorString(colTitleIndex)">getCursorString(colInd)</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="getText(R.string.error_message)">getText(R.string.error_message)</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="if">&nbsp;if&nbsp;</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="IllegalArgumentException">IllegalArgumentException</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="IndexOutOfBoundsException" name="IndexOutOfBoundsException">IndexOutOfBoundsException</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="InflateException" name="InflateException">InflateException</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="insertData(intent.getData(),null)">insertData(intent.getData(),null)</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="mCursor">mCursor</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="message">&nbsp;msg&nbsp;</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="mUri">&nbsp;mUri&nbsp;</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="mTxt">&nbsp;mTxt&nbsp;</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="new">&nbsp;new&nbsp;</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="NotFoundException">NotFoundException</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="null">&nbsp;null&nbsp;</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="NullPointerException">NullPointerException</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="orig">&nbsp;orig&nbsp;</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="parseColorId(cl.RED)" name="parseColorId("#bdbdbd")">parseColorId(cl.RED)</button>
             <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="printStackTrace()" name="printStackTrace()">printStackTrace()</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="title">title</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="message">message</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="setContentLayout(R.layout.note_editor)">setContentLayout(R.layout.note_editor)</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="mCursor.getCursorString(colTitleIndex)">mCursor.getCursorString(colTitleIndex)</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="canvas.drawPaintText(tmp,0,9,20,30,paint)">canvas.drawPaintText(tmp,0,9,20,30,paint)</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="throw">throw</button>
-            <!--<button class="styled-button tooltip"-->
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="insertData(intent.getData(),null)">insertData(intent.getData(), null)
-            </button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="updateRecord">updateRecord(mUri,values,null,null)
-	        </button>
-	        <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="query">cr.queryData(uri,PROJECTION,null,null,null)
-	        </button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="(EditText)findViewId(R.id.note)">(EditText)findViewId(R.id.note)
-            </button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="getText(R.string.error_message)">getText(R.string.error_message)
-            </button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="Color.parseColorCode("#bdbdbd")" name="Color.parseColorCode("#bdbdbd")">Color.parseColorCode("#bdbdbd")
-            <!--<span class="tooltiptext">
-                <b>int deleteRecord (Uri url, 
-                            String where, 
-                            String[] selectionArgs)<b>
-                <br>
-                <p>Deletes row(s) specified by a content URI.</p>
-            </span>-->
-            </button>
-            <br>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="query">queryData(uri,PROJECTION,null,null,null)</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="RuntimeException">RuntimeException</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="setLayout(R.layout.editor)">setLayout(R.layout.editor)</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="setTextBox(chAr, 0, 1)">setTextBox(chAr,0,1)</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="throw">throw&nbsp;</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="title">&nbsp;title&nbsp;</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="try">try&nbsp;</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="updateRecord">updateRecord(mUri,values,null,null)</button>
             </div>
 
             <div class="form-code">

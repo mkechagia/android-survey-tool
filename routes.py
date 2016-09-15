@@ -1,9 +1,14 @@
 from flask import Flask, request, flash, url_for, redirect, render_template, session, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from signup import SignupForm
+from flask_wtf import Form
+from wtforms import validators
+from wtforms.fields.html5 import EmailField
 from models import app, db, students, answers
-import validators
+#import validators
 from validators import email
+#from wtforms.validators import Required
+#from wtforms.validators import email
 import os
 from sqlalchemy import update
 from collections import defaultdict
