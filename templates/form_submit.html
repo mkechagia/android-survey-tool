@@ -416,7 +416,8 @@ a:link, a:visited {
             Please carefully consider the 
             <a href="{{ url_for('help') }}" onclick="return results('/survey/help.html')">instructions</a>
             and our
-            <a href="{{ url_for('api') }}" onclick="return results('/survey/api.html')">API reference documentation</a>.</p>
+            <textarea id="ticket" style="display:none">{{ ticket }}</textarea>
+            <a href="{{ url_for('api') }}" onclick="getAPI(ticket)">API reference documentation</a>.</p>
 
             <!--
 
@@ -1339,6 +1340,10 @@ public class NoteEditor extends Activity {
             	$("#dragtarget").stop().animate({"marginTop": ($(window).scrollTop()) + "px"}, "slow");
         	}
         });
+
+        function getAPI(ticket) {
+            alert("ticket "+$("#ticket").text());
+        }
     </script>
 
 </body>	
