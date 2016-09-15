@@ -66,7 +66,7 @@ input {
 #form {
 	margin: 20px auto;
 	width: 1100px;
-    height:18100px;
+    /*height:18500px;*/
     /*border:2px solid black;*/
 }
 
@@ -93,7 +93,7 @@ input {
 	-moz-border-radius: 0 0 20px 20px;
 	border-radius: 0 0 20px 20px;
 	padding: 20px 26px;
-    height: 17950px;
+    /*height: 17950px;*/
     /*height: 19800px;*/
     /*border:2px solid blue;*/
 }
@@ -416,8 +416,7 @@ a:link, a:visited {
             Please carefully consider the 
             <a href="{{ url_for('help') }}" onclick="return results('/survey/help.html')">instructions</a>
             and our
-            <textarea id="ticket" style="display:none">{{ ticket }}</textarea>
-            <a href="{{ url_for('api') }}" onclick="getAPI(ticket)">API reference documentation</a>.</p>
+            <a href="{{ url_for('api') }}">API reference documentation</a>.</p>
 
             <!--
 
@@ -482,7 +481,6 @@ a:link, a:visited {
             <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="null">&nbsp;null&nbsp;</button>
             <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="NullPointerException">NullPointerException</button>
             <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="orig">&nbsp;orig&nbsp;</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="parseColorId(cl.RED)" name="parseColorId("#bdbdbd")">parseColorId(cl.RED)</button>
             <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="printStackTrace()" name="printStackTrace()">printStackTrace()</button>
             <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="query">queryData(uri,PROJECTION,null,null,null)</button>
             <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="RuntimeException">RuntimeException</button>
@@ -568,19 +566,7 @@ public class NoteEditor extends Activity {
             mRect = new Rect();
             mPaint = new Paint();
             mPaint.setStyle(Paint.Style.STROKE);
-            int color = 0;
-            // TO-DO: Parse color
-            </pre></code>
-                <div id="answer_1" class="droptarget">
-                    <div class="row1" id="r_answer_1"><pre class="rowp">{{answ.answer_1}}</pre></div>
-                    <textarea type="text" style="display:none" name="t_answer_1" id="ti_answer_1" placeholder="tp_answer_1">{{answ.answer_1}}</textarea>
-                </div>
-            <br>
-                <!--<input type="button" name="s_answer_1" data-id="si_answer_1" class="styled-button-2" value="Save" onClick="saveDiv('answer_1', 'r_answer_1');" />-->
-                <input type="button" class="check-btn" value="Clear" name="c_answer_1" onclick="clearDiv('answer_1');"/>
-            <br>
-            <pre><code>
-            mPaint.setColor(color);
+            mPaint.setColor(0x800000FF);
         }
 
         /**
@@ -591,27 +577,29 @@ public class NoteEditor extends Activity {
          */
         @Override
         protected void onDraw(Canvas canvas) {
-
             // Gets the number of lines of text in the View.
             int count = getLineCount();
 
             // Gets the global Rect and Paint objects
             Rect r = mRect;
             Paint paint = mPaint;
+            // Define the text size
+            paint.setTextSize(100);
 
             // String to add before each new note
             String tmp = "Hello Android!";
-            // Define the text size
-            paint.setTextSize(100);
-            // TO-DO: Draw the text
+            // TODO: Draw a welcome text before each note.
+            //		  Call the drawTextBox method using the canvas object.
             </pre></code>
-                <div id="answer_2" class="droptarget">
-                    <div class="row1" id="r_answer_2"><pre class="rowp">{{answ.answer_2}}</pre></div>
-                    <textarea type="text" style="display:none" name="t_answer_2" id="ti_answer_2" placeholder="tp_answer_2">{{answ.answer_2}}</textarea>
+            	<div>Answer Box 1:</div>
+                <div id="answer_1" class="droptarget">
+                    <div class="row1" id="r_answer_1"><pre class="rowp">{{answ.answer_1}}</pre></div>
+                    <textarea type="text" style="display:none" name="t_answer_1" id="ti_answer_1" placeholder="tp_answer_1">{{answ.answer_1}}</textarea>
                 </div>
             <br>
                 <!--<input type="button" name="s_answer_2" data-id="si_answer_2" class="styled-button-2" value="Save" onClick="saveDiv('answer_2', 'r_answer_2');" />-->
-                <input type="button" class="check-btn" value="Clear" name="c_answer_2" onclick="clearDiv('answer_2');"/>
+                <input type="button" class="check-btn" value="Clear" name="c_answer_1" onclick="clearDiv('answer_1');"/>
+            <br>
             <br>
             <pre><code>
             /*
@@ -671,19 +659,23 @@ public class NoteEditor extends Activity {
         } else if (Intent.ACTION_INSERT.equals(action) || Intent.ACTION_PASTE.equals(action)) {
 
             // Sets the Activity state to INSERT, gets the general note URI, and
-            // inserts an
-            // empty record in the provider
+            // inserts an empty record in the provider
             mState = STATE_INSERT;
 
-            // TO-DO: Insert a new note
+            // TODO: Store a new note from a given URI.
+            //		 Call the insert method using the getContentResolver() method
+            //		 to get a ContentResolver instance.
             </pre></code>
-                <div id="answer_3" class="droptarget">
-                    <div class="row1" id="r_answer_3"><pre class="rowp">{{answ.answer_3}}</pre></div>
-                    <textarea type="text" style="display:none" name="t_answer_3" id="ti_answer_3" placeholder="tp_answer_3">{{answ.answer_3}}</textarea>
+            <div>Answer Box 2:</div>
+                <div id="answer_2" class="droptarget">
+                    <div class="row1" id="r_answer_2"><pre class="rowp">{{answ.answer_2}}</pre></div>
+                    <textarea type="text" style="display:none" name="t_answer_2" id="ti_answer_2" placeholder="tp_answer_2">{{answ.answer_2}}</textarea>
                 </div>
                 <br>
                 <!--<input type="button" name="s_answer_3" data-id="si_answer_3" class="styled-button-2" value="Save" onClick="saveDiv('answer_3', 'r_answer_3');" />-->
-                <input type="button" class="check-btn" value="Clear" name="c_answer_3" onclick="clearDiv('answer_3');"/>
+                <input type="button" class="check-btn" value="Clear" name="c_answer_2" onclick="clearDiv('answer_2');"/>
+                <br>
+                <br>
             <pre><code>
             /*
              * If the attempt to insert the new note fails, shuts down this
@@ -742,25 +734,61 @@ public class NoteEditor extends Activity {
             mState = STATE_EDIT;
         }
 
-        // TO-DO: Set the layout for this Activity. See res/layout/note_editor.xml
+        // TODO: Set the layout for the NotePad editor.
+        // 		  The layout is in the application's resources (i.e. res/layout/editor.xml).
+        //	      Call the setLayout method using the editor.xml file.
         </pre></code>
+        <div>Answer Box 3:</div>
+        <div id="answer_3" class="droptarget">
+            <div class="row1" id="r_answer_3"><pre class="rowp">{{answ.answer_3}}</pre></div>
+            <textarea type="text" style="display:none" name="t_answer_3" id="ti_answer_3" placeholder="tp_answer_3">{{answ.answer_3}}</textarea>
+        </div>
+        <br>
+        <!--<input type="button" name="s_answer_4" data-id="si_answer_4" class="styled-button-2" value="Save" onClick="saveDiv('answer_4', 'r_answer_4');" />-->
+        <input type="button" class="check-btn" value="Clear" name="c_answer_3" onclick="clearDiv('answer_3');"/>
+        <br>
+        <br>
+        <pre><code> 
+
+        // TODO: Set a handler to the text editor (EditText object).
+        // 		  Set the mText equal to the view found by the findViewId method.
+        </pre></code>
+        <div>Answer Box 4:</div>
         <div id="answer_4" class="droptarget">
             <div class="row1" id="r_answer_4"><pre class="rowp">{{answ.answer_4}}</pre></div>
             <textarea type="text" style="display:none" name="t_answer_4" id="ti_answer_4" placeholder="tp_answer_4">{{answ.answer_4}}</textarea>
         </div>
         <br>
-        <!--<input type="button" name="s_answer_4" data-id="si_answer_4" class="styled-button-2" value="Save" onClick="saveDiv('answer_4', 'r_answer_4');" />-->
-        <input type="button" class="check-btn" value="Clear" name="c_answer_4" onclick="clearDiv('answer_4');"/>
-        <pre><code>        
-        // TO-DO: Get a handle to the EditText (mText) in the the layout.
-        </pre></code>
-        <div id="answer_5" class="droptarget">
-            <div class="row1" id="r_answer_5"><pre class="rowp">{{answ.answer_5}}</pre></div>
-            <textarea type="text" style="display:none" name="t_answer_5" id="ti_answer_5" placeholder="tp_answer_5">{{answ.answer_5}}</textarea>
-        </div>
-        <br>
         <!--<input type="button" name="s_answer_5" data-id="si_answer_5" class="styled-button-2" value="Save" onClick="saveDiv('answer_5', 'r_answer_5');" />-->
+        <input type="button" class="check-btn" value="Clear" name="c_answer_4" onclick="clearDiv('answer_4');"/>
+        <br>
+        <br>
+        <pre><code>
+        // Change EditText text color
+		ColorStateList colors = null;
+		try {
+		    XmlResourceParser parser = getResources().getXml(R.color.text_colors);
+		    colors = ColorStateList.createFromXml(getResources(), parser);
+		    // handle exceptions
+		} catch (IOException e1) {
+		    e1.printStackTrace();
+		} catch (XmlPullParserException e2) {
+			e2.printStackTrace();
+		}
+		
+		// TODO: Change the edit text color.
+		//       Call the setTextColor method using an EditText instance, mText.
+		</pre></code>
+        <div>Answer Box 5:</div>
+            <div id="answer_5" class="droptarget">
+                <div class="row1" id="r_answer_5"><pre class="rowp">{{answ.answer_5}}</pre></div>
+                <textarea type="text" style="display:none" name="t_answer_5" id="ti_answer_5" placeholder="tp_answer_5">{{answ.answer_5}}</textarea>
+            </div>
+        <br>
+        <!--<input type="button" name="s_answer_6" data-id="si_answer_6" class="styled-button-2" value="Save" onClick="saveDiv('answer_6', 'r_answer_6');" />-->
         <input type="button" class="check-btn" value="Clear" name="c_answer_5" onclick="clearDiv('answer_5');"/>
+        <br>
+        <br>
         <pre><code>
         /*
          * If this Activity had stopped previously, its state was written the
@@ -793,7 +821,7 @@ public class NoteEditor extends Activity {
         if (mCursor != null) {
             // Requery in case something changed while paused (such as the
             // title)
-            // mCursor.requery();
+            mCursor.requery();
 
             /*
              * Moves to the first record. Always call moveToFirst() before
@@ -826,10 +854,23 @@ public class NoteEditor extends Activity {
              */
 
             // Gets the note text from the Cursor and puts it in the TextView,
-            // but doesn't change
-            // the text cursor's position.
+            // but doesn't change the text cursor's position.
             int colNoteIndex = mCursor.getColumnIndex(NotePad.Notes.COLUMN_NAME_NOTE);
-            String note = mCursor.getString(colNoteIndex);
+            String note = "";
+            // TODO: Retrieve a note for editing.
+            // 		 Call the getString method using the mCursor instance.
+            </pre></code>
+            <div>Answer Box 6:</div>
+            <div id="answer_6" class="droptarget">
+                <div class="row1" id="r_answer_6"><pre class="rowp">{{answ.answer_6}}</pre></div>
+                <textarea type="text" style="display:none" name="t_answer_6" id="ti_answer_6" placeholder="tp_answer_6">{{answ.answer_6}}</textarea>
+            </div>
+            <br>
+            <!--<input type="button" name="s_answer_6" data-id="si_answer_6" class="styled-button-2" value="Save" onClick="saveDiv('answer_6', 'r_answer_6');" />-->
+            <input type="button" class="check-btn" value="Clear" name="c_answer_6" onclick="clearDiv('answer_6');"/>
+            <br>
+            <br>
+            <pre><code>
             mText.setTextKeepState(note);
 
             // Stores the original note text, to allow the user to revert
@@ -843,20 +884,7 @@ public class NoteEditor extends Activity {
              * an error in the note.
              */
         } else {
-            CharSequence cq = null;
-            // TO-DO: Set an error message
-            </pre></code>
-            <br/>
-            <div id="answer_6" class="droptarget">
-                <div class="row1" id="r_answer_6"><pre class="rowp">{{answ.answer_6}}</pre></div>
-                <textarea type="text" style="display:none" name="t_answer_6" id="ti_answer_6" placeholder="tp_answer_6">{{answ.answer_6}}</textarea>
-            </div>
-            <br>
-            <!--<input type="button" name="s_answer_6" data-id="si_answer_6" class="styled-button-2" value="Save" onClick="saveDiv('answer_6', 'r_answer_6');" />-->
-            <input type="button" class="check-btn" value="Clear" name="c_answer_6" onclick="clearDiv('answer_6');"/>
-            <br>
-            <pre><code>
-            mText.setText(cq);
+            mText.setText(getText(R.string.error_message));
         }
     }
 
@@ -1038,15 +1066,18 @@ public class NoteEditor extends Activity {
             Uri uri = item.getUri();
 
             Cursor orig = null;
+
             // Tests to see that the item actually is an URI, and that the URI
             // is a content URI pointing to a provider whose MIME type is the
-            // same
-            // as the MIME type supported by the Note pad provider.
+            // same as the MIME type supported by the Note pad provider.
             if (uri != null && NotePad.Notes.CONTENT_ITEM_TYPE.equals(cr.getType(uri))) {
                     // The clipboard holds a reference to data with a note MIME
                     // type. This copies it.
-                    // TO-DO: Query for the data
+                    // TODO: Get data from a note's URI.
+                    //       Call the query method by using a ContentResolver instance, cr.
+                    //       The query returns a Cursor instance to store to orig.
                     </pre></code>
+                    <div>Answer Box 7:</div>
                     <div id="answer_7" class="droptarget">
                         <div class="row1" id="r_answer_7"><pre class="rowp">{{answ.answer_7}}</pre></div>
                         <textarea type="text" style="display:none" name="t_answer_7" id="ti_answer_7" placeholder="tp_answer_7">{{answ.answer_7}}</textarea>
@@ -1054,11 +1085,12 @@ public class NoteEditor extends Activity {
                     <br>
                     <!--<input type="button" name="s_answer_7" data-id="si_answer_7" class="styled-button-2" value="Save" onClick="saveDiv('answer_7', 'r_answer_7');" />-->
                     <input type="button" class="check-btn" value="Clear" name="c_answer_7" onclick="clearDiv('answer_7');"/>
+                    <br>
+                    <br>
                     <pre><code>
                 // If the Cursor is not null, and it contains at least one
-                // record
-                // (moveToFirst() returns true), then this gets the note data
-                // from it.
+                // record (moveToFirst() returns true), 
+                // then this gets the note data from it.
                 if (orig != null) {
                     if (orig.moveToFirst()) {
                         int colNoteIndex = mCursor.getColumnIndex(NotePad.Notes.COLUMN_NAME_NOTE);
@@ -1073,8 +1105,7 @@ public class NoteEditor extends Activity {
             }
 
             // If the contents of the clipboard wasn't a reference to a note,
-            // then
-            // this converts whatever it is to text.
+            // then this converts whatever it is to text.
             if (text == null) {
                 text = item.coerceToText(this).toString();
             }
@@ -1143,14 +1174,13 @@ public class NoteEditor extends Activity {
          * URI. The content resolver is thus automatically notified when the
          * Cursor for the URI changes, and the UI is updated. Note: This is
          * being done on the UI thread. It will block the thread until the
-         * update completes. In a sample app, going against a simple
-         * provider based on a local database, the block will be momentary,
-         * but in a real app you should use
-         * android.content.AsyncQueryHandler or android.os.AsyncTask.
+         * update completes.
          */
-
-        // TO-DO: Update a note (using the ContentResolver) given a specific URI
+        // TODO: Update a note (using the ContentResolver) given a specific URI.
+        //       Call method update using a ContentResolver instance,
+        //       returned by the getContentResolver() method.
         </pre></code>
+        <div>Answer Box 8:</div>
         <div id="answer_8" class="droptarget">
             <div class="row1" id="r_answer_8"><pre class="rowp">{{answ.answer_8}}</pre></div>
             <textarea type="text" style="display:none" name="t_answer_8" id="ti_answer_8" placeholder="tp_answer_8">{{answ.answer_8}}</textarea>
@@ -1158,6 +1188,8 @@ public class NoteEditor extends Activity {
         <br>
         <!--<input type="button" name="s_answer_8" data-id="si_answer_8" class="styled-button-2" value="Save" onClick="saveDiv('answer_8', 'r_answer_8');" />-->
         <input type="button" class="check-btn" value="Clear" name="c_answer_8" onclick="clearDiv('answer_8');"/>
+        <br>
+        <br>
         <pre><code>
     }
 
@@ -1190,8 +1222,11 @@ public class NoteEditor extends Activity {
         if (mCursor != null) {
             mCursor.close();
             mCursor = null;
-            // TO-DO: Delete a note (using the ContentResolver)
+            // TODO: Delete a note (using the ContentResolver)
+            //       Call method delete using a ContentResolver instance,
+            //       returned by the getContentResolver() method.
             </pre></code>
+            <div>Answer Box 9:</div>
             <div id="answer_9" class="droptarget">
                 <div class="row1" id="r_answer_9"><pre class="rowp">{{answ.answer_9}}</pre></div>
                 <textarea type="text" style="display:none" name="t_answer_9" id="ti_answer_9" placeholder="tp_answer_9">{{answ.answer_9}}</textarea>
@@ -1201,8 +1236,10 @@ public class NoteEditor extends Activity {
             <input type="button" class="check-btn" value="Clear" name="c_answer_9" onclick="clearDiv('answer_9');"/>
             <pre><code>
             char[] chAr = { ' ' };
-            // TO-DO: Clear the text (mText) of the note
+            // TODO: Clear the text of a note.
+            //       Call the method setText using an EditText instance, mText.
             </pre></code>
+            <div>Answer Box 10:</div>
             <div id="answer_10" class="droptarget">
                 <div class="row1" id="r_answer_10"><pre class="rowp">{{answ.answer_10}}</pre></div>
                 <textarea type="text" style="display:none" name="t_answer_10" id="ti_answer_10" placeholder="tp_answer_10">{{answ.answer_10}}</textarea>
@@ -1210,6 +1247,8 @@ public class NoteEditor extends Activity {
             <br>
             <!--<input type="button" name="s_answer_10" data-id="si_answer_10" class="styled-button-2" value="Save" onClick="saveDiv('answer_10', 'r_answer_10');" />-->
             <input type="button" class="check-btn" value="Clear" name="c_answer_10" onclick="clearDiv('answer_10');"/>
+            <br>
+            <br>
             <pre><code>
         }
     }
@@ -1331,7 +1370,9 @@ public class NoteEditor extends Activity {
 
         function results(url) {
             nWindow = window.open(url,'name','height=800,width=1200');
-            if (window.focus) {nWindow.focus()}
+            if (window.focus) {
+            	nWindow.focus()
+            }
             return false;
         }
 
@@ -1340,10 +1381,6 @@ public class NoteEditor extends Activity {
             	$("#dragtarget").stop().animate({"marginTop": ($(window).scrollTop()) + "px"}, "slow");
         	}
         });
-
-        function getAPI(ticket) {
-            alert("ticket "+$("#ticket").text());
-        }
     </script>
 
 </body>	
