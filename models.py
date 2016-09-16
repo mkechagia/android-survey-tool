@@ -20,6 +20,7 @@ class students(db.Model):
    job = db.Column(db.String(1000))
    code = db.Column(db.String(100))
    android = db.Column(db.String(100))
+   ticket = db.Column(db.String(100))
    answers = relationship("answers", uselist=False, back_populates="students")
 
    def __repr__(self):
@@ -44,6 +45,15 @@ class answers(db.Model):
    def __repr__(self):
         return '<Answer %r>' % (self.students_email)
 
+class timestamps(db.Model):
+   __tablename__ = 'timestamps'
+   id = Column(Integer, primary_key=True)
+   email = db.Column(db.String(200))
+   page = db.Column(db.String(1000))
+   timestamp = db.Column(db.String(1000))
+
+   def __repr__(self):
+        return '<timestamps %r>'
 
 '''
 def __init__(self, name, surname, email, password):

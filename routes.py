@@ -4,7 +4,7 @@ from signup import SignupForm
 from flask_wtf import Form
 from wtforms import validators
 from wtforms.fields.html5 import EmailField
-from models import app, db, students, answers
+from models import app, db, students, answers, timestamps
 #import validators
 from validators import email
 #from wtforms.validators import Required
@@ -17,6 +17,7 @@ from glue import glue_answer, replace_methods
 import format_answer
 import random
 import re
+from datetime import datetime
 
 global answ
 answ = {}
@@ -187,15 +188,28 @@ def help():
 @app.route('/survey/api/')
 def api():
 	if ('email' in session):
+		page = ""
 		# get the number of the student's ticket
 		student = students.query.filter_by(email = session['email']).first()
 		ticket = student.ticket
 		# case for undocumented and unchecked exceptions (as-is)
-		if (int(float(ticket)) <= 30):
-			return render_template('api-android.html')
+		if (int(float(ticket)) > 30):
+			page = 'api-android.html'
+			# keep user's timestamp to the database use UTC timezone
+			now = datetime.utcnow()
+			t = timestamps(email=session['email'], page = page, timestamp = now)
+			db.session.add(t)
+			db.session.commit()
+			return render_template(page)
 		# case for documented and unchecked exceptions (to-be)
-		elif (int(float(ticket)) > 30 and int(float(ticket)) <= 60):
-			return render_template('api-explore.html')
+		elif (int(float(ticket)) > 60 and int(float(ticket)) <= 90):
+			page = 'api-explore.html'
+			# keep user's timestamp to the database use UTC timezone
+			now = datetime.utcnow()
+			t = timestamps(email=session['email'], page = page, timestamp = now)
+			db.session.add(t)
+			db.session.commit()
+			return render_template(page)
 		# case for checked exceptions
 		else:
 			# TODO
