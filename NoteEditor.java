@@ -16,15 +16,36 @@
 
 package com.example.android.notepad;
 
+import org.xmlpull.v1.XmlPullParserException;
+
 import android.app.Activity;
-import android.content.*;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.ComponentName;
+import android.content.ContentResolver;
+import android.content.ContentValues;
+import android.content.Context;
+import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.content.res.Resources;
+import android.content.res.Resources.NotFoundException;
+import android.content.res.XmlResourceParser;
 import android.database.Cursor;
-import android.graphics.*;
+import android.database.CursorIndexOutOfBoundsException;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.*;
-import android.view.*;
+import android.util.AttributeSet;
+import android.util.Log;
+import android.view.InflateException;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.EditText;
+import java.io.IOException;
 
 /**
  * This Activity handles "editing" a note, where editing is responding to
@@ -81,11 +102,7 @@ public class NoteEditor extends Activity {
             mRect = new Rect();
             mPaint = new Paint();
             mPaint.setStyle(Paint.Style.STROKE);
-            int color = 0;
-
-            $answer_1
-            
-            mPaint.setColor(color);
+            mPaint.setColor(0x800000FF);
         }
 
         /**
@@ -104,12 +121,14 @@ public class NoteEditor extends Activity {
 
             // XXX: draw some text!
             // Case for API method: drawText and IOOB
-            // String for drawText
-            String tmp = "Hello Android!";
+
             // Define the text size -> it can trow IllegalArgumentException
             paint.setTextSize(100);
+
+            // String for drawText
+            String tmp = "Hello Android!";
             
-            $answer_2
+            $answer_1
 
             /*
              * Draws one line in the rectangle for every line of text in the EditText
@@ -160,14 +179,15 @@ public class NoteEditor extends Activity {
             mState = STATE_EDIT;
             mUri = intent.getData();
 
-            // For an insert or paste action:
+        // For an insert or paste action:
         } else if (Intent.ACTION_INSERT.equals(action)
                 || Intent.ACTION_PASTE.equals(action)) {
 
             // Sets the Activity state to INSERT, gets the general note URI, and inserts an
             // empty record in the provider
             mState = STATE_INSERT;
-            mUri = getContentResolver().insert(intent.getData(), null);
+            
+            $answer_2
 
             /*
              * If the attempt to insert the new note fails, shuts down this Activity. The
@@ -224,10 +244,31 @@ public class NoteEditor extends Activity {
         }
 
         // Sets the layout for this Activity. See res/layout/note_editor.xml
-        setContentView(R.layout.note_editor);
+        $answer_3
 
         // Gets a handle to the EditText in the the layout.
-        mText = (EditText) findViewById(R.id.note);
+        $answer_4
+
+        // XXX: Gets a handle to the EditText in the layout.
+        try {
+            mText = (EditText) findViewById(R.id.note);
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+        }
+        
+        // XXX: change EditText text color pragmatically by adding method EditText.setTextColor()
+        ColorStateList colors = null;
+        
+        try {
+            XmlResourceParser parser = getResources().getXml(R.color.text_colors);
+            colors = ColorStateList.createFromXml(getResources(), parser);
+        } catch (IOException e) {
+            // handle exceptions
+        } catch (XmlPullParserException e) {
+            
+        }
+
+        $answer_5
 
         /*
          * If this Activity had stopped previously, its state was written the ORIGINAL_CONTENT
@@ -288,7 +329,10 @@ public class NoteEditor extends Activity {
             // Gets the note text from the Cursor and puts it in the TextView, but doesn't change
             // the text cursor's position.
             int colNoteIndex = mCursor.getColumnIndex(NotePad.Notes.COLUMN_NAME_NOTE);
-            String note = mCursor.getString(colNoteIndex);
+            String note = "";
+
+            $answer_6
+            
             mText.setTextKeepState(note);
 
             // Stores the original note text, to allow the user to revert changes.
@@ -304,18 +348,8 @@ public class NoteEditor extends Activity {
             setTitle(getText(R.string.error_title));
 
             // XXX: Add some text
-            // mText.setText(getText(R.string.error_message));
+            mText.setText(getText(R.string.error_message));
             // It can throw IndexOutOfBounds exception; when there is an
-            // array in the arguments
-            CharSequence cs = getText(R.string.error_message);
-            if (cs != null) {
-                char[] chAr = new char[cs.length()];
-                for (int i = 0; i < chAr.length; i++) {
-                    chAr[i] = (char) cs.charAt(i);
-                }
-                // XXX: Add some text
-                //mText.setText(chAr, 20, 30);
-            }
         }
     }
 
@@ -474,7 +508,7 @@ public class NoteEditor extends Activity {
                 getSystemService(Context.CLIPBOARD_SERVICE);
 
         // Gets a content resolver instance
-        ContentResolver cr = getContentResolver();
+        //ContentResolver cr = getContentResolver();
 
         // Gets the clipboard data from the clipboard
         ClipData clip = clipboard.getPrimaryClip();
@@ -489,19 +523,13 @@ public class NoteEditor extends Activity {
             // Tries to get the item's contents as a URI pointing to a note
             Uri uri = item.getUri();
 
+            Cursor orig = null;
             // Tests to see that the item actually is an URI, and that the URI
             // is a content URI pointing to a provider whose MIME type is the same
             // as the MIME type supported by the Note pad provider.
-            if (uri != null && NotePad.Notes.CONTENT_ITEM_TYPE.equals(cr.getType(uri))) {
+            if (uri != null && NotePad.Notes.CONTENT_ITEM_TYPE.equals(getContentResolver().getType(uri))) {
 
-                // The clipboard holds a reference to data with a note MIME type. This copies it.
-                Cursor orig = cr.query(
-                        uri,            // URI for the content provider
-                        PROJECTION,     // Get the columns referred to in the projection
-                        null,           // No selection variables
-                        null,           // No selection variables, so no criteria are needed
-                        null            // Use the default sort order
-                );
+                $answer_7
 
                 // If the Cursor is not null, and it contains at least one record
                 // (moveToFirst() returns true), then this gets the note data from it.
@@ -584,12 +612,7 @@ public class NoteEditor extends Activity {
          * local database, the block will be momentary, but in a real app you should use
          * android.content.AsyncQueryHandler or android.os.AsyncTask.
          */
-        getContentResolver().update(
-                mUri,    // The URI for the record to update.
-                values,  // The map of column names and new values to apply to them.
-                null,    // No selection criteria are used, so no where columns are necessary.
-                null     // No where columns are used, so no where arguments are necessary.
-            );
+        $answer_8
 
 
     }
@@ -625,10 +648,14 @@ public class NoteEditor extends Activity {
             mCursor = null;
             
             // XXX: Delete a note
-            // getContentResolver().delete(mUri, null, null);
-            // It can throw an IllegalArgumentException
+    
+            $answer_9
 
-            mText.setText("");
+            char[] chAr = { ' ' };
+
+            // XXX: Set nothing to note text
+            
+            $answer_10
         }
     }
 }

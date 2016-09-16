@@ -6,9 +6,15 @@ from string import Template
 
 # initialize the dictionary such as {fake method: real method}
 method_dict = {'deleteRecord' : 'delete', \
-		'setTextBox' : 'setText', \
-		'parseColorCode' : 'parseColor', \
-		'drawPaintText' : 'drawText'}
+		'editText' : 'setText', \
+		'insertData' : 'insert', \
+		'setLayout' : 'setContentView', \
+		'findViewId' : 'findViewById', \
+		'changeTextColor' : 'setTextColor', \
+		'getCursorString' : 'getString', \
+		'queryData' : 'query', \
+		'updateRecord' : 'update', \
+		'drawTxt' : 'drawText'}
 
 # answer_block is a dict of user's answers,
 # i.e. answer_block = {'answer_1' : fake_answer}
@@ -50,12 +56,14 @@ def bind_method(answers):
 	for d, f in enumerate(a_keys):
 		if (a_keys[d] not in list(real_answers.keys())):
 			real_answers[a_keys[d]] = answers.get(a_keys[d])
-	print (real_answers)
 	return real_answers
 
 def replace_methods(compiler_output):
 	for fake, real in method_dict.items():
-		compiler_output = compiler_output.replace(fake, real)
+		#compiler_output = compiler_output.replace(fake, real)
+		compiler_output = re.sub(real, fake, compiler_output)
+	if re.search("\bsetTextColor\b\(\bcolors\b\)", compiler_output):
+		compiler_output = re.sub("\bsetTextColor\b\(\bcolors\b\)", "changeTextColor(colors)", replace_output)
 	return compiler_output
 
 # vim: tabstop=8 noexpandtab shiftwidth=8 softtabstop=0
