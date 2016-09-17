@@ -202,18 +202,23 @@ def api():
 			db.session.commit()
 			return render_template(page)
 		# case for documented and unchecked exceptions (to-be)
-		elif (int(float(ticket)) > 60 and int(float(ticket)) <= 90):
-			page = 'api-explore.html'
+		#elif (int(float(ticket)) > 30 and int(float(ticket)) <= 60):
+		#	page = 'api-explore.html'
+			# keep user's timestamp to the database use UTC timezone
+		#	now = datetime.utcnow()
+		#	t = timestamps(email=session['email'], page = page, timestamp = now)
+		#	db.session.add(t)
+		#	db.session.commit()
+		#	return render_template(page)
+		# case for checked exceptions
+		elif (int(float(ticket)) <= 30):
+			page = 'api-explore-doc.html'
 			# keep user's timestamp to the database use UTC timezone
 			now = datetime.utcnow()
 			t = timestamps(email=session['email'], page = page, timestamp = now)
 			db.session.add(t)
 			db.session.commit()
 			return render_template(page)
-		# case for checked exceptions
-		else:
-			# TODO
-			print ("OK")
 
 @app.route('/api-android/TextView.html')
 def text_view():
@@ -239,9 +244,17 @@ def view():
 def activity():
 	return render_template('/api-android/Activity.html')
 
+@app.route('/api-explore-doc/Activity.html')
+def activity_explore_doc():
+	return render_template('/api-explore-doc/Activity.html')
+
 @app.route('/api-android/Cursor.html')
 def cursor():
 	return render_template('/api-android/Cursor.html')
+
+@app.route('/api-explore-doc/MemoryConsumingResourceException.html')
+def memoryConsumingResourceException():
+	return render_template('/api-explore-doc/MemoryConsumingResourceException.html')
 
 if __name__ == '__main__':
    db.create_all()
