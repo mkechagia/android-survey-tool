@@ -193,7 +193,7 @@ def api():
 		student = students.query.filter_by(email = session['email']).first()
 		ticket = student.ticket
 		# case for undocumented and unchecked exceptions (as-is)
-		if (int(float(ticket)) > 30):
+		if (int(float(ticket)) <= 30):
 			page = 'api-android.html'
 			# keep user's timestamp to the database use UTC timezone
 			now = datetime.utcnow()
@@ -202,16 +202,16 @@ def api():
 			db.session.commit()
 			return render_template(page)
 		# case for documented and unchecked exceptions (to-be)
-		#elif (int(float(ticket)) > 30 and int(float(ticket)) <= 60):
-		#	page = 'api-explore.html'
+		elif (int(float(ticket)) > 30 and int(float(ticket)) <= 60):
+			page = 'api-explore.html'
 			# keep user's timestamp to the database use UTC timezone
-		#	now = datetime.utcnow()
-		#	t = timestamps(email=session['email'], page = page, timestamp = now)
-		#	db.session.add(t)
-		#	db.session.commit()
-		#	return render_template(page)
+			now = datetime.utcnow()
+			t = timestamps(email=session['email'], page = page, timestamp = now)
+			db.session.add(t)
+			db.session.commit()
+			return render_template(page)
 		# case for checked exceptions
-		elif (int(float(ticket)) <= 30):
+		elif (int(float(ticket)) > 60):
 			page = 'api-explore-doc.html'
 			# keep user's timestamp to the database use UTC timezone
 			now = datetime.utcnow()
