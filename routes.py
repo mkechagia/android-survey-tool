@@ -224,6 +224,10 @@ def api():
 def text_view():
 	return render_template('/api-android/TextView.html')
 
+@app.route('/api-explore/TextView.html')
+def text_view_explore():
+	return render_template('/api-explore/TextView.html')
+
 @app.route('/api-android/ContentResolver.html')
 def content_resolver():
 	return render_template('/api-android/ContentResolver.html')
@@ -236,6 +240,10 @@ def content_resolver_explore():
 def canvas():
 	return render_template('/api-android/Canvas.html')
 
+@app.route('/api-explore/Canvas.html')
+def canvas_explore():
+	return render_template('/api-explore/Canvas.html')
+
 @app.route('/api-android/View.html')
 def view():
 	return render_template('/api-android/View.html')
@@ -244,6 +252,10 @@ def view():
 def activity():
 	return render_template('/api-android/Activity.html')
 
+@app.route('/api-explore/Activity.html')
+def activity_explore():
+	return render_template('/api-explore/Activity.html')
+
 @app.route('/api-explore-doc/Activity.html')
 def activity_explore_doc():
 	return render_template('/api-explore-doc/Activity.html')
@@ -251,6 +263,10 @@ def activity_explore_doc():
 @app.route('/api-android/Cursor.html')
 def cursor():
 	return render_template('/api-android/Cursor.html')
+
+@app.route('/api-explore/Cursor.html')
+def cursor_explore():
+	return render_template('/api-explore/Cursor.html')
 
 @app.route('/api-explore-doc/MemoryConsumingResourceException.html')
 def memoryConsumingResourceException():
