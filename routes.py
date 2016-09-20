@@ -211,22 +211,22 @@ def api():
 		return render_template(page)
 
 # AS-IS Android documentation (undocumented and unchecked exceptions)
-@app.route('/api-android/<classpage>')
-def api_android(classpage):
-	print('api-android: classpage: {}'.format(classpage))
-	return render_template('/api-android/{}.html'.format(classpage))
+@app.route('/api-android/', defaults={'path': ''})
+@app.route('/<path:path>')
+def api_android(path):
+    return render_template(path)
 
 # TO-BE Android documentation (documented and unchecked exceptions)
-@app.route('/api-explore/<classpage>')
-def api_explore(classpage):
-	print('api-explore: classpage: {}'.format(classpage))
-	return render_template('/api-explore/{}.html'.format(classpage))
+@app.route('/api-explore/', defaults={'path': ''})
+@app.route('/<path:path>')
+def api_explore(path):
+    return render_template(path)
 
 # TO-BE Android documentation (checked exceptions)
-@app.route('/api-explore-doc/<classpage>')
-def api_explore_doc(classpage):
-	print('api-explore-doc: classpage: {}'.format(classpage))
-	return render_template('/api-explore-doc/{}.html'.format(classpage))
+@app.route('/api-explore-doc/', defaults={'path': ''})
+@app.route('/<path:path>')
+def api_explore_doc(path):
+    return render_template(path)
 
 if __name__ == '__main__':
    db.create_all()
