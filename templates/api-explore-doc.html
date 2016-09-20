@@ -23,18 +23,10 @@
 </head>
 
 <body>
-<h2 class = "topic">API reference documentation</h2>
+<h2 class = "topic">API reference documentation (method and exception shortcuts)</h2>
         <div class="method">
         <ul class="blockList">
-            <a href="{{ url_for('api_explore', classpage='ContentResolver')}}#deleteRecord-Uri-java.lang.String-java.lang.String:A-"><h4 id="deleteRecord">deleteRecord</h4></a>
-        </ul>
-        </div>
-
-        <br\>
-
-        <div class="method">
-        <ul class="blockList">
-            <a href="{{ url_for('canvas')}}" onclick="return results('/Canvas.html#drawPaintText-java.lang.String-int-int-float-float-Paint-')"><h4 id="drawPaintText">drawPaintText</h4></a>
+            <a href="{{ url_for('api_explore_doc', classpage='TextView')}}#changeTextColor-ColorStateList-"><h4 id="changeTextColor">changeTextColor</h4></a>
         </ul>
         </div>
 
@@ -42,7 +34,7 @@
 
         <div class="method">
         <ul class="blockList">
-            <a href="{{ url_for('view')}}" onclick="return results('/View.html#findViewId-int-')"><h4 id="findViewId">findViewId</h4></a>
+            <a href="{{ url_for('api_explore_doc', classpage='ContentResolver')}}#deleteRecord-Uri-java.lang.String-java.lang.String:A-"><h4 id="deleteRecord">deleteRecord</h4></a>
         </ul>
         </div>
 
@@ -50,7 +42,13 @@
 
         <div class="method">
         <ul class="blockList">
-            <a href="{{ url_for('cursor')}}" onclick="return results('/Cursor.html#getCursorString-int-')"><h4 id="getCursorString">getCursorString</h4></a>
+            <a href="{{ url_for('api_explore_doc', classpage='Canvas')}}#drawTxt-java.lang.String-int-int-float-float-Paint-"><h4 id="drawPaintText">drawTxt</h4></a>
+        </ul>
+        </div>
+
+        <div class="method">
+        <ul class="blockList">
+            <a href="{{ url_for('api_explore_doc', classpage='TextView')}}#editText-char:A-int-int-"><h4 id="editText">editText</h4></a>
         </ul>
         </div>
 
@@ -58,7 +56,7 @@
 
         <div class="method">
         <ul class="blockList">
-            <a href="{{ url_for('content_resolver')}}" onclick="return results('/ContentResolver.html#insertData-Uri-ContentValues-')"><h4 id="insertData">insertData</h4></a>
+            <a href="{{ url_for('api_explore_doc', classpage='Activity')}}#findViewId-int-"><h4 id="findViewId">findViewId</h4></a>
         </ul>
         </div>
 
@@ -66,7 +64,7 @@
 
         <div class="method">
         <ul class="blockList">
-            <a href="{{ url_for('content_resolver')}}" onclick="return results('/ContentResolver.html#queryData-Uri-java.lang.String:A-java.lang.String-java.lang.String:A-java.lang.String-')"><h4 id="queryData">queryData</h4></a>
+            <a href="{{ url_for('api_explore_doc', classpage='Cursor')}}#getCursorString-int-"><h4 id="getCursorString">getCursorString</h4></a>
         </ul>
         </div>
 
@@ -74,7 +72,7 @@
 
         <div class="method">
         <ul class="blockList">
-            <a href="{{ url_for('activity_explore_doc')}}" onclick="return results('/api-explore-doc/Activity.html#setLayout-int-')"><h4 id="setLayout">setLayout</h4></a>
+            <a href="{{ url_for('api_explore_doc', classpage='ContentResolver')}}#insertData-Uri-ContentValues-"><h4 id="insertData">insertData</h4></a>
         </ul>
         </div>
 
@@ -82,7 +80,7 @@
 
         <div class="method">
         <ul class="blockList">
-            <a href="{{ url_for('text_view')}}" onclick="return results('/TextView.html#setTextBox-char:A-int-int-')"><h4 id="setTextBox">setTextBox</h4></a>
+            <a href="{{ url_for('api_explore_doc', classpage='ContentResolver')}}#queryData-Uri-java.lang.String:A-java.lang.String-java.lang.String:A-java.lang.String-"><h4 id="queryData">queryData</h4></a>
         </ul>
         </div>
 
@@ -90,20 +88,17 @@
 
         <div class="method">
         <ul class="blockList">
-            <a href="{{ url_for('content_resolver_explore')}}" onclick="return results('/api-explore/ContentResolver.html#updateRecord-Uri-ContentValues-java.lang.String-java.lang.String:A-')"><h4 id="updateRecord">updateRecord</h4></a>
+            <a href="{{ url_for('api_explore_doc', classpage='Activity')}}#setLayout-int-"><h4 id="setLayout">setLayout</h4></a>
         </ul>
         </div>
 
         <br\>
 
-         <div class="method">
+        <div class="method">
         <ul class="blockList">
-            <a href="{{ url_for('memoryConsumingResourceException')}}" onclick="return results('/api-explore-doc/MemoryConsumingResourceException.html')"><h4 id="MemoryConsumingResourceException"> MemoryConsumingResourceException</h4></a>
+            <a href="{{ url_for('api_explore_doc', classpage='ContentResolver')}}#updateRecord-Uri-ContentValues-java.lang.String-java.lang.String:A-"><h4 id="updateRecord">updateRecord</h4></a>
         </ul>
         </div>
-
-        <br\>
-</div>
 <script>
     function results(url) {
         nWindow = window.open(url,'name','height=800,width=1200');

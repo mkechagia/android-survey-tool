@@ -210,62 +210,23 @@ def api():
 		db.session.commit()
 		return render_template(page)
 
+# AS-IS Android documentation (undocumented and unchecked exceptions)
+@app.route('/api-android/<classpage>')
+def api_android(classpage):
+	print('api-android: classpage: {}'.format(classpage))
+	return render_template('/api-android/{}.html'.format(classpage))
+
+# TO-BE Android documentation (documented and unchecked exceptions)
 @app.route('/api-explore/<classpage>')
 def api_explore(classpage):
 	print('api-explore: classpage: {}'.format(classpage))
 	return render_template('/api-explore/{}.html'.format(classpage))
 
-@app.route('/api-android/TextView.html')
-def text_view():
-	return render_template('/api-android/TextView.html')
-
-@app.route('/api-explore/TextView.html')
-def text_view_explore():
-	return render_template('/api-explore/TextView.html')
-
-@app.route('/api-android/ContentResolver.html')
-def content_resolver():
-	return render_template('/api-android/ContentResolver.html')
-
-@app.route('/api-explore/ContentResolver.html')
-def content_resolver_explore():
-	return render_template('/api-explore/ContentResolver.html')
-
-@app.route('/api-android/Canvas.html')
-def canvas():
-	return render_template('/api-android/Canvas.html')
-
-@app.route('/api-explore/Canvas.html')
-def canvas_explore():
-	return render_template('/api-explore/Canvas.html')
-
-@app.route('/api-android/View.html')
-def view():
-	return render_template('/api-android/View.html')
-
-@app.route('/api-android/Activity.html')
-def activity():
-	return render_template('/api-android/Activity.html')
-
-@app.route('/api-explore/Activity.html')
-def activity_explore():
-	return render_template('/api-explore/Activity.html')
-
-@app.route('/api-explore-doc/Activity.html')
-def activity_explore_doc():
-	return render_template('/api-explore-doc/Activity.html')
-
-@app.route('/api-android/Cursor.html')
-def cursor():
-	return render_template('/api-android/Cursor.html')
-
-@app.route('/api-explore/Cursor.html')
-def cursor_explore():
-	return render_template('/api-explore/Cursor.html')
-
-@app.route('/api-explore-doc/MemoryConsumingResourceException.html')
-def memoryConsumingResourceException():
-	return render_template('/api-explore-doc/MemoryConsumingResourceException.html')
+# TO-BE Android documentation (checked exceptions)
+@app.route('/api-explore-doc/<classpage>')
+def api_explore_doc(classpage):
+	print('api-explore-doc: classpage: {}'.format(classpage))
+	return render_template('/api-explore-doc/{}.html'.format(classpage))
 
 if __name__ == '__main__':
    db.create_all()
