@@ -83,7 +83,7 @@ def new():
 					db.session.commit()
 					# get answer with session's email
 					answ = answers.query.filter_by(students_email = session['email']).first()
-					return render_template('form_submit.html', answ = answ)
+					return render_template(set_survey(session['email']), answ = answ)
 				else:
 					flash('The email is not valid.', 'error')
 	return render_template('new.html')
@@ -122,7 +122,7 @@ def survey():
     	for d, f in enumerate(formatted_answers):
     		if (formatted_answers[d] == ''):
     			flash('Please fill answer box '+str(d+1)+'.', 'error')
-    return render_template('form_submit.html', answ = answ)
+    return render_template(set_survey(session['email']), answ = answ)
 
 # show all users -> this method is for debugging
 @app.route('/show_all')
@@ -142,7 +142,7 @@ def login():
 		session['email'] = email
 		# get answers for the email in the session
 		answ = answers.query.filter_by(students_email = session['email']).first()
-		return render_template('form_submit.html', answ = answ)
+		return render_template(set_survey(session['email']), answ = answ)
 
 # compiler results
 @app.route('/survey/results.html')
@@ -227,6 +227,18 @@ def api_explore(path):
 @app.route('/<path:path>')
 def api_explore_doc(path):
     return render_template(path)
+
+# find user's ticket and survey case
+def set_survey(st_email):
+    page = ''
+    student = students.query.filter_by(email = st_email).first()
+    ticket = student.ticket
+    if (int(float(ticket)) > 60):
+    	page = 'form_submit_ct.html'
+    	return page # page with checked exceptions
+    else:
+    	page = 'form_submit_rt.html'
+    	return page # page with unchecked exceptions
 
 if __name__ == '__main__':
    db.create_all()

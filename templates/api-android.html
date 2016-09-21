@@ -19,11 +19,20 @@
             height: auto;
         }
 
+        .intro { 
+            width: 600px;
+            height: auto;
+            padding: 20px;
+        }
     </style>
 </head>
 
 <body>
 <h2 class = "topic">API reference documentation (method shortcuts)</h2>
+        <div class = "intro">
+            In the following, we list the methods that could be used to complete the source code of the NotePad application. Clicking on one of the following shortcuts, you can find its documentation.
+        </div>
+
         <div class="method">
         <ul class="blockList">
             <a href="{{ url_for('api_android')}}TextView/android/widget/TextView.html#changeTextColor-ColorStateList-"><h4 id="changeTextColor">changeTextColor</h4></a>
@@ -90,7 +99,7 @@
 
         <div class="method">
         <ul class="blockList">
-            <a href="{{ url_for('api_android')}}Activity/android/app/Android.html#setLayout-int-"><h4 id="setLayout">setLayout</h4></a>
+            <a href="{{ url_for('api_android')}}Activity/android/app/Activity.html#setLayout-int-"><h4 id="setLayout">setLayout</h4></a>
         </ul>
         </div>
 
@@ -101,13 +110,5 @@
             <a href="{{ url_for('api_android')}}ContentResolver/android/content/ContentResolver.html#updateRecord-Uri-ContentValues-java.lang.String-java.lang.String:A-"><h4 id="updateRecord">updateRecord</h4></a>
         </ul>
         </div>
-</div>
-<script>
-    function results(url) {
-        nWindow = window.open(url,'name','height=800,width=1200');
-        if (window.focus) {nWindow.focus()}
-            return false;
-    }
-</script>
 </body>
 </html>

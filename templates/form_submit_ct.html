@@ -1,0 +1,1411 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+    <link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+	<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>-->
+	<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?lang=javascript&amp;"></script>
+    <script src="https://cdn.rawgit.com/leafo/sticky-kit/v1.1.2/jquery.sticky-kit.min.js"></script>
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+    <meta charset="utf-8">
+	
+    <title>Android Programming Survey</title>
+
+    <!--<link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">-->
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Varela+Round">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js" type="text/javascript"></script>
+
+<style>
+@charset "utf-8";
+/* CSS Document */
+
+/* ---------- FONTAWESOME ---------- */
+/* ---------- http://fortawesome.github.com/Font-Awesome/ ---------- */
+/* ---------- http://weloveiconfonts.com/ ---------- */
+
+@import url(http://weloveiconfonts.com/api/?family=fontawesome);
+
+/* ---------- ERIC MEYER'S RESET CSS ---------- */
+/* ---------- http://meyerweb.com/eric/tools/css/reset/ ---------- */
+
+@import url(http://meyerweb.com/eric/tools/css/reset/reset.css);
+
+/* ---------- FONTAWESOME ---------- */
+
+[class*="fontawesome-"]:before {
+  font-family: 'FontAwesome', sans-serif;
+}
+
+/* ---------- GENERAL ---------- */
+
+
+body {
+	background-color: #C0C0C0;
+	color: #000;
+	font-family: "Varela Round", Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	line-height: 1.2em;
+}
+
+input {
+	border: none;
+	font-family: inherit;
+	font-size: inherit;
+	font-weight: inherit;
+	line-height: inherit;
+	-webkit-appearance: none;
+}
+
+/* ---------- FORM ---------- */
+
+#form {
+	margin: 1.5px auto;
+	width: 1100px;
+    /*height:18500px;*/
+    /*border:2px solid black;*/
+}
+
+#form h2 {
+	/*background-color: #f95252;*/
+	/*background-color: #33cc77;*/
+    background-color: #7ABF58;
+	-webkit-border-radius: 20px 20px 0 0;
+	-moz-border-radius: 20px 20px 0 0;
+	border-radius: 20px 20px 0 0;
+	color: #fff;
+	font-size: 28px;
+	padding: 15px 26px;
+}
+
+#form h2 span[class*="fontawesome-"] {
+	margin-right: 14px;
+}
+
+#form fieldset {
+	/*background-color: #fff;*/
+    background-color: #F7F9F9;
+	-webkit-border-radius: 0 0 20px 20px;
+	-moz-border-radius: 0 0 20px 20px;
+	border-radius: 0 0 20px 20px;
+	padding: 20px 26px;
+    /*height: 17950px;*/
+    /*height: 19800px;*/
+    /*border:2px solid blue;*/
+}
+
+#form fieldset p {
+	color: #777;
+	margin-bottom: 14px;
+}
+
+#form fieldset p:last-child {
+	margin-bottom: 0;
+}
+
+#form fieldset input {
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+
+#form fieldset input[type="submit"] {
+	background-color: #7ABF58;
+	color: #fff;
+	display: inline;
+	margin: 0 auto;
+	/*padding: 4px 0;*/
+	/*width: 100px;*/
+    width:auto;
+}
+
+.check-btn {
+    background-color: #7ABF58;
+    color: #fff;
+    display: inline;
+    margin: 0 auto;
+    width:auto;
+    cursor: pointer;
+}
+
+/*
+#form fieldset input[type="button"] {
+    background-color: #eee;
+    color: #777;
+    display: inline;
+    margin: 0 auto;
+    width:auto;
+    border-radius:4px;
+    -moz-border-radius:4px;
+    -webkit-border-radius:4px;
+    border:1px solid #1A87B9;
+}
+*/
+
+.ic {
+	cursor:pointer;
+}
+
+/*
+#form fieldset a {
+    background-color: #7ABF58;
+    color: #fff;
+    display: inline;
+    margin: 10px;
+    padding: 4px 0;
+    width: 300px;
+    height: 250px;
+    border-radius: 3px;
+    text-align: center;
+    text-decoration: none;
+}
+*/
+
+.wrapper {
+    float: left; 
+    width: 1000px;
+    /*height: 19000px;*/
+    height: auto;
+    /*margin: 10px;*/
+    padding: auto;
+    /*border: 1px solid #aaaaaa;*/
+    border-radius: 8px;
+    /*border:2px solid red;*/
+    position: relative;
+}
+
+.dragtarget {
+    float: left; 
+    width: 350px;
+    height: auto;
+    padding: 5px;
+    background-color: #9EDAD2;
+    border-radius: 5px;
+    border: none;
+    position: absolute;
+    /*top: 20px;*/
+    top: auto;
+}
+
+.api {
+    position: absolute;
+    float: left; 
+    width: 330px; 
+    height: auto;
+    margin: 0 auto;
+    border-radius: 5px;
+    background: #CEDBD8;
+    padding: 12px;
+}
+
+.form-code {
+    float: right; 
+    width: 600px; 
+    height: auto;
+    /*height: 19000px;*/
+    /*margin: 15px;*/
+    padding: 10px;
+    /*border: 1px solid #aaaaaa;*/
+    border-radius: 8px;
+    border:2px solid #7ABF58;
+    /*overflow: scroll;*/
+}
+
+.droptarget { 
+    float: right;
+    width: 600px; 
+    height: 150px;
+    border: 1px solid #aaaaaa;
+    font-size: 1.2em;
+    border-radius: 4px;
+    font-family:'Courier New', monospace;
+    font-size:14px;
+}
+
+/*body {
+  overflow: hidden;
+}
+*/
+
+.row{
+    width: 600px;
+    height: 25px;
+    /*border-bottom: 0.5px dotted #ccc;*/
+    /*border: 0.5px solid red;*/
+    /*display: inline-block;*/
+    display: block;
+    margin: 0 auto;
+}
+
+.row1{
+    width: 600px;
+    height: 150px;
+    /*border-bottom: 0.5px dotted #ccc;*/
+    /*border: 0.5px solid blue;*/
+    /*display: inline-block;*/
+    display: block;
+    margin: 0 auto;
+}
+
+.rowp{
+	width: 585px;
+    height: 135px;
+    /*width: 485px;
+    height: 135px;
+    border: 0.5px solid black;*/
+    /*display: inline-block;*/
+    display: block;
+    margin: 0 auto;
+}
+
+.styled-button {
+    /*background: #25A6E1;*/
+    background: #eee;
+    background: -moz-linear-gradient(top,#eee 0%,#eee 100%);
+    background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#eee),color-stop(100%,#eee));
+    background: -webkit-linear-gradient(top,#eee 0%,#eee 100%);
+    background: -o-linear-gradient(top,#eee 0%,#eee 100%);
+    background: -ms-linear-gradient(top,#eee 0%,#eee 100%);
+    background: linear-gradient(top,#eee 0%,#eee 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#eee',endColorstr='#eee',GradientType=0);
+    padding:5px 5px;
+    color: #777;
+    font-family:'Courier New', monospace;
+    font-size:12px;
+    border-radius:4px;
+    -moz-border-radius:4px;
+    -webkit-border-radius:4px;
+    border:1px solid #1A87B9;
+    /*width: 50px;*/
+    /*height: 30px;*/
+    width: auto;
+    height:auto;
+}
+
+.styled-button-2 {
+    /*background: #25A6E1;*/
+    background: #eee;
+    background: -moz-linear-gradient(top,#eee 0%,#eee 100%);
+    background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#eee),color-stop(100%,#eee));
+    background: -webkit-linear-gradient(top,#eee 0%,#eee 100%);
+    background: -o-linear-gradient(top,#eee 0%,#eee 100%);
+    background: -ms-linear-gradient(top,#eee 0%,#eee 100%);
+    background: linear-gradient(top,#eee 0%,#eee 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#eee',endColorstr='#eee',GradientType=0);
+    padding:5px 5px;
+    color: #777;
+    font-family:'Arial', sans-serif;
+    font-size:12px;
+    border-radius:4px;
+    -moz-border-radius:4px;
+    -webkit-border-radius:4px;
+    border:1px solid #1A87B9
+}
+
+.styled-button-3 {
+    float:left;
+    color: #777;
+    font-family:'Courier New', monospace;
+    font-size:12px;
+    width: auto;
+    /*border: 1px solid red;*/
+}
+
+.col-md-4{
+    width: 33.333%;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    /*border-bottom: 1px dotted black;*/
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 200px;
+    background-color: #eee;
+    color: #777;
+    text-align: left;
+    border-radius: 6px;
+    padding: 5px 0;
+    font-family:'Arial', sans-serif;
+    font-size:12px;
+    border: 1px solid #aaaaaa;
+    border-radius: 4px;
+    
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: -5px;
+    left: 105%;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+.styled-code {
+    display: block;
+    font-family: monospace;
+    white-space: pre;
+    margin: 1em 0;
+}
+
+/*! Color themes for Google Code Prettify | MIT License | github.com/jmblog/color-themes-for-google-code-prettify */
+.prettyprint{background:#fff;font-family:Menlo,Bitstream Vera Sans Mono,DejaVu Sans Mono,Monaco,Consolas,monospace;border:0!important}.pln{color:#4d4d4c}ol.linenums{margin-top:0;margin-bottom:0;color:#8e908c}li.L0,li.L1,li.L2,li.L3,li.L4,li.L5,li.L6,li.L7,li.L8,li.L9{padding-left:1em;background-color:#fff;list-style-type:decimal}@media screen{.str{color:#718c00}.kwd{color:#8959a8}.com{color:#8e908c}.typ{color:#4271ae}.lit{color:#f5871f}.pun{color:#4d4d4c}.opn{color:#4d4d4c}.clo{color:#4d4d4c}.tag{color:#c82829}.atn{color:#f5871f}.atv{color:#3e999f}.dec{color:#f5871f}.var{color:#c82829}.fun{color:#4271ae}}
+
+a:link, a:visited { 
+    /*color: #34495E;*/
+    /*color: #0B5345;*/
+    /*color:#197DDB;*/
+    color: #1966DB;
+    cursor: auto;
+    text-decoration:none;
+}
+
+.name {
+	/*color: #34495E;*/
+    color: #1966DB;
+    /*color:#197DDB;*/
+	font: Verdana, monospace;
+	font-size: 16px;
+}
+
+</style>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='github.css') }}">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?lang=javascript&amp;"></script>
+
+</head>
+
+<body>
+    <script type="text/javascript" src="{{ url_for('static', filename='go.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='highlight.js') }}"></script>
+    <!--<script type="text/javascript" src="{{ url_for('static', filename='drag_drop.js') }}"></script>-->
+    <script>hljs.initHighlightingOnLoad();</script>
+
+	<div id="form">
+        <p class="name" align="right">
+            Welcome {{ session['email'] }}! 
+            <a href="{{ url_for('index') }}"><i class="fa fa-home fa-lg" aria-hidden="true"></i></a>
+            <a href="{{ url_for('logout') }}"><i class="fa fa-sign-out fa-lg" aria-hidden="true"></i></a>
+        </p>
+
+		<h2><span class="fontawesome"></span>Android Programming Survey</h2>
+
+        <fieldset>
+            <p>You are going to work on a Java class of a real Android application, NotePad.
+            For this reason, please do not read the source code of the NotePad application.
+            We will ask you to call ten experimental methods from the Android platform's API.
+            Mind the handling of your code,
+            to improve the quality, readability, and robustness of the application
+            (For more information about software quality,
+            see <a href="https://en.wikipedia.org/wiki/Software_quality">here</a>.)</p>
+
+            <p>In the following, on the left there is a box of methods,
+            keywords, and symbols that you can drag on the answer boxes on the right. 
+            Scroll down to find the TODO comments and
+            accordingly fill the answer boxes to complete the program. 
+            After you fill and format all the answer boxes, 
+            just log-out. 
+            Please read carefully the 
+            <a href="{{ url_for('help') }}" onclick="return results('/survey/help.html')">instructions</a>
+            before proceeding and our own Javadoc of the
+            <a href="{{ url_for('api') }}">API reference documentation</a>.</p>
+
+            <!--
+
+            <p>Please carefully consider the following instructions:</p>
+
+            <ul>
+                <li><p>-To fill an answer box, drag elements from the box on the left to the answer boxes on the right.</p></li>
+                <li><p>-To clear an answer box, press the <b>Clear</b> button.</p></li>
+                <li><p>-To delete an element (e.g. a dragged try) just click once with the pointer on the element.</p></li>
+                <li><p>-To save each of your answers, please, always press the <b>Save</b> button; 
+                        otherwise, your answers will not valid!</p></li>
+                <li><p>-To check your program for syntax errors, press the <b>Format</b> button and then press the 
+                        <b>Check</b> button in the end of the form.</p></li>
+            </ul>
+            -->
+
+            <div class="wrapper">
+
+            <!--
+            <div class="api">
+                <p>API reference documentation</p>
+                    <a href="https://developer.android.com/reference/java/lang/IndexOutOfBoundsException.html">-IndexOutOfBoundsException</a><br>
+                    <a href="{{ url_for('api') }}" onclick="return results('/survey/api.html#deleteRecord')">-deleteRecord (Uri, String, String[])</a><br>
+                    <a href="{{ url_for('api') }}" onclick="return results('/survey/api.html#setTextBox')">-setTextBox(Char [], int, int)</a><br>
+            </div>
+            -->
+            
+            <div class= "dragtarget" id="dragtarget">
+            <!--<div class="styled-button" id="catch">catch</div>-->            
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="{">{</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="}">}</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id=";">;</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="(">(</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id=")">)</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="=">=</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id=".">.</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id=":">:</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="0">&nbsp;0&nbsp;</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="aExc"> aExc</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="canvas">canvas</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="catch">catch</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="changeTextColor">changeTextColor(colors)</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="deleteRecord(mUri,null,null)" name="deleteRecord(mUri, null, null)">deleteRecord(mUri,null,null)</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="drawTxt(tmp,0,9,20,30,paint)">drawTxt(tmp,0,9,20,30,paint)</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="editText(chAr, 0, 1)">editText(chAr,0,1)</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="(EditText)findViewId(R.id.note)">(EditText)findViewId(R.id.note)</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="Exception">Exception</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="getContentResolver()">getContentResolver()</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="getCursorString(colNoteIndex)">getCursorString(colNoteIndex)</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="if">if&nbsp;</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="InsufficientMemoryForResourceException" name="InsufficientMemoryForResourceException">InsufficientMemoryForResourceException</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="InvalidArrayIndexException" name="InvalidArrayIndexException">InvalidArrayIndexException</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="InvalidUriException" name="InvalidUriIndexException">InvalidUriException</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="insertData(intent.getData(),null)">insertData(intent.getData(),null)</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="mCursor">mCursor</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="MissingResourceException">MissingResourceException</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="mText">mText</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="mUri">mUri</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="new">new</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="note">note</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="null">null</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="NullResourceException">NullResourceException</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="orig">orig</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="printStackTrace()" name="printStackTrace()">printStackTrace()</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="query">queryData(uri,PROJECTION,null,null,null)</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="RuntimeException">RuntimeException</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="setLayout(R.layout.editor)">setLayout(R.layout.note_editor)</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="throw">throw&nbsp;</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="try">try </button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="UnauthorizedAccessException">UnauthorizedAccessException</button>
+            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="updateRecord">updateRecord(mUri,values,null,null)</button>
+            </div>
+
+            <div class="form-code">
+    		  <form method="post" action="{{ url_for('survey') }}">
+                <!--<pre class="prettyprint lang-java"><code class="java">-->
+                <pre><code class="java">
+/*
+ * Copyright (C) 2007 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * 
+ * [...]
+ * 
+ */
+
+import android.app.Activity;
+import android.content.*;
+import android.database.Cursor;
+import android.graphics.*;
+import android.net.Uri;
+import android.os.Bundle;
+import android.util.*;
+import android.view.*;
+import android.widget.EditText;
+
+/**
+ * This Activity handles "editing" a note, where editing is responding to
+ * {@link Intent#ACTION_VIEW} (request to view data), edit a note
+ * {@link Intent#ACTION_EDIT}, create a note {@link Intent#ACTION_INSERT}, or
+ * create a new note from the current contents of the clipboard
+ * {@link Intent#ACTION_PASTE}.
+ * NOTE: Notice that the provider operations in this Activity are taking place
+ */
+public class NoteEditor extends Activity {
+    // For logging and debugging purposes
+    private static final String TAG = "NoteEditor";
+
+    /*
+     * Creates a projection that returns the note ID and the note contents.
+     */
+    private static final String[] PROJECTION = new String[] { NotePad.Notes._ID, NotePad.Notes.COLUMN_NAME_TITLE,
+            NotePad.Notes.COLUMN_NAME_NOTE };
+
+    // A label for the saved state of the activity
+    private static final String ORIGINAL_CONTENT = "origContent";
+
+    // This Activity can be started by more than one action. Each action is
+    // represented
+    // as a "state" constant
+    private static final int STATE_EDIT = 0;
+    private static final int STATE_INSERT = 1;
+
+    // Global mutable variables
+    private int mState;
+    private Uri mUri;
+    private Cursor mCursor;
+    private EditText mText;
+    private String mOriginalContent;
+
+    /**
+     * Defines a custom EditText View that draws lines between each line of text
+     * that is displayed.
+     */
+    public static class LinedEditText extends EditText {
+        private Rect mRect;
+        private Paint mPaint;
+
+        // This constructor is used by LayoutInflater
+        public LinedEditText(Context context, AttributeSet attrs) {
+            super(context, attrs);
+
+            // Creates a Rect and a Paint object, and sets the style and color
+            // of the Paint object.
+            mRect = new Rect();
+            mPaint = new Paint();
+            mPaint.setStyle(Paint.Style.STROKE);
+            mPaint.setColor(0x800000FF);
+        }
+
+        /**
+         * This is called to draw the LinedEditText object
+         * 
+         * @param canvas
+         *            The canvas on which the background is drawn.
+         */
+        @Override
+        protected void onDraw(Canvas canvas) {
+            // Gets the number of lines of text in the View.
+            int count = getLineCount();
+
+            // Gets the global Rect and Paint objects
+            Rect r = mRect;
+            Paint paint = mPaint;
+            // Define the text size
+            paint.setTextSize(100);
+
+            // String to add before each new note
+            String tmp = "Hello Android!";
+
+            /* 
+             * TODO: Draw a welcome text before each note.
+             * Call the drawTxt method using the canvas object.
+             */
+            </pre></code>
+            	<div>Answer Box 1:</div>
+                <div id="answer_1" class="droptarget">
+                    <div class="row1" id="r_answer_1"><pre class="rowp">{{answ.answer_1}}</pre></div>
+                    <textarea type="text" style="display:none" name="t_answer_1" id="ti_answer_1" placeholder="tp_answer_1">{{answ.answer_1}}</textarea>
+                </div>
+            <br>
+                <!--<input type="button" name="s_answer_2" data-id="si_answer_2" class="styled-button-2" value="Save" onClick="saveDiv('answer_2', 'r_answer_2');" />-->
+                <input type="button" class="check-btn" value="Clear" name="c_answer_1" onclick="clearDiv('answer_1');"/>
+            <br>
+            <br>
+            <pre><code>
+            /*
+             * Draws one line in the rectangle for every line of text in the
+             * EditText
+             */
+            for (int i = 0; i < count; i++) {
+
+                // Gets the baseline coordinates for the current line of text
+                int baseline = getLineBounds(i, r);
+
+                /*
+                 * Draws a line in the background from the left of the rectangle
+                 * to the right, at a vertical position one dip below the
+                 * baseline, using the "paint" object for details.
+                 */
+                canvas.drawLine(r.left, baseline + 1, r.right, baseline + 1, paint);
+            }
+
+            // Finishes up by calling the parent method
+            super.onDraw(canvas);
+        }
+    }
+
+    /**
+     * This method is called by Android when the Activity is first started. From
+     * the incoming Intent, it determines what kind of editing is desired, and
+     * then does it.
+     */
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        /*
+         * Creates an Intent to use when the Activity object's result is sent
+         * back to the caller.
+         */
+        final Intent intent = getIntent();
+
+        /*
+         * Sets up for the edit, based on the action specified for the incoming
+         * Intent.
+         */
+
+        // Gets the action that triggered the intent filter for this Activity
+        final String action = intent.getAction();
+
+        // For an edit action:
+        if (Intent.ACTION_EDIT.equals(action)) {
+
+            // Sets the Activity state to EDIT, and gets the URI for the data to
+            // be edited.
+            mState = STATE_EDIT;
+            mUri = intent.getData();
+
+            // For an insert or paste action:
+        } else if (Intent.ACTION_INSERT.equals(action) || Intent.ACTION_PASTE.equals(action)) {
+
+            // Sets the Activity state to INSERT, gets the general note URI, and
+            // inserts an empty record in the provider
+            mState = STATE_INSERT;
+
+            /* 
+             * TODO: Store a new note from a given URI.
+             * Call the insertData method using the getContentResolver() method
+             * to get a ContentResolver instance.
+             */
+            </pre></code>
+            <div>Answer Box 2:</div>
+                <div id="answer_2" class="droptarget">
+                    <div class="row1" id="r_answer_2"><pre class="rowp">{{answ.answer_2}}</pre></div>
+                    <textarea type="text" style="display:none" name="t_answer_2" id="ti_answer_2" placeholder="tp_answer_2">{{answ.answer_2}}</textarea>
+                </div>
+                <br>
+                <!--<input type="button" name="s_answer_3" data-id="si_answer_3" class="styled-button-2" value="Save" onClick="saveDiv('answer_3', 'r_answer_3');" />-->
+                <input type="button" class="check-btn" value="Clear" name="c_answer_2" onclick="clearDiv('answer_2');"/>
+                <br>
+                <br>
+            <pre><code>
+            /*
+             * If the attempt to insert the new note fails, shuts down this
+             * Activity. The originating Activity receives back RESULT_CANCELED
+             * if it requested a result. Logs that the insert failed.
+             */
+            if (mUri == null) {
+
+                // Writes the log identifier, a message, and the URI that
+                // failed.
+                Log.e(TAG, "Failed to insert new note into " + getIntent().getData());
+
+                // Closes the activity.
+                finish();
+                return;
+            }
+
+            // Since the new entry was created, this sets the result to be
+            // returned
+            // set the result to be returned.
+            setResult(RESULT_OK, (new Intent()).setAction(mUri.toString()));
+
+            // If the action was other than EDIT or INSERT:
+        } else {
+
+            // Logs an error that the action was not understood, finishes the
+            // Activity, and
+            // returns RESULT_CANCELED to an originating Activity.
+            Log.e(TAG, "Unknown action, exiting");
+            finish();
+            return;
+        }
+
+        /*
+         * Using the URI passed in with the triggering Intent, gets the note or
+         * notes in the provider. Note: This is being done on the UI thread. It
+         * will block the thread until the query completes. In a sample app,
+         * going against a simple provider based on a local database, the block
+         * will be momentary, but in a real app you should use
+         * android.content.AsyncQueryHandler or android.os.AsyncTask.
+         */
+         mCursor = managedQuery(
+             mUri, // The URI that gets multiple notes from the provider.
+             PROJECTION, // A projection that returns the note ID and note content for each note.
+             null, // No "where" clause selection criteria.
+             null, // No "where" clause selection values.
+             null // Use the default sort order (modification date, descending)
+        );
+
+        // For a paste, initializes the data from clipboard.
+        // (Must be done after mCursor is initialized.)
+        if (Intent.ACTION_PASTE.equals(action)) {
+            // Does the paste
+            performPaste();
+            // Switches the state to EDIT so the title can be modified.
+            mState = STATE_EDIT;
+        }
+
+        /* 
+         * TODO: Set the layout for the NotePad editor.
+         * The layout is in the application's resources (i.e. res/layout/note_editor.xml).
+         * Call the setLayout method using the note_editor.xml file as input.
+         */
+        </pre></code>
+        <div>Answer Box 3:</div>
+        <div id="answer_3" class="droptarget">
+            <div class="row1" id="r_answer_3"><pre class="rowp">{{answ.answer_3}}</pre></div>
+            <textarea type="text" style="display:none" name="t_answer_3" id="ti_answer_3" placeholder="tp_answer_3">{{answ.answer_3}}</textarea>
+        </div>
+        <br>
+        <!--<input type="button" name="s_answer_4" data-id="si_answer_4" class="styled-button-2" value="Save" onClick="saveDiv('answer_4', 'r_answer_4');" />-->
+        <input type="button" class="check-btn" value="Clear" name="c_answer_3" onclick="clearDiv('answer_3');"/>
+        <br>
+        <br>
+        <pre><code>
+        /*
+         * TODO: Set a handler to the text editor (EditText object).
+         * Set mText to the view returned by the findViewId method.
+         */
+        </pre></code>
+        <div>Answer Box 4:</div>
+        <div id="answer_4" class="droptarget">
+            <div class="row1" id="r_answer_4"><pre class="rowp">{{answ.answer_4}}</pre></div>
+            <textarea type="text" style="display:none" name="t_answer_4" id="ti_answer_4" placeholder="tp_answer_4">{{answ.answer_4}}</textarea>
+        </div>
+        <br>
+        <!--<input type="button" name="s_answer_5" data-id="si_answer_5" class="styled-button-2" value="Save" onClick="saveDiv('answer_5', 'r_answer_5');" />-->
+        <input type="button" class="check-btn" value="Clear" name="c_answer_4" onclick="clearDiv('answer_4');"/>
+        <br>
+        <br>
+        <pre><code>
+        // Change EditText text color
+		ColorStateList colors = null;
+		try {
+		    XmlResourceParser parser = getResources().getXml(R.color.text_colors);
+		    colors = ColorStateList.createFromXml(getResources(), parser);
+		    // handle exceptions
+		} catch (IOException e1) {
+		    e1.printStackTrace();
+		} catch (XmlPullParserException e2) {
+			e2.printStackTrace();
+		}
+		
+		/* 
+         * TODO: Change the editor's text color.
+		 * Call the changeTextColor method using an EditText instance, mText.
+         */
+		</pre></code>
+        <div>Answer Box 5:</div>
+            <div id="answer_5" class="droptarget">
+                <div class="row1" id="r_answer_5"><pre class="rowp">{{answ.answer_5}}</pre></div>
+                <textarea type="text" style="display:none" name="t_answer_5" id="ti_answer_5" placeholder="tp_answer_5">{{answ.answer_5}}</textarea>
+            </div>
+        <br>
+        <!--<input type="button" name="s_answer_6" data-id="si_answer_6" class="styled-button-2" value="Save" onClick="saveDiv('answer_6', 'r_answer_6');" />-->
+        <input type="button" class="check-btn" value="Clear" name="c_answer_5" onclick="clearDiv('answer_5');"/>
+        <br>
+        <br>
+        <pre><code>
+        /*
+         * If this Activity had stopped previously, its state was written the
+         * ORIGINAL_CONTENT location in the saved Instance state. This gets the
+         * state.
+         */
+        if (savedInstanceState != null) {
+            mOriginalContent = savedInstanceState.getString(ORIGINAL_CONTENT);
+        }
+    }
+
+    /**
+     * This method is called when the Activity is about to come to the
+     * foreground. This happens when the Activity comes to the top of the task
+     * stack, OR when it is first starting.
+     *
+     * Moves to the first note in the list, sets an appropriate title for the
+     * action chosen by the user, puts the note contents into the TextView, and
+     * saves the original text as a backup.
+     */
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        /*
+         * mCursor is initialized, since onCreate() always precedes onResume for
+         * any running process. This tests that it's not null, since it should
+         * always contain data.
+         */
+        if (mCursor != null) {
+            // Requery in case something changed while paused (such as the
+            // title)
+            mCursor.requery();
+
+            /*
+             * Moves to the first record. Always call moveToFirst() before
+             * accessing data in a Cursor for the first time. The semantics of
+             * using a Cursor are that when it is created, its internal index is
+             * pointing to a "place" immediately before the first record.
+             */
+            mCursor.moveToFirst();
+
+            // Modifies the window title for the Activity according to the
+            // current Activity state.
+            if (mState == STATE_EDIT) {
+                // Set the title of the Activity to include the note title
+                int colTitleIndex = mCursor.getColumnIndex(NotePad.Notes.COLUMN_NAME_TITLE);
+                String title = mCursor.getString(colTitleIndex);
+                Resources res = getResources();
+                String text = String.format(res.getString(R.string.title_edit), title);
+                setTitle(text);
+                // Sets the title to "create" for inserts
+            } else if (mState == STATE_INSERT) {
+                setTitle(getText(R.string.title_create));
+            }
+
+            /*
+             * onResume() may have been called after the Activity lost focus
+             * (was paused). The user was either editing or creating a note when
+             * the Activity paused. The Activity should re-display the text that
+             * had been retrieved previously, but it should not move the cursor.
+             * This helps the user to continue editing or entering.
+             */
+
+            // Gets the note text from the Cursor and puts it in the TextView,
+            // but doesn't change the text cursor's position.
+            int colNoteIndex = mCursor.getColumnIndex(NotePad.Notes.COLUMN_NAME_NOTE);
+            String note = "";
+            
+            /*
+             * TODO: Retrieve a note for editing.
+             * Call the getCursorString method using the mCursor instance.
+             * Set the result of getCursorString to note.
+             */
+            </pre></code>
+            <div>Answer Box 6:</div>
+            <div id="answer_6" class="droptarget">
+                <div class="row1" id="r_answer_6"><pre class="rowp">{{answ.answer_6}}</pre></div>
+                <textarea type="text" style="display:none" name="t_answer_6" id="ti_answer_6" placeholder="tp_answer_6">{{answ.answer_6}}</textarea>
+            </div>
+            <br>
+            <!--<input type="button" name="s_answer_6" data-id="si_answer_6" class="styled-button-2" value="Save" onClick="saveDiv('answer_6', 'r_answer_6');" />-->
+            <input type="button" class="check-btn" value="Clear" name="c_answer_6" onclick="clearDiv('answer_6');"/>
+            <br>
+            <br>
+            <pre><code>
+            mText.setTextKeepState(note);
+
+            // Stores the original note text, to allow the user to revert
+            // changes.
+            if (mOriginalContent == null) {
+                mOriginalContent = note;
+            }
+
+            /*
+             * Something is wrong. The Cursor should always contain data. Report
+             * an error in the note.
+             */
+        } else {
+            mText.setText(getText(R.string.error_message));
+        }
+    }
+
+    /**
+     * This method is called when an Activity loses focus during its normal
+     * operation, and is then later on killed. The Activity has a chance to save
+     * its state so that the system can restore it.
+     *
+     * Notice that this method isn't a normal part of the Activity lifecycle. It
+     * won't be called if the user simply navigates away from the Activity.
+     */
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        // Save away the original text, so we still have it if the activity
+        // needs to be killed while paused.
+        outState.putString(ORIGINAL_CONTENT, mOriginalContent);
+    }
+
+    /**
+     * This method is called when the Activity loses focus.
+     *
+     * For Activity objects that edit information, onPause() may be the one
+     * place where changes are saved. The Android application model is
+     * predicated on the idea that "save" and "exit" aren't required actions.
+     * When users navigate away from an Activity, they shouldn't have to go back
+     * to it to complete their work. The act of going away should save
+     * everything and leave the Activity in a state where Android can destroy it
+     * if necessary.
+     *
+     * If the user hasn't done anything, then this deletes or clears out the
+     * note, otherwise it writes the user's work to the provider.
+     */
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        /*
+         * Tests to see that the query operation didn't fail (see onCreate()).
+         * The Cursor object will exist, even if no records were returned,
+         * unless the query failed because of some exception or error.
+         */
+        if (mCursor != null) {
+
+            // Get the current note text.
+            String text = mText.getText().toString();
+            int length = text.length();
+
+            /*
+             * If the Activity is in the midst of finishing and there is no text
+             * in the current note, returns a result of CANCELED to the caller,
+             * and deletes the note. This is done even if the note was being
+             * edited, the assumption being that the user wanted to "clear out"
+             * (delete) the note.
+             */
+            if (isFinishing() && (length == 0)) {
+                setResult(RESULT_CANCELED);
+                deleteNote();
+
+                /*
+                 * Writes the edits to the provider. The note has been edited if
+                 * an existing note was retrieved into the editor *or* if a new
+                 * note was inserted. In the latter case, onCreate() inserted a
+                 * new empty note into the provider, and it is this new note
+                 * that is being edited.
+                 */
+            } else if (mState == STATE_EDIT) {
+                // Creates a map to contain the new values for the columns
+                updateNote(text, null);
+            } else if (mState == STATE_INSERT) {
+                updateNote(text, text);
+                mState = STATE_EDIT;
+            }
+        }
+    }
+
+    /**
+     * This method is called when the user clicks the device's Menu button the
+     * first time for this Activity. Android passes in a Menu object that is
+     * populated with items.
+     *
+     * Builds the menus for editing and inserting, and adds in alternative
+     * actions that registered themselves to handle the MIME types for this
+     * application.
+     *
+     * @param menu
+     *            A Menu object to which items should be added.
+     * @return True to display the menu.
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate menu from XML resource
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.editor_options_menu, menu);
+
+        // Only add extra menu items for a saved note
+        if (mState == STATE_EDIT) {
+            // Append to the
+            // menu items for any other activities that can do stuff with it
+            // as well. This does a query on the system for any activities that
+            // implement the ALTERNATIVE_ACTION for our data, adding a menu item
+            // for each one that is found.
+            Intent intent = new Intent(null, mUri);
+            intent.addCategory(Intent.CATEGORY_ALTERNATIVE);
+            menu.addIntentOptions(Menu.CATEGORY_ALTERNATIVE, 0, 0, new ComponentName(this, NoteEditor.class), null,
+                    intent, 0, null);
+        }
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        // Check if note has changed and enable/disable the revert option
+        int colNoteIndex = mCursor.getColumnIndex(NotePad.Notes.COLUMN_NAME_NOTE);
+        String savedNote = mCursor.getString(colNoteIndex);
+        String currentNote = mText.getText().toString();
+        if (savedNote.equals(currentNote)) {
+            menu.findItem(R.id.menu_revert).setVisible(false);
+        } else {
+            menu.findItem(R.id.menu_revert).setVisible(true);
+        }
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    /**
+     * This method is called when a menu item is selected. Android passes in the
+     * selected item. The switch statement in this method calls the appropriate
+     * method to perform the action the user chose.
+     *
+     * @param item
+     *            The selected MenuItem
+     * @return True to indicate that the item was processed, and no further work
+     *         is necessary. False to proceed to further processing as indicated
+     *         in the MenuItem object.
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle all of the possible menu actions.
+        switch (item.getItemId()) {
+        case R.id.menu_save:
+            String text = mText.getText().toString();
+            updateNote(text, null);
+            finish();
+            break;
+        case R.id.menu_delete:
+            deleteNote();
+            finish();
+            break;
+        case R.id.menu_revert:
+            cancelNote();
+            break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * A helper method that replaces the note's data with the contents of the
+     * clipboard.
+     */
+    private final void performPaste() {
+
+        // Gets a handle to the Clipboard Manager
+        ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+
+        // Gets the clipboard data from the clipboard
+        ClipData clip = clipboard.getPrimaryClip();
+        if (clip != null) {
+
+            String text = null;
+            String title = null;
+
+            // Gets the first item from the clipboard data
+            ClipData.Item item = clip.getItemAt(0);
+
+            // Tries to get the item's contents as a URI pointing to a note
+            Uri uri = item.getUri();
+
+            Cursor orig = null;
+
+            // Tests to see that the item actually is an URI, and that the URI
+            // is a content URI pointing to a provider whose MIME type is the
+            // same as the MIME type supported by the Note pad provider.
+            if (uri != null && NotePad.Notes.CONTENT_ITEM_TYPE.equals(getContentResolver().getType(uri))) {
+                    // The clipboard holds a reference to data with a note MIME type. This copies it.
+                    
+                    /*
+                     * TODO: Get data from a note's URI.
+                     * Call the queryData method by using the getContentResolver() method
+                     * that returns a ContentResolver instance.
+                     * Store the result of the queryData method to the orig Cursor instance.
+                     */
+                    </pre></code>
+                    <div>Answer Box 7:</div>
+                    <div id="answer_7" class="droptarget">
+                        <div class="row1" id="r_answer_7"><pre class="rowp">{{answ.answer_7}}</pre></div>
+                        <textarea type="text" style="display:none" name="t_answer_7" id="ti_answer_7" placeholder="tp_answer_7">{{answ.answer_7}}</textarea>
+                    </div>
+                    <br>
+                    <!--<input type="button" name="s_answer_7" data-id="si_answer_7" class="styled-button-2" value="Save" onClick="saveDiv('answer_7', 'r_answer_7');" />-->
+                    <input type="button" class="check-btn" value="Clear" name="c_answer_7" onclick="clearDiv('answer_7');"/>
+                    <br>
+                    <br>
+                    <pre><code>
+                // If the Cursor is not null, and it contains at least one
+                // record (moveToFirst() returns true), 
+                // then this gets the note data from it.
+                if (orig != null) {
+                    if (orig.moveToFirst()) {
+                        int colNoteIndex = mCursor.getColumnIndex(NotePad.Notes.COLUMN_NAME_NOTE);
+                        int colTitleIndex = mCursor.getColumnIndex(NotePad.Notes.COLUMN_NAME_TITLE);
+                        text = orig.getString(colNoteIndex);
+                        title = orig.getString(colTitleIndex);
+                    }
+
+                    // Closes the cursor.
+                    orig.close();
+                }
+            }
+
+            // If the contents of the clipboard wasn't a reference to a note,
+            // then this converts whatever it is to text.
+            if (text == null) {
+                text = item.coerceToText(this).toString();
+            }
+
+            // Updates the current note with the retrieved title and text.
+            updateNote(text, title);
+        }
+    }
+
+    /**
+     * Replaces the current note contents with the text and title provided as
+     * arguments.
+     * 
+     * @param text
+     *            The new note contents to use.
+     * @param title
+     *            The new note title to use
+     */
+    private final void updateNote(String text, String title) {
+
+        // Sets up a map to contain values to be updated in the provider.
+        ContentValues values = new ContentValues();
+        values.put(NotePad.Notes.COLUMN_NAME_MODIFICATION_DATE, System.currentTimeMillis());
+
+        // If the action is to insert a new note, this creates an initial title
+        // for it.
+        if (mState == STATE_INSERT) {
+
+            // If no title was provided as an argument, create one from the note
+            // text.
+            if (title == null) {
+
+                // Get the note's length
+                int length = text.length();
+
+                // Sets the title by getting a substring of the text that is 31
+                // characters long
+                // or the number of characters in the note plus one, whichever
+                // is smaller.
+                title = text.substring(0, Math.min(30, length));
+
+                // If the resulting length is more than 30 characters, chops off
+                // any
+                // trailing spaces
+                if (length > 30) {
+                    int lastSpace = title.lastIndexOf(' ');
+                    if (lastSpace > 0) {
+                        title = title.substring(0, lastSpace);
+                    }
+                }
+            }
+            // In the values map, sets the value of the title
+            values.put(NotePad.Notes.COLUMN_NAME_TITLE, title);
+        } else if (title != null) {
+            // In the values map, sets the value of the title
+            values.put(NotePad.Notes.COLUMN_NAME_TITLE, title);
+        }
+
+        // This puts the desired notes text into the map.
+        values.put(NotePad.Notes.COLUMN_NAME_NOTE, text);
+
+        /*
+         * Updates the provider with the new values in the map. The ListView
+         * is updated automatically. The provider sets this up by setting
+         * the notification URI for query Cursor objects to the incoming
+         * URI. The content resolver is thus automatically notified when the
+         * Cursor for the URI changes, and the UI is updated. Note: This is
+         * being done on the UI thread. It will block the thread until the
+         * update completes.
+         */
+
+        /*
+         * TODO: Update a note (using the ContentResolver) given a specific URI.
+         * Call the updateRecord method using the getContentResolver() method
+         * that returns a ContentResolver instance.
+         */
+        </pre></code>
+        <div>Answer Box 8:</div>
+        <div id="answer_8" class="droptarget">
+            <div class="row1" id="r_answer_8"><pre class="rowp">{{answ.answer_8}}</pre></div>
+            <textarea type="text" style="display:none" name="t_answer_8" id="ti_answer_8" placeholder="tp_answer_8">{{answ.answer_8}}</textarea>
+        </div>
+        <br>
+        <!--<input type="button" name="s_answer_8" data-id="si_answer_8" class="styled-button-2" value="Save" onClick="saveDiv('answer_8', 'r_answer_8');" />-->
+        <input type="button" class="check-btn" value="Clear" name="c_answer_8" onclick="clearDiv('answer_8');"/>
+        <br>
+        <br>
+        <pre><code>
+    }
+
+    /**
+     * This helper method cancels the work done on a note. It deletes the note
+     * if it was newly created, or reverts to the original text of the note i
+     */
+    private final void cancelNote() {
+        if (mCursor != null) {
+            if (mState == STATE_EDIT) {
+                // Put the original note text back into the database
+                mCursor.close();
+                mCursor = null;
+                ContentValues values = new ContentValues();
+                values.put(NotePad.Notes.COLUMN_NAME_NOTE, mOriginalContent);
+                getContentResolver().update(mUri, values, null, null);
+            } else if (mState == STATE_INSERT) {
+                // We inserted an empty note, make sure to delete it
+                deleteNote();
+            }
+        }
+        setResult(RESULT_CANCELED);
+        finish();
+    }
+
+    /**
+     * Take care of deleting a note. Simply deletes the entry.
+     */
+    private final void deleteNote() {
+        if (mCursor != null) {
+            mCursor.close();
+            mCursor = null;
+
+           /*
+            * TODO: Delete a note (using the ContentResolver)
+            * Call the deleteRecord method using the getContentResolver() method
+            * that returns a ContentResolver instance.
+            */
+            </pre></code>
+            <div>Answer Box 9:</div>
+            <div id="answer_9" class="droptarget">
+                <div class="row1" id="r_answer_9"><pre class="rowp">{{answ.answer_9}}</pre></div>
+                <textarea type="text" style="display:none" name="t_answer_9" id="ti_answer_9" placeholder="tp_answer_9">{{answ.answer_9}}</textarea>
+            </div>
+            <br>
+            <!--<input type="button" name="s_answer_9" data-id="si_answer_9" class="styled-button-2" value="Save" onClick="saveDiv('answer_9', 'r_answer_9');" />-->
+            <input type="button" class="check-btn" value="Clear" name="c_answer_9" onclick="clearDiv('answer_9');"/>
+            <pre><code>
+            char[] chAr = { ' ' };
+
+            /*
+             * TODO: Clear the text of a note.
+             * Call the method editText using an EditText instance, mText.
+             */
+            </pre></code>
+            <div>Answer Box 10:</div>
+            <div id="answer_10" class="droptarget">
+                <div class="row1" id="r_answer_10"><pre class="rowp">{{answ.answer_10}}</pre></div>
+                <textarea type="text" style="display:none" name="t_answer_10" id="ti_answer_10" placeholder="tp_answer_10">{{answ.answer_10}}</textarea>
+            </div>
+            <br>
+            <!--<input type="button" name="s_answer_10" data-id="si_answer_10" class="styled-button-2" value="Save" onClick="saveDiv('answer_10', 'r_answer_10');" />-->
+            <input type="button" class="check-btn" value="Clear" name="c_answer_10" onclick="clearDiv('answer_10');"/>
+            <br>
+            <br>
+            <pre><code>
+        }
+    }
+}
+                </pre></code>
+                <div position:relative; top:50%;left:50%;>
+                <!--<input class="check-btn" type="button" value="&nbsp;&nbsp;Save&nbsp;&nbsp;" onClick="save();" />-->
+                <input type="submit" value="Format" onclick="save();"/>
+                <!--<a href="{{ url_for('results') }}" onclick="return results('/survey/results.html')">&nbsp;&nbsp;Check&nbsp;&nbsp;</a>-->
+                <input class="check-btn" type="button" value="&nbsp;&nbsp;Check&nbsp;&nbsp;" onclick="return results('/survey/results.html')"/>
+                <!--<span class="add-on tooltip" onclick="return results('/survey/help.html')">-->
+                <span class="add-on" onclick="return results('/survey/help.html')">
+                    <i class="fa fa-info-circle fa-lg ic" aria-hidden="true"></i>
+                </span>
+
+                </div>
+
+                <br>
+
+                {%- for category, message in get_flashed_messages(with_categories = true) %}
+           		<div class = "alert alert-danger">
+              		{{ message }}
+           		</div>
+        		{%- endfor %}
+     
+    		  </form>
+
+            </div>
+
+            </div>
+
+        </fieldset>
+    <footer class="footer">
+        <p>&copy; SENSE/AUEB 2016</p>
+    </footer>
+	</div> <!-- end of survey -->
+
+    <script type="text/javascript">
+        function dragStart(event) {
+            event.dataTransfer.setData("Text", event.target.id);
+        }
+
+        function allowDrop(event) {
+            event.preventDefault();
+        }
+
+        function drop(event) {
+            event.preventDefault();
+            var data = event.dataTransfer.getData("Text");
+            var elmnt = document.getElementById(data).firstChild;
+            var cln = elmnt.cloneNode(true); 
+            var para = document.createElement("div")
+            para.setAttribute('class', 'styled-button-3');
+            para.setAttribute('id', elmnt);
+            para.appendChild(cln);
+            event.target.appendChild(para);
+        }
+
+        // event propagation for dynamically added elements
+        $(document).ready ( function () {
+            // click just once on a word to delete
+            $(document).on("click", ".styled-button-3", function () {
+                $(this).remove();
+            });
+        });
+
+        // clear format of empty boxes for the new user
+        $(document).ready(function(){
+            for (i = 1; i <= 10; i++) {
+                var mystring = $("#answer_"+i).text()
+                // check for any single character in the div
+                if (/^\s+$/.test(mystring)) {
+                    clearDiv("answer_"+i)
+                }
+            }                                           
+        });
+
+        // when clean the div, add 4 empty rows and 1 new textarea
+        function clearDiv(divId) {
+            $("#"+divId).contents().filter(function () {
+                return this.nodeType === 1; 
+            }).empty();
+            var myclear = $("#"+divId).text();
+            // clean the textarea
+            $("#"+divId).find('textarea').val('');
+            $("#"+divId).html('<div class="row" ondrop="drop(event);" ondragover="allowDrop(event);"></div><div class="row" ondrop="drop(event);" ondragover="allowDrop(event);"></div><div class="row" ondrop="drop(event);" ondragover="allowDrop(event);"></div><div class="row" ondrop="drop(event);" ondragover="allowDrop(event);"></div><div class="row" ondrop="drop(event);" ondragover="allowDrop(event);"></div><textarea type="text" style="display:none" name="t_'+divId+'" id="ti_'+divId+'" placeholder="tp_'+divId+'"></textarea>');
+        }
+
+        /*
+        function saveDiv(divId, rowId) {
+            if ($("#"+rowId).length === 0) {
+                var mysave = $("#"+divId).text();
+                $("#"+divId).find('textarea').val(mysave);
+            } else {
+                //clearDiv(divId);
+            }
+        }
+        */
+
+        // final save for all the answer boxes
+        function save() {
+        	for (i = 1; i <= 10; i++) { 
+    			if ($("#r_answer_"+i).length === 0) {
+	                var mysave = $("#answer_"+i).text();
+	                $("#answer_"+i).find('textarea').val(mysave);
+                }
+			}
+        }
+
+        // method for debugging
+        function getValDiv(textareaId) {
+            var textarea_value = $("#"+textareaId).val();
+            if (textarea_value.length === 0) {
+                alert("Your answer box is empty!");
+            } else {
+                alert(textareaId+":"+textarea_value);
+            }
+        }
+
+        function results(url) {
+            nWindow = window.open(url,'name','height=800,width=1200');
+            if (window.focus) {
+            	nWindow.focus()
+            }
+            return false;
+        }
+
+        $(window).scroll(function(){
+        	//if ($(window).scrollTop() < 18300) {
+            if ($(window).scrollTop() < 15000) {
+            	$("#dragtarget").stop().animate({"marginTop": ($(window).scrollTop()) + "px"}, "slow");
+        	}
+        });
+    </script>
+
+</body>	
+</html>
