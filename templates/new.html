@@ -31,7 +31,7 @@
               {{ message }}
            </div>
         {%- endfor %}
-        <form class="form-signin" action = "{{ request.path }}" method = "post">
+        <form class="form-signin" action = "/new" method = "post">
          <h4>Personal Details</h4>
          <br>
          <div align="left">
@@ -71,8 +71,8 @@
          <br>
          <div align="left"> Have you ever developed an Android application? </div>
          <br>
-         <input type="checkbox" id="id_android" name="android_box" data-group-cls="btn-group-lg" class="form-control"/>
-         <textarea id="t_android" name="android" class="form-control" style="display:none;"></textarea>
+         <input type="checkbox" id="id_android" name="android_box" data-group-cls="btn-group-lg" class="form-control">
+         <textarea id="t_android" name="android" class="form-control" style="display:none;">false</textarea>
          <br>
          <br>
          <br>
@@ -92,11 +92,6 @@
           var data = $(this).is(':checked');
           $('#t_android').text(data);
         });
-
-        // select picker
-        //$(document).ready(function() {
-          //$('.selectpicker').selectpicker();
-        //});
 
         $("select.selectpicker").change(function(){
           var selected = $(".selectpicker option:selected").val();
