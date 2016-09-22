@@ -47,27 +47,19 @@ def favicon():
 def index():
    return render_template('index.html')
 
-# Add new user's (i.e. student) details to the database
 @app.route('/new', methods = ['GET', 'POST'])
 def new():
-	# to check the session's email
-	s_email = ""
-	if (request.method == 'POST') and ('email' not in session):
-		if (not request.form['email'] or not request.form['password'] or not request.form['password_2'] \
-				or not request.form['job'] or not request.form['code'] or not request.form['android']):
+	answ = ""
+	if (request.method == 'POST'):
+		if (not request.form['email'] or not request.form['password'] or not request.form['password_2'] or not request.form['job'] or not request.form['code'] or not request.form['android']):
 			flash('Please fill all the fields and selection boxes.', 'error')
-			return render_template('new.html')
 		elif (request.form['password'] != request.form['password_2']):
 			flash('Your passwords should be the same.', 'error')
-			return render_template('new.html')
 		else:
-			student = students(email = request.form['email'], password=request.form['password'], \
-						job=request.form['job'], code=request.form['code'], android=request.form['android'])
+			student = students(email = request.form['email'], password=request.form['password'], job=request.form['job'], code=request.form['code'], android=request.form['android'])
 			# check if the email already exists---unique user
-			if (not db.session.query(students).filter(students.email == student.email).count() == 0) \
-				 and ('email' not in session):
+			if (not db.session.query(students).filter(students.email == student.email).count() == 0):
 				flash('The email is already taken.', 'error')
-				return render_template('new.html')
 			else:
 				# check for valid email address
 				is_valid = email(student.email)
@@ -76,34 +68,31 @@ def new():
 					db.session.add(student)
 					db.session.commit()
 					session['email'] = student.email
-					session['logged_in'] = True
-					s_email = session['email'] 
 					#return redirect(url_for('show_all')) -> this is for debugging
+					session['logged_in'] = True
+					# create a new answer
+					answ = answers(students_email = session['email'], \
+						answer_1 = '', \
+						answer_2 = '',
+						answer_3 = '', \
+						answer_4 = '',
+						answer_5 = '', \
+						answer_6 = '',
+						answer_7 = '', \
+						answer_8 = '',
+						answer_9 = '', \
+						answer_10 = '')
+					db.session.add(answ)
+					db.session.commit()
+					# get answer with session's email
+					answ = answers.query.filter_by(students_email = session['email']).first()
+					return render_template(set_survey_type(get_rowid(session['email'])), answ = answ)
 				else:
 					flash('The email is not valid.', 'error')
-					return render_template('new.html')
-	elif (request.method == 'GET') and ('email' not in session):
-		return render_template('new.html')
-
-	# after login, get answers from the db
-	if ('email' in session) and (session['email'] == s_email):
-		# create a new answer
-		answ = answers(students_email = session['email'], \
-			answer_1 = '', \
-			answer_2 = '',
-			answer_3 = '', \
-			answer_4 = '',
-			answer_5 = '', \
-			answer_6 = '',
-			answer_7 = '', \
-			answer_8 = '',
-			answer_9 = '', \
-			answer_10 = '')
-		db.session.add(answ)
-		db.session.commit()
-		# get answer with session's email
-		answ = answers.query.filter_by(students_email = session['email']).first()
+	if ('email' in session):
 		return render_template(set_survey_type(get_rowid(session['email'])), answ = answ)
+	else:
+		return render_template('new.html')
 
 # Define a route for the action of the form, for example '/survey/'
 # We are also defining which type of requests this route is 
