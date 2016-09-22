@@ -18,6 +18,9 @@ import format_answer
 import random
 import re
 from datetime import datetime
+# obtain a connection to a database 
+from sqlalchemy import create_engine
+e = create_engine('sqlite:///students.sqlite3')
 
 global answ
 answ = {}
@@ -27,13 +30,13 @@ form_list = ['t_answer_1', 't_answer_2', 't_answer_3', 't_answer_4', 't_answer_5
 
 @app.route('/static/stylesheet.css')
 def serve_static_css(filename):
-    root_dir = os.path.dirname(os.getcwd())
-    return send_from_directory(os.path.join(root_dir, 'static', 'css'), filename)
+	root_dir = os.path.dirname(os.getcwd())
+	return send_from_directory(os.path.join(root_dir, 'static', 'css'), filename)
 
 @app.route('/static/script.js')
 def serve_static_js(filename):
-    root_dir = os.path.dirname(os.getcwd())
-    return send_from_directory(os.path.join(root_dir, 'static', 'js'), filename)
+	root_dir = os.path.dirname(os.getcwd())
+	return send_from_directory(os.path.join(root_dir, 'static', 'js'), filename)
 
 @app.route('/')
 def index():
@@ -42,19 +45,24 @@ def index():
 # Add new user's (i.e. student) details to the database
 @app.route('/new', methods = ['GET', 'POST'])
 def new():
-	if (request.method == 'POST'):
-		ticket = 0
-		if (not request.form['email'] or not request.form['password'] or not request.form['password_2'] or not request.form['job'] or not request.form['code'] or not request.form['android']):
+	# to check the session's email
+	s_email = ""
+	if (request.method == 'POST') and ('email' not in session):
+		if (not request.form['email'] or not request.form['password'] or not request.form['password_2'] \
+				or not request.form['job'] or not request.form['code'] or not request.form['android']):
 			flash('Please fill all the fields and selection boxes.', 'error')
+			return render_template('new.html')
 		elif (request.form['password'] != request.form['password_2']):
 			flash('Your passwords should be the same.', 'error')
+			return render_template('new.html')
 		else:
-			# create a random number (0-100) for the student
-			rnd = random.randrange(101)
-			student = students(email = request.form['email'], password=request.form['password'], job=request.form['job'], code=request.form['code'], android=request.form['android'], ticket=rnd)
+			student = students(email = request.form['email'], password=request.form['password'], \
+						job=request.form['job'], code=request.form['code'], android=request.form['android'])
 			# check if the email already exists---unique user
-			if (not db.session.query(students.id).filter(students.email == student.email).count() == 0):
+			if (not db.session.query(students).filter(students.email == student.email).count() == 0) \
+				 and ('email' not in session):
 				flash('The email is already taken.', 'error')
+				return render_template('new.html')
 			else:
 				# check for valid email address
 				is_valid = email(student.email)
@@ -63,66 +71,70 @@ def new():
 					db.session.add(student)
 					db.session.commit()
 					session['email'] = student.email
-					#return redirect(url_for('show_all')) -> this is for debugging
 					session['logged_in'] = True
-					# student's ticket for the different API pages
-					ticket = student.ticket
-					# create a new answer
-					answ = answers(students_email = session['email'], \
-						answer_1 = '', \
-						answer_2 = '',
-						answer_3 = '', \
-						answer_4 = '',
-						answer_5 = '', \
-						answer_6 = '',
-						answer_7 = '', \
-						answer_8 = '',
-						answer_9 = '', \
-						answer_10 = '')
-					db.session.add(answ)
-					db.session.commit()
-					# get answer with session's email
-					answ = answers.query.filter_by(students_email = session['email']).first()
-					return render_template(set_survey(session['email']), answ = answ)
+					s_email = session['email'] 
+					#return redirect(url_for('show_all')) -> this is for debugging
 				else:
 					flash('The email is not valid.', 'error')
-	return render_template('new.html')
+					return render_template('new.html')
+	elif (request.method == 'GET') and ('email' not in session):
+		return render_template('new.html')
+
+	# after login, get answers from the db
+	if ('email' in session) and (session['email'] == s_email):
+		# create a new answer
+		answ = answers(students_email = session['email'], \
+			answer_1 = '', \
+			answer_2 = '',
+			answer_3 = '', \
+			answer_4 = '',
+			answer_5 = '', \
+			answer_6 = '',
+			answer_7 = '', \
+			answer_8 = '',
+			answer_9 = '', \
+			answer_10 = '')
+		db.session.add(answ)
+		db.session.commit()
+		# get answer with session's email
+		answ = answers.query.filter_by(students_email = session['email']).first()
+		return render_template(set_survey_type(get_rowid(session['email'])), answ = answ)
 
 # Define a route for the action of the form, for example '/survey/'
 # We are also defining which type of requests this route is 
 # accepting: POST requests in this case
 @app.route('/survey/', methods=['POST'])
 def survey():
-    if ('email' in session):
-    	# list for the formated answers from the survey form
-    	formatted_answers = []
-    	# find answers of the user with the email in the session
-    	answ = answers.query.filter_by(students_email = session['email']).first()
-    	# format user's answer; request.form based on the name of the textarea
-    	for k, l in enumerate(form_list):
-    		# format user's answer; request.form based on the name of the textarea
-    		formatted_answer = format_answer.format_answer(request.form[form_list[k]])
-    		formatted_answers.append(formatted_answer)
-    	# add formatted answers to the db
-    	answ.answer_1 = formatted_answers[0]
-    	answ.answer_2 = formatted_answers[1]
-    	answ.answer_3 = formatted_answers[2]
-    	answ.answer_4 = formatted_answers[3]
-    	answ.answer_5 = formatted_answers[4]
-    	answ.answer_6 = formatted_answers[5]
-    	answ.answer_7 = formatted_answers[6]
-    	answ.answer_8 = formatted_answers[7]
-    	answ.answer_9 = formatted_answers[8]
-    	answ.answer_10 = formatted_answers[9]
-    	# commit all user's answers to the db
-    	db.session.commit()
-    	# get user's current aswers
-    	answ = answers.query.filter_by(students_email = session['email']).first()
-    	# check for empty answer boxes when format
-    	for d, f in enumerate(formatted_answers):
-    		if (formatted_answers[d] == ''):
-    			flash('Please fill answer box '+str(d+1)+'.', 'error')
-    return render_template(set_survey(session['email']), answ = answ)
+	if ('email' in session):
+		# list for the formated answers from the survey form
+		formatted_answers = []
+		# find answers of the user with the email in the session
+		answ = answers.query.filter_by(students_email = session['email']).first()
+		# format user's answer; request.form based on the name of the textarea
+		for k, l in enumerate(form_list):
+			# format user's answer; request.form based on the name of the textarea
+			formatted_answer = format_answer.format_answer(request.form[form_list[k]])
+			formatted_answers.append(formatted_answer)
+		# add formatted answers to the db
+		answ.answer_1 = formatted_answers[0]
+		answ.answer_2 = formatted_answers[1]
+		answ.answer_3 = formatted_answers[2]
+		answ.answer_4 = formatted_answers[3]
+		answ.answer_5 = formatted_answers[4]
+		answ.answer_6 = formatted_answers[5]
+		answ.answer_7 = formatted_answers[6]
+		answ.answer_8 = formatted_answers[7]
+		answ.answer_9 = formatted_answers[8]
+		answ.answer_10 = formatted_answers[9]
+		# commit all user's answers to the db
+		db.session.commit()
+		# get user's current aswers
+		answ = answers.query.filter_by(students_email = session['email']).first()
+		# check for empty answer boxes when format
+		for d, f in enumerate(formatted_answers):
+			if (formatted_answers[d] == ''):
+				flash('Please fill answer box '+str(d+1)+'.', 'error')
+	return render_template(set_survey_type(get_rowid(session['email'])), answ = answ)
 
 # show all users -> this method is for debugging
 @app.route('/show_all')
@@ -142,7 +154,7 @@ def login():
 		session['email'] = email
 		# get answers for the email in the session
 		answ = answers.query.filter_by(students_email = session['email']).first()
-		return render_template(set_survey(session['email']), answ = answ)
+		return render_template(set_survey_type(get_rowid(session['email'])), answ = answ)
 
 # compiler results
 @app.route('/survey/results.html')
@@ -189,56 +201,74 @@ def help():
 def api():
 	if ('email' in session):
 		page = ""
-		# get the number of the student's ticket
-		student = students.query.filter_by(email = session['email']).first()
-		ticket = student.ticket
-		# case for undocumented and unchecked exceptions (as-is)
-		if (int(float(ticket)) <= 30):
-			page = 'api-android.html'
-
-		# case for documented and unchecked exceptions (to-be)
-		elif (int(float(ticket)) > 30 and int(float(ticket)) <= 60):
-			page = 'api-explore.html'
+		rowid = 0
+		# find student's rowid for returning different API pages
+		rowid = get_rowid(session['email'])
 
 		# case for checked exceptions
-		elif (int(float(ticket)) > 60):
+		if (int(float(rowid)) % 3 == 0):
 			page = 'api-explore-doc.html'
+		# case for documented and unchecked exceptions (to-be)
+		elif (int(float(rowid)) % 2 == 0):
+			page = 'api-explore.html'
+		# case for undocumented and unchecked exceptions (as-is)
+		else:
+			page = 'api-android.html'
 
-		now = datetime.utcnow()
-		t = timestamps(email=session['email'], page = page, timestamp = now)
-		db.session.add(t)
-		db.session.commit()
+		# store timestamp of the visited page to the db
+		set_timestamp(session['email'], page)
+
 		return render_template(page)
 
 # AS-IS Android documentation (undocumented and unchecked exceptions)
 @app.route('/api-android/', defaults={'path': ''})
 @app.route('/<path:path>')
 def api_android(path):
-    return render_template(path)
+	if ('email' in session):
+		set_timestamp(session['email'], path)
+	return render_template(path)
 
 # TO-BE Android documentation (documented and unchecked exceptions)
 @app.route('/api-explore/', defaults={'path': ''})
 @app.route('/<path:path>')
 def api_explore(path):
-    return render_template(path)
+	if ('email' in session):
+		set_timestamp(session['email'], path)
+	return render_template(path)
 
 # TO-BE Android documentation (checked exceptions)
 @app.route('/api-explore-doc/', defaults={'path': ''})
 @app.route('/<path:path>')
 def api_explore_doc(path):
-    return render_template(path)
+	if ('email' in session):
+		set_timestamp(session['email'], path)
+	return render_template(path)
 
-# find user's ticket and survey case
-def set_survey(st_email):
-    page = ''
-    student = students.query.filter_by(email = st_email).first()
-    ticket = student.ticket
-    if (int(float(ticket)) > 60):
-    	page = 'form_submit_ct.html'
-    	return page # page with checked exceptions
-    else:
-    	page = 'form_submit_rt.html'
-    	return page # page with unchecked exceptions
+# get student's rowid for setting survey type
+# (box with different exceptions and API documentation per case)
+def get_rowid(st_email):
+	rowid = 0
+	for row in e.execute('SELECT rowid FROM students WHERE email=?', st_email):
+		rowid = row[0]
+	return rowid
+
+# set survey type (for the exceptions' box---main survey page)
+def set_survey_type(rowid):
+	page = ''
+	# case for checked exceptions
+	if (int(float(rowid)) % 3 == 0):
+		page = 'form_submit_ct.html'
+		return page # page with checked exceptions
+	else:
+		page = 'form_submit_rt.html'
+		return page # page with unchecked exceptions
+
+# store timestamp to the db
+def set_timestamp(session_email, visited_page):
+	now = datetime.utcnow()
+	t = timestamps(email = session_email, page = visited_page, timestamp = now)
+	db.session.add(t)
+	db.session.commit()
 
 if __name__ == '__main__':
    db.create_all()
