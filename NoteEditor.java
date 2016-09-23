@@ -18,33 +18,20 @@ package com.example.android.notepad;
 
 import org.xmlpull.v1.XmlPullParserException;
 
-import android.app.Activity;
-import android.content.ClipData;
-import android.content.ClipboardManager;
-import android.content.ComponentName;
-import android.content.ContentResolver;
-import android.content.ContentValues;
-import android.content.Context;
-import android.content.Intent;
+import android.app.*;
+import android.content.*;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.content.res.Resources.NotFoundException;
 import android.content.res.XmlResourceParser;
-import android.database.Cursor;
-import android.database.CursorIndexOutOfBoundsException;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.net.Uri;
+import android.database.*;
+import android.graphics.*;
+import android.net.*;
 import android.os.Bundle;
-import android.util.AttributeSet;
-import android.util.Log;
-import android.view.InflateException;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.widget.EditText;
+import android.security.*;
+import android.util.*;
+import android.view.*;
+import android.widget.*;
 import java.io.IOException;
 
 /**
@@ -329,9 +316,8 @@ public class NoteEditor extends Activity {
             // Gets the note text from the Cursor and puts it in the TextView, but doesn't change
             // the text cursor's position.
             int colNoteIndex = mCursor.getColumnIndex(NotePad.Notes.COLUMN_NAME_NOTE);
-            String note = "";
 
-            $answer_6
+            String note = mCursor.getString(colNoteIndex);
             
             mText.setTextKeepState(note);
 
@@ -529,7 +515,7 @@ public class NoteEditor extends Activity {
             // as the MIME type supported by the Note pad provider.
             if (uri != null && NotePad.Notes.CONTENT_ITEM_TYPE.equals(getContentResolver().getType(uri))) {
 
-                $answer_7
+                $answer_6
 
                 // If the Cursor is not null, and it contains at least one record
                 // (moveToFirst() returns true), then this gets the note data from it.
@@ -612,9 +598,15 @@ public class NoteEditor extends Activity {
          * local database, the block will be momentary, but in a real app you should use
          * android.content.AsyncQueryHandler or android.os.AsyncTask.
          */
-        $answer_8
-
-
+        getContentResolver().update(mUri, // The URI for the record to
+                                                // update.
+                    values, // The map of column names and new values to apply
+                            // to them.
+                    null, // No selection criteria are used, so no where columns
+                            // are necessary.
+                    null // No where columns are used, so no where arguments are
+                            // necessary.
+                    );
     }
 
     /**
@@ -649,13 +641,13 @@ public class NoteEditor extends Activity {
             
             // XXX: Delete a note
     
-            $answer_9
+            getContentResolver().delete(mUri, null, null);
 
             char[] chAr = { ' ' };
 
             // XXX: Set nothing to note text
             
-            $answer_10
+            $answer_7
         }
     }
 }

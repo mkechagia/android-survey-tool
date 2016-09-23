@@ -35,9 +35,6 @@ class answers(db.Model):
    answer_5 = db.Column(db.String(1000))
    answer_6 = db.Column(db.String(1000))
    answer_7 = db.Column(db.String(1000))
-   answer_8 = db.Column(db.String(1000))
-   answer_9 = db.Column(db.String(1000))
-   answer_10 = db.Column(db.String(1000))
    students = relationship("students", back_populates="answers")
 
    def __repr__(self):

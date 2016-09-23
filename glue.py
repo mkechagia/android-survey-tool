@@ -6,15 +6,15 @@ from string import Template
 
 # initialize the dictionary such as {fake method: real method}
 method_dict = {'deleteRecord' : 'delete', \
-		'editText' : 'setText', \
-		'insertData' : 'insert', \
-		'setLayout' : 'setContentView', \
-		'findViewId' : 'findViewById', \
-		'changeTextColor' : 'setTextColor', \
+		'editText' : 'setText_new', \
+		'insertData' : 'insert_new', \
+		'setLayout' : 'setContentView_new', \
+		'findViewId' : 'findViewById_new', \
+		'changeTextColor' : 'setTextColor_new', \
 		'getCursorString' : 'getString', \
-		'queryData' : 'query', \
+		'queryData' : 'query_new', \
 		'updateRecord' : 'update', \
-		'drawTxt' : 'drawText'}
+		'drawTxt' : 'drawText_new'}
 
 # answer_block is a dict of user's answers,
 # i.e. answer_block = {'answer_1' : fake_answer}

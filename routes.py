@@ -26,7 +26,7 @@ global answ
 answ = {}
 global form_list
 form_list = ['t_answer_1', 't_answer_2', 't_answer_3', 't_answer_4', 't_answer_5', 't_answer_6', \
-				't_answer_7', 't_answer_8', 't_answer_9', 't_answer_10']
+				't_answer_7']
 
 @app.route('/static/stylesheet.css')
 def serve_static_css(filename):
@@ -73,15 +73,12 @@ def new():
 					# create a new answer
 					answ = answers(students_email = session['email'], \
 						answer_1 = '', \
-						answer_2 = '',
+						answer_2 = '', \
 						answer_3 = '', \
-						answer_4 = '',
+						answer_4 = '', \
 						answer_5 = '', \
-						answer_6 = '',
-						answer_7 = '', \
-						answer_8 = '',
-						answer_9 = '', \
-						answer_10 = '')
+						answer_6 = '', \
+						answer_7 = '')
 					db.session.add(answ)
 					db.session.commit()
 					# get answer with session's email
@@ -117,9 +114,6 @@ def survey():
 		answ.answer_5 = formatted_answers[4]
 		answ.answer_6 = formatted_answers[5]
 		answ.answer_7 = formatted_answers[6]
-		answ.answer_8 = formatted_answers[7]
-		answ.answer_9 = formatted_answers[8]
-		answ.answer_10 = formatted_answers[9]
 		# commit all user's answers to the db
 		db.session.commit()
 		# get user's current aswers
@@ -159,8 +153,7 @@ def results():
 		answ = {'answer_1' : answer.answer_1, 'answer_2' : answer.answer_2, \
 				'answer_3' : answer.answer_3, 'answer_4' : answer.answer_4, \
 				'answer_5' : answer.answer_5, 'answer_6' : answer.answer_6, \
-				'answer_7' : answer.answer_7, 'answer_8' : answer.answer_8, \
-				'answer_9' : answer.answer_9, 'answer_10' : answer.answer_10}
+				'answer_7' : answer.answer_7}
 		filename = 'NoteEditor.java'
 		java_file_complete = glue_answer(filename, answ)
 		file_path = 'NotePad/src/com/example/android/notepad'
