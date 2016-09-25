@@ -137,7 +137,7 @@ input {
     background-color: #9EDAD2;
     border-radius: 5px;
     border: none;
-    position: absolute;
+    /*position: absolute;*/
     top: auto;
 }
 
@@ -172,28 +172,29 @@ input {
     font-size:14px;
 }
 
-.row{
+.row {
     width: 600px;
     height: 25px;
     display: block;
     margin: 0 auto;
 }
 
-.row1{
+.row1 {
     width: 600px;
     height: 150px;
     display: block;
     margin: 0 auto;
 }
 
-.rowp{
+.rowp {
 	width: 585px;
     height: 135px;
     display: block;
     margin: 0 auto;
 }
 
-.styled-button {
+.styled-div {
+    float:left;
     background: #eee;
     background: -moz-linear-gradient(top,#eee 0%,#eee 100%);
     background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#eee),color-stop(100%,#eee));
@@ -204,33 +205,15 @@ input {
     filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#eee',endColorstr='#eee',GradientType=0);
     padding:5px 5px;
     color: #777;
-    font-family:'Courier New', monospace;
-    font-size:13px;
-    border-radius:4px;
-    -moz-border-radius:4px;
-    -webkit-border-radius:4px;
-    border:1px solid #1A87B9;
-    width: auto;
-    height:auto;
-}
-
-.styled-button-2 {
-    background: #eee;
-    background: -moz-linear-gradient(top,#eee 0%,#eee 100%);
-    background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#eee),color-stop(100%,#eee));
-    background: -webkit-linear-gradient(top,#eee 0%,#eee 100%);
-    background: -o-linear-gradient(top,#eee 0%,#eee 100%);
-    background: -ms-linear-gradient(top,#eee 0%,#eee 100%);
-    background: linear-gradient(top,#eee 0%,#eee 100%);
-    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#eee',endColorstr='#eee',GradientType=0);
-    padding:5px 5px;
-    color: #777;
-    font-family:'Arial', sans-serif;
+    font-family:'Courier New', sans-serif;
     font-size:12px;
     border-radius:4px;
     -moz-border-radius:4px;
     -webkit-border-radius:4px;
-    border:1px solid #1A87B9
+    border:1px solid #1A87B9;
+    cursor: default;
+    width: auto;
+    height:auto;
 }
 
 .styled-button-3 {
@@ -241,52 +224,12 @@ input {
     width: auto;
 }
 
-.col-md-4{
-    width: 33.333%;
-}
-
-.tooltip {
-    position: relative;
-    display: inline-block;
-}
-
-.tooltip .tooltiptext {
-    visibility: hidden;
-    width: 200px;
-    background-color: #eee;
-    color: #777;
-    text-align: left;
-    border-radius: 6px;
-    padding: 5px 0;
-    font-family:'Arial', sans-serif;
-    font-size:12px;
-    border: 1px solid #aaaaaa;
-    border-radius: 4px;
-    
-    /* Position the tooltip */
-    position: absolute;
-    z-index: 1;
-    top: -5px;
-    left: 105%;
-}
-
-.tooltip:hover .tooltiptext {
-    visibility: visible;
-}
-
-.styled-code {
-    display: block;
-    font-family: monospace;
-    white-space: pre;
-    margin: 1em 0;
-}
-
 /*! Color themes for Google Code Prettify | MIT License | github.com/jmblog/color-themes-for-google-code-prettify */
 .prettyprint{background:#fff;font-family:Menlo,Bitstream Vera Sans Mono,DejaVu Sans Mono,Monaco,Consolas,monospace;border:0!important}.pln{color:#4d4d4c}ol.linenums{margin-top:0;margin-bottom:0;color:#8e908c}li.L0,li.L1,li.L2,li.L3,li.L4,li.L5,li.L6,li.L7,li.L8,li.L9{padding-left:1em;background-color:#fff;list-style-type:decimal}@media screen{.str{color:#718c00}.kwd{color:#8959a8}.com{color:#8e908c}.typ{color:#4271ae}.lit{color:#f5871f}.pun{color:#4d4d4c}.opn{color:#4d4d4c}.clo{color:#4d4d4c}.tag{color:#c82829}.atn{color:#f5871f}.atv{color:#3e999f}.dec{color:#f5871f}.var{color:#c82829}.fun{color:#4271ae}}
 
 a:link, a:visited { 
     color: #1966DB;
-    cursor: auto;
+    cursor: pointer;
     text-decoration:none;
 }
 
@@ -340,45 +283,45 @@ a:link, a:visited {
             <a href="{{ url_for('api') }}">API reference documentation</a>.</p>
 
             <div class="wrapper">
-            
-            <div class= "dragtarget" id="dragtarget">          
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="{">{</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="}">}</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id=";">;</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="(">(</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id=")">)</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="=">=</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id=".">.</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id=":">:</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="0">&nbsp;0&nbsp;</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="aExc"> aExc</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="canvas">canvas</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="catch">catch</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="changeTextColor">changeTextColor(colors)</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="drawTxt(tmp,0,9,20,30,paint)">drawTxt(tmp,0,9,20,30,paint)</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="editText(chAr, 0, 1)">editText(chAr,0,1)</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="(EditText)findViewId(R.id.note)">(EditText)findViewId(R.id.note)</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="Exception">Exception</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="getContentResolver()">getContentResolver()</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="if">if&nbsp;</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="InsufficientMemoryForResourceException" name="InsufficientMemoryForResourceException">InsufficientMemoryForResourceException</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="InvalidArrayIndexException" name="InvalidArrayIndexException">InvalidArrayIndexException</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="InvalidUriException" name="InvalidUriIndexException">InvalidUriException</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="insertData(intent.getData(),null)">insertData(intent.getData(),null)</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="MissingResourceException">MissingResourceException</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="mText">mText</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="mUri">mUri</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="new">new</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="null">null</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="NullResourceException">NullResourceException</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="orig">orig</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="printStackTrace()" name="printStackTrace()">printStackTrace()</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="query">queryData(uri,PROJECTION,null,null,null)</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="RuntimeException">RuntimeException</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="setLayout(R.layout.editor)">setLayout(R.layout.note_editor)</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="throw">throw&nbsp;</button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="try">try </button>
-            <button class="styled-button" ondragstart="dragStart(event);" draggable="true" id="UnauthorizedAccessException">UnauthorizedAccessException</button>
+
+            <div class= "dragtarget" id="dragtarget">
+            <div class="styled-div" ondragstart="drag(event);" draggable="true" id="{">{</div>        
+            <div class="styled-div" ondragstart="drag(event);" draggable="true" id="}">}</div>
+            <div class="styled-div" ondragstart="drag(event);" draggable="true" id=";">;</div>
+            <div class="styled-div" ondragstart="drag(event);" draggable="true" id="(">(</div>
+            <div class="styled-div" ondragstart="drag(event);" draggable="true" id=")">)</div>
+            <div class="styled-div" ondragstart="drag(event);" draggable="true" id="=">=</div>
+            <div class="styled-div" ondragstart="drag(event);" draggable="true" id=".">.</div>
+            <div class="styled-div" ondragstart="drag(event);" draggable="true" id=":">:</div>
+            <div class="styled-div" ondragstart="drag(event);" draggable="true" id="0">&nbsp;0&nbsp;</div>
+            <div class="styled-div" ondragstart="drag(event);" draggable="true" id="aExc"> aExc</div>
+            <div class="styled-div" ondragstart="drag(event);" draggable="true" id="canvas">canvas</div>
+            <div class="styled-div" ondragstart="drag(event);" draggable="true" id="catch">catch</div>
+            <div class="styled-div" ondragstart="drag(event);" draggable="true" id="changeTextColor">changeTextColor(colors)</div>
+            <div class="styled-div" ondragstart="drag(event);" draggable="true" id="drawTxt(tmp,0,9,20,30,paint)">drawTxt(tmp,0,9,20,30,paint)</div>
+            <div class="styled-div" ondragstart="drag(event);" draggable="true" id="editText(chAr, 0, 1)">editText(chAr,0,1)</div>
+            <div class="styled-div" ondragstart="drag(event);" draggable="true" id="(EditText)findViewId(R.id.note)">(EditText)findViewId(R.id.note)</div>
+            <div class="styled-div" ondragstart="drag(event);" draggable="true" id="Exception">Exception</div>
+            <div class="styled-div" ondragstart="drag(event);" draggable="true" id="getContentResolver()">getContentResolver()</div>
+            <div class="styled-div" ondragstart="drag(event);" draggable="true" id="if">if&nbsp;</div>
+            <div class="styled-div" ondragstart="drag(event);" draggable="true" id="InsufficientMemoryForResourceException" name="InsufficientMemoryForResourceException">InsufficientMemoryForResourceException</div>
+            <div class="styled-div" ondragstart="drag(event);" draggable="true" id="InvalidArrayIndexException" name="InvalidArrayIndexException">InvalidArrayIndexException</div>
+            <div class="styled-div" ondragstart="drag(event);" draggable="true" id="InvalidUriException" name="InvalidUriIndexException">InvalidUriException</div>
+            <div class="styled-div" ondragstart="drag(event);" draggable="true" id="insertData(intent.getData(),null)">insertData(intent.getData(),null)</div>
+            <div class="styled-div" ondragstart="drag(event);" draggable="true" id="MissingResourceException">MissingResourceException</div>
+            <div class="styled-div" ondragstart="drag(event);" draggable="true" id="mText">mText</div>
+            <div class="styled-div" ondragstart="drag(event);" draggable="true" id="mUri">mUri</div>
+            <div class="styled-div" ondragstart="drag(event);" draggable="true" id="new">new</div>
+            <div class="styled-div" ondragstart="drag(event);" draggable="true" id="null">null</div>
+            <div class="styled-div" ondragstart="drag(event);" draggable="true" id="NullResourceException">NullResourceException</div>
+            <div class="styled-div" ondragstart="drag(event);" draggable="true" id="orig">orig</div>
+            <div class="styled-div" ondragstart="drag(event);" draggable="true" id="printStackTrace()" name="printStackTrace()">printStackTrace()</div>
+            <div class="styled-div" ondragstart="drag(event);" draggable="true" id="query">queryData(uri,PROJECTION,null,null,null)</div>
+            <div class="styled-div" ondragstart="drag(event);" draggable="true" id="RuntimeException">RuntimeException</div>
+            <div class="styled-div" ondragstart="drag(event);" draggable="true" id="setLayout(R.layout.editor)">setLayout(R.layout.note_editor)</div>
+            <div class="styled-div" ondragstart="drag(event);" draggable="true" id="throw">throw&nbsp;</div>
+            <div class="styled-div" ondragstart="drag(event);" draggable="true" id="try">try </div>
+            <div class="styled-div" ondragstart="drag(event);" draggable="true" id="UnauthorizedAccessException">UnauthorizedAccessException</div>
             </div>
 
             <div class="form-code">
@@ -874,7 +817,7 @@ public class NoteEditor extends Activity {
              */
             </pre></code>
             <div>Answer Box 7:</div>
-            <div id="answer_7" class="droptarget" ondrop="myFunction(event)" ondragover="allowDrop(event)">
+            <div id="answer_7" class="droptarget">
                 <div class="row1" id="r_answer_7"><pre class="rowp">{{answ.answer_7}}</pre></div>
                 <textarea type="text" style="display:none" name="t_answer_7" id="ti_answer_7" placeholder="tp_answer_7">{{answ.answer_7}}</textarea>
             </div>
@@ -917,25 +860,25 @@ public class NoteEditor extends Activity {
 	</div> <!-- end of survey -->
 
     <script type="text/javascript">
-        function dragStart(event) {
-            event.dataTransfer.setData("Text", event.target.id);
-        }
+    	function drag(ev) {
+    		ev.dataTransfer.setData("text", ev.target.id);
+		}
 
-        function allowDrop(event) {
-            event.preventDefault();
-        }
+    	function allowDrop(ev) {
+    		ev.preventDefault();
+		}
 
-        function drop(event) {
-            event.preventDefault();
-            var data = event.dataTransfer.getData("Text");
-            var elmnt = document.getElementById(data).firstChild;
-            var cln = elmnt.cloneNode(true); 
-            var para = document.createElement("div")
-            para.setAttribute('class', 'styled-button-3');
+		function drop(ev) {
+		    ev.preventDefault();
+		    var data = ev.dataTransfer.getData("text");
+		    var elmnt = document.getElementById(data).firstChild;
+		    var cln = elmnt.cloneNode(true);
+		    var para = document.createElement("div")
+		    para.setAttribute('class', 'styled-button-3');
             para.setAttribute('id', elmnt);
             para.appendChild(cln);
-            event.target.appendChild(para);
-        }
+            ev.target.appendChild(para);
+		}
 
         // event propagation for dynamically added elements
         $(document).ready ( function () {

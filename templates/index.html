@@ -4,52 +4,33 @@
 <head>
     <title>Android Programming Survey</title>
  
- 
-    <!--<link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">-->
- 
     <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
-
-    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
     <style>
         .btn {
             background-color: #7ABF58;
         }
-
-       /*
-        .jumbotron {
-            background-color: #9EDAD2;
-        }
-
-        .color-title {
-            color:#0B5345;
-        }
-        */
     </style>
  
 </head>
- 
+
 <body>
- 
+
     <div class="container">
         <div class="header">
             <nav>
                 <ul class="nav pull-right">
                     <li role="presentation">
-                        <form action="/login" method="POST">
-                            <span class="nav nav-pills pull-right">
+                        <form action="/login" method="POST" class="form-inline">
                                 <span class="add-on"><i class="icon-envelope"></i></span>
-                                <input class="span2" type="email" name="email" placeholder="email"/>
+                                <input class="input-large" type="email" name="email" placeholder="email"/>
                                 <span class="add-on"><i class="icon-key"></i></span>
-                                <input class="span2" type="password" name="password" placeholder="password"/>
-                                <!--<input type="submit" value="Log-in"/>-->
+                                <input class="input-large" type="password" name="password" placeholder="password"/>
                                 <button type="submit" class="btn btn-success">
                                     <i class="icon-circle-arrow-right icon-medium"></i> Log-in
                                 </button>
-                            </span>
                             {%- for category, message in get_flashed_messages(with_categories = true) %}
                                 <div class = "alert alert-danger">
                                     {{ message }}
