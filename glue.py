@@ -1,11 +1,16 @@
 import re
+import copy
 
 from collections import defaultdict
-
 from string import Template
 
-# initialize the dictionary such as {fake method: real method}
-method_dict = {'deleteRecord' : 'delete', \
+# dictionary for both methods 
+# with checked and unchecked exceptions
+global method_dict
+method_dict = {}
+
+# initialize the dictionary for the methods with checked exceptions such as {fake method: real method}
+method_dict_checked = {'deleteRecord' : 'delete', \
 		'editText' : 'setText_new', \
 		'insertData' : 'insert_new', \
 		'setLayout' : 'setContentView_new', \
@@ -16,12 +21,28 @@ method_dict = {'deleteRecord' : 'delete', \
 		'updateRecord' : 'update', \
 		'drawTxt' : 'drawText_new'}
 
+# initialize the dictionary for the methods with unchecked exceptions such as {fake method: real method}
+method_dict_unchecked = {'deleteRecord' : 'delete', \
+		'editText' : 'setText', \
+		'insertData' : 'insert', \
+		'setLayout' : 'setContentView', \
+		'findViewId' : 'findViewById', \
+		'changeTextColor' : 'setTextColor', \
+		'getCursorString' : 'getString', \
+		'queryData' : 'query', \
+		'updateRecord' : 'update', \
+		'drawTxt' : 'drawText'}
+
 # answer_block is a dict of user's answers,
 # i.e. answer_block = {'answer_1' : fake_answer}
-def glue_answer(filepath, answers):
-	#open the file
+# survey type refers to the different surveys 
+# (methods with checked exceptions Vs. methods with unchecked exceptions--documented and undocumented)
+def glue_answer(filepath, answers, survey_type):
+	# fill the dictionary for the survey with the appropriate methods
+	set_dict(survey_type)
+	# open the file
 	filein = open(filepath)
-	#read it
+	# read it
 	src = Template(filein.read())
 	# dictionary for answers with real Android's API methods
 	real_answers = bind_method(answers)
@@ -65,5 +86,13 @@ def replace_methods(compiler_output):
 	if re.search("\bsetTextColor\b\(\bcolors\b\)", compiler_output):
 		compiler_output = re.sub("\bsetTextColor\b\(\bcolors\b\)", "changeTextColor(colors)", replace_output)
 	return compiler_output
+
+# handle the dictionaries
+def set_dict(survey_type):
+	method_dict = {}
+	if (survey_type == 1):
+		method_dict = copy.deepcopy(method_dict_checked)
+	elif (survey_type == 2):
+		method_dict = copy.deepcopy(method_dict_unchecked)
 
 # vim: tabstop=8 noexpandtab shiftwidth=8 softtabstop=0

@@ -27,6 +27,8 @@ answ = {}
 global form_list
 form_list = ['t_answer_1', 't_answer_2', 't_answer_3', 't_answer_4', 't_answer_5', 't_answer_6', \
 				't_answer_7']
+global srv_type
+srv_type = 0
 
 @app.route('/static/stylesheet.css')
 def serve_static_css(filename):
@@ -155,7 +157,7 @@ def results():
 				'answer_5' : answer.answer_5, 'answer_6' : answer.answer_6, \
 				'answer_7' : answer.answer_7}
 		filename = 'NoteEditor.java'
-		java_file_complete = glue_answer(filename, answ)
+		java_file_complete = glue_answer(filename, answ, srv_type)
 		file_path = 'NotePad/src/com/example/android/notepad'
 		with open("%s/%s" % (file_path, filename), 'w') as f:
 			f.write("%s" % java_file_complete)
@@ -241,12 +243,15 @@ def get_rowid(st_email):
 
 # set survey type (for the exceptions' box---main survey page)
 def set_survey_type(rowid):
+	srv_type = 0
 	page = ''
 	# case for checked exceptions
 	if (int(float(rowid)) % 3 == 0):
+		srv_type = 1 # survey for methods with checked exceptions
 		page = 'form_submit_ct.html'
 		return page # page with checked exceptions
 	else:
+		srv_type = 2 # survey for methods with unchecked exceptions
 		page = 'form_submit_rt.html'
 		return page # page with unchecked exceptions
 
