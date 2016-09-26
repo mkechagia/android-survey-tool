@@ -47,7 +47,7 @@ def glue_answer(filepath, answers):
 # answers is a dict, i.e. answers = {'answer_1' : fake_answer}
 # This function returns a dict of answers with real Android's
 # API methods, i.e. real_answers = {'answer_1' : real_answer}
-def bind_method(answers, method_dict):
+def bind_method(answers):
 	real_answers = {}
 	a_keys = list(answers.keys())
 	m_keys = list(method_dict.keys())
