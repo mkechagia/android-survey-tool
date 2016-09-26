@@ -156,7 +156,7 @@ def results():
 				'answer_5' : answer.answer_5, 'answer_6' : answer.answer_6, \
 				'answer_7' : answer.answer_7}
 		filename = 'NoteEditor.java'
-		java_file_complete = glue_answer(filename, answ, answer.survey_type)
+		java_file_complete = glue_answer(filename, answ)
 		file_path = 'NotePad/src/com/example/android/notepad'
 		with open("%s/%s" % (file_path, filename), 'w') as f:
 			f.write("%s" % java_file_complete)
@@ -168,7 +168,7 @@ def results():
 				p.kill()
 				outs, errs = p.communicate()
 			# Substitute references to real methods with fake methods
-			compile_out = replace_methods(outs, answer.survey_type)
+			compile_out = replace_methods(outs)
 			# Format newlines for basic html appearance
 			compile_out = compile_out.replace('\n', '<br />')
 			return render_template('results.html', answ=compile_out)
