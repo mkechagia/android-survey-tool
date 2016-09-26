@@ -28,6 +28,7 @@ class answers(db.Model):
    __tablename__ = 'answers'
    id = Column(Integer, primary_key=True)
    students_email = Column(Integer, ForeignKey('students.email'))
+   survey_type = db.Column(db.String(1000))
    answer_1 = db.Column(db.String(1000))
    answer_2 = db.Column(db.String(1000))
    answer_3 = db.Column(db.String(1000))
