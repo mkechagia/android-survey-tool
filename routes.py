@@ -70,9 +70,8 @@ def new():
 					session['email'] = student.email
 					#return redirect(url_for('show_all')) -> this is for debugging
 					session['logged_in'] = True
-					srv_type = get_survey_type(session['email'])
 					# create a new answer
-					answ = answers(students_email = session['email'], survey_type = srv_type, \
+					answ = answers(students_email = session['email'], \
 						answer_1 = '', \
 						answer_2 = '', \
 						answer_3 = '', \
@@ -239,23 +238,6 @@ def get_rowid(st_email):
 	for row in e.execute('SELECT rowid FROM students WHERE email=?', st_email):
 		rowid = row[0]
 	return rowid
-
-# get the type of the survey to properly check user's answers
-def get_survey_type(st_email):
-	srv_type = ''
-	rowid = get_rowid(st_email)
-	
-	# case for checked exceptions
-	if (int(float(rowid)) % 3 == 0):
-		srv_type = 'checked'
-	# case for documented and unchecked exceptions (to-be)
-	elif (int(float(rowid)) % 2 == 0):
-		srv_type = 'doc-unchecked'
-	# case for undocumented and unchecked exceptions (as-is)
-	else:
-		srv_type = 'undoc-unchecked'
-
-	return srv_type
 
 # set survey type (for the exceptions' box---main survey page)
 def set_survey_type(rowid):

@@ -4,6 +4,8 @@ import copy
 from collections import defaultdict
 from string import Template
 
+global method_dict
+
 # initialize the dictionary for the methods with checked exceptions such as {fake method: real method}
 method_dict = {'deleteRecord' : 'delete', \
 		'editText' : 'setText_new', \
@@ -80,7 +82,6 @@ def replace_methods(compiler_output):
 		compiler_output = re.sub("\bsetTextColor\b\(\bcolors\b\)", "changeTextColor(colors)", replace_output)
 	return compiler_output
 
-# handle the dictionaries
 '''
 def set_dict(survey_type):
 	method_dict = {}
