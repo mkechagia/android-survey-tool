@@ -4,11 +4,6 @@ import copy
 from collections import defaultdict
 from string import Template
 
-# dictionary for both methods 
-# with checked and unchecked exceptions
-global method_dict
-method_dict = {}
-
 # initialize the dictionary for the methods with checked exceptions such as {fake method: real method}
 method_dict_checked = {'deleteRecord' : 'delete', \
 		'editText' : 'setText_new', \
@@ -39,13 +34,13 @@ method_dict_unchecked = {'deleteRecord' : 'delete', \
 # (methods with checked exceptions Vs. methods with unchecked exceptions--documented and undocumented)
 def glue_answer(filepath, answers, survey_type):
 	# fill the dictionary for the survey with the appropriate methods
-	set_dict(survey_type)
+	method_dict = set_dict(survey_type)
 	# open the file
 	filein = open(filepath)
 	# read it
 	src = Template(filein.read())
 	# dictionary for answers with real Android's API methods
-	real_answers = bind_method(answers)
+	real_answers = bind_method(answers, method_dict)
 	#do the substitution
 	result = src.substitute(real_answers)
 	return result
@@ -54,7 +49,7 @@ def glue_answer(filepath, answers, survey_type):
 # answers is a dict, i.e. answers = {'answer_1' : fake_answer}
 # This function returns a dict of answers with real Android's
 # API methods, i.e. real_answers = {'answer_1' : real_answer}
-def bind_method(answers):
+def bind_method(answers, method_dict):
 	real_answers = {}
 	a_keys = list(answers.keys())
 	m_keys = list(method_dict.keys())
@@ -67,7 +62,7 @@ def bind_method(answers):
 			# search for fake method in the answer
 			fake = m_keys[m]
 			if (re.search(fake, an)):
-				print ("find fake :" + fake)
+				#print ("find fake :" + fake)
 				# get real method
 				real = method_dict.get(fake)
 				if (a_keys[k] not in list(real_answers.keys())):
@@ -79,7 +74,8 @@ def bind_method(answers):
 			real_answers[a_keys[d]] = answers.get(a_keys[d])
 	return real_answers
 
-def replace_methods(compiler_output):
+def replace_methods(compiler_output, survey_type):
+	method_dict = set_dict(survey_type)
 	for fake, real in method_dict.items():
 		#compiler_output = compiler_output.replace(fake, real)
 		compiler_output = re.sub(real, fake, compiler_output)
@@ -90,9 +86,10 @@ def replace_methods(compiler_output):
 # handle the dictionaries
 def set_dict(survey_type):
 	method_dict = {}
-	if (survey_type == 1):
-		method_dict = copy.deepcopy(method_dict_checked)
-	elif (survey_type == 2):
+	if (re.search('unchecked', survey_type)):
 		method_dict = copy.deepcopy(method_dict_unchecked)
+	else:
+		method_dict = copy.deepcopy(method_dict_checked)
+	return method_dict
 
 # vim: tabstop=8 noexpandtab shiftwidth=8 softtabstop=0

@@ -27,8 +27,6 @@ answ = {}
 global form_list
 form_list = ['t_answer_1', 't_answer_2', 't_answer_3', 't_answer_4', 't_answer_5', 't_answer_6', \
 				't_answer_7']
-global srv_type
-srv_type = 0
 
 @app.route('/static/stylesheet.css')
 def serve_static_css(filename):
@@ -72,8 +70,9 @@ def new():
 					session['email'] = student.email
 					#return redirect(url_for('show_all')) -> this is for debugging
 					session['logged_in'] = True
+					srv_type = get_survey_type(session['email'])
 					# create a new answer
-					answ = answers(students_email = session['email'], \
+					answ = answers(students_email = session['email'], survey_type = srv_type, \
 						answer_1 = '', \
 						answer_2 = '', \
 						answer_3 = '', \
@@ -157,7 +156,7 @@ def results():
 				'answer_5' : answer.answer_5, 'answer_6' : answer.answer_6, \
 				'answer_7' : answer.answer_7}
 		filename = 'NoteEditor.java'
-		java_file_complete = glue_answer(filename, answ, srv_type)
+		java_file_complete = glue_answer(filename, answ, answer.survey_type)
 		file_path = 'NotePad/src/com/example/android/notepad'
 		with open("%s/%s" % (file_path, filename), 'w') as f:
 			f.write("%s" % java_file_complete)
@@ -169,7 +168,7 @@ def results():
 				p.kill()
 				outs, errs = p.communicate()
 			# Substitute references to real methods with fake methods
-			compile_out = replace_methods(outs)
+			compile_out = replace_methods(outs, answer.survey_type)
 			# Format newlines for basic html appearance
 			compile_out = compile_out.replace('\n', '<br />')
 			return render_template('results.html', answ=compile_out)
@@ -241,17 +240,31 @@ def get_rowid(st_email):
 		rowid = row[0]
 	return rowid
 
+# get the type of the survey to properly check user's answers
+def get_survey_type(st_email):
+	srv_type = ''
+	rowid = get_rowid(st_email)
+	
+	# case for checked exceptions
+	if (int(float(rowid)) % 3 == 0):
+		srv_type = 'checked'
+	# case for documented and unchecked exceptions (to-be)
+	elif (int(float(rowid)) % 2 == 0):
+		srv_type = 'doc-unchecked'
+	# case for undocumented and unchecked exceptions (as-is)
+	else:
+		srv_type = 'undoc-unchecked'
+
+	return srv_type
+
 # set survey type (for the exceptions' box---main survey page)
 def set_survey_type(rowid):
-	srv_type = 0
 	page = ''
 	# case for checked exceptions
 	if (int(float(rowid)) % 3 == 0):
-		srv_type = 1 # survey for methods with checked exceptions
 		page = 'form_submit_ct.html'
 		return page # page with checked exceptions
 	else:
-		srv_type = 2 # survey for methods with unchecked exceptions
 		page = 'form_submit_rt.html'
 		return page # page with unchecked exceptions
 
