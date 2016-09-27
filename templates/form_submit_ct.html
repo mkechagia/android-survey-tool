@@ -294,7 +294,7 @@ a:link, a:visited {
             <div class="styled-div" ondragstart="drag(event);" draggable="true" id=".">.</div>
             <div class="styled-div" ondragstart="drag(event);" draggable="true" id=":">:</div>
             <div class="styled-div" ondragstart="drag(event);" draggable="true" id="0">&nbsp;0&nbsp;</div>
-            <div class="styled-div" ondragstart="drag(event);" draggable="true" id="aExc"> aExc</div>
+            <div class="styled-div" ondragstart="drag(event);" draggable="true" id="aExc">&nbsp;aExc</div>
             <div class="styled-div" ondragstart="drag(event);" draggable="true" id="canvas">canvas</div>
             <div class="styled-div" ondragstart="drag(event);" draggable="true" id="catch">catch</div>
             <div class="styled-div" ondragstart="drag(event);" draggable="true" id="changeTextColor">changeTextColor(colors)</div>
@@ -320,7 +320,7 @@ a:link, a:visited {
             <div class="styled-div" ondragstart="drag(event);" draggable="true" id="RuntimeException">RuntimeException</div>
             <div class="styled-div" ondragstart="drag(event);" draggable="true" id="setLayout(R.layout.editor)">setLayout(R.layout.note_editor)</div>
             <div class="styled-div" ondragstart="drag(event);" draggable="true" id="throw">throw&nbsp;</div>
-            <div class="styled-div" ondragstart="drag(event);" draggable="true" id="try">try </div>
+            <div class="styled-div" ondragstart="drag(event);" draggable="true" id="try">try</div>
             <div class="styled-div" ondragstart="drag(event);" draggable="true" id="UnauthorizedAccessException">UnauthorizedAccessException</div>
             </div>
 
@@ -422,8 +422,9 @@ public class NoteEditor extends Activity {
             String tmp = "Hello Android!";
 
             /* 
-             * TODO: Draw a welcome text before each note.
-             * Call the drawTxt method using the canvas object.
+             * TODO: Draw a welcome text before a note.
+             * Call the drawTxt method using the already created canvas object.
+             * The object canvas is an instance of the Canvas class. 
              */
             </pre></code>
             	<div>Answer Box 1:</div>
@@ -492,14 +493,14 @@ public class NoteEditor extends Activity {
             // For an insert or paste action:
         } else if (Intent.ACTION_INSERT.equals(action) || Intent.ACTION_PASTE.equals(action)) {
 
-            // Sets the Activity state to INSERT, gets the general note URI, and
-            // inserts an empty record in the provider
+            // Sets the Activity state to INSERT
             mState = STATE_INSERT;
 
             /* 
-             * TODO: Store a new note from a given URI.
+             * TODO: Get the general note URI, and insert an empty record in the provider.
              * Call the insertData method using the getContentResolver() method
-             * to get a ContentResolver instance.
+             * to get a ContentResolver instance (i.e. getContentResolver().insertData).
+             * Then, assign the record to the already created object mUri, which is an instance of the Uri class.
              */
             </pre></code>
             <div>Answer Box 2:</div>
@@ -569,8 +570,8 @@ public class NoteEditor extends Activity {
 
         /* 
          * TODO: Set the layout for the NotePad editor.
-         * The layout is in the application's resources (i.e. res/layout/note_editor.xml).
-         * Call the setLayout method using the note_editor.xml file as input.
+         * The layout is a file in the application's resources (i.e. res/layout/note_editor.xml).
+         * Call the setLayout method that has a layout resource as a parameter.
          */
         </pre></code>
         <div>Answer Box 3:</div>
@@ -585,7 +586,7 @@ public class NoteEditor extends Activity {
         <pre><code>
         /*
          * TODO: Set a handler to the text editor (EditText object).
-         * Set mText to the view returned by the findViewId method.
+         * Assign to mText the output of the findViewId method.
          */
         </pre></code>
         <div>Answer Box 4:</div>
@@ -741,8 +742,8 @@ public class NoteEditor extends Activity {
                 /*
                  * TODO: Get data from a note's URI.
                  * Call the queryData method by using the getContentResolver() method
-                 * that returns a ContentResolver instance.
-                 * Store the result of the queryData method to the orig Cursor instance.
+                 * that returns a ContentResolver instance (i.e. getContentResolver().queryData).
+                 * Assign the result of the called queryData method to the orig Cursor instance.
                  */
                 </pre></code>
                 <div>Answer Box 6:</div>

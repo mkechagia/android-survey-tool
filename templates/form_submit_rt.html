@@ -421,16 +421,17 @@ public class NoteEditor extends Activity {
             String tmp = "Hello Android!";
 
             /* 
-             * TODO: Draw a welcome text before each note.
-             * Call the drawTxt method using the canvas object.
+             * TODO: Draw a welcome text before a note.
+             * Call the drawTxt method using the already created canvas object.
+             * The object canvas is an instance of the Canvas class. 
              */
             </pre></code>
-            	<div>Answer Box 1:</div>
+                <div>Answer Box 1:</div>
                 <div id="answer_1" class="droptarget">
                     <div class="row1" id="r_answer_1"><pre class="rowp">{{answ.answer_1}}</pre></div>
                     <textarea type="text" style="display:none" name="t_answer_1" id="ti_answer_1" placeholder="tp_answer_1">{{answ.answer_1}}</textarea>
                 </div>
-            	<br>
+                <br>
                 <input type="button" class="check-btn" value="Clear" name="c_answer_1" onclick="clearDiv('answer_1');"/>
             <br>
             <br>
@@ -491,14 +492,14 @@ public class NoteEditor extends Activity {
             // For an insert or paste action:
         } else if (Intent.ACTION_INSERT.equals(action) || Intent.ACTION_PASTE.equals(action)) {
 
-            // Sets the Activity state to INSERT, gets the general note URI, and
-            // inserts an empty record in the provider
+            // Sets the Activity state to INSERT
             mState = STATE_INSERT;
 
             /* 
-             * TODO: Store a new note from a given URI.
+             * TODO: Get the general note URI, and insert an empty record in the provider.
              * Call the insertData method using the getContentResolver() method
-             * to get a ContentResolver instance.
+             * to get a ContentResolver instance (i.e. getContentResolver().insertData).
+             * Then, assign the record to the already created object mUri, which is an instance of the Uri class.
              */
             </pre></code>
             <div>Answer Box 2:</div>
@@ -568,8 +569,8 @@ public class NoteEditor extends Activity {
 
         /* 
          * TODO: Set the layout for the NotePad editor.
-         * The layout is in the application's resources (i.e. res/layout/note_editor.xml).
-         * Call the setLayout method using the note_editor.xml file as input.
+         * The layout is a file in the application's resources (i.e. res/layout/note_editor.xml).
+         * Call the setLayout method that has a layout resource as a parameter.
          */
         </pre></code>
         <div>Answer Box 3:</div>
@@ -584,7 +585,7 @@ public class NoteEditor extends Activity {
         <pre><code>
         /*
          * TODO: Set a handler to the text editor (EditText object).
-         * Set mText to the view returned by the findViewId method.
+         * Assign to mText the output of the findViewId method.
          */
         </pre></code>
         <div>Answer Box 4:</div>
@@ -598,22 +599,22 @@ public class NoteEditor extends Activity {
         <br>
         <pre><code>
         // Change EditText text color
-		ColorStateList colors = null;
-		try {
-		    XmlResourceParser parser = getResources().getXml(R.color.text_colors);
-		    colors = ColorStateList.createFromXml(getResources(), parser);
-		    // handle exceptions
-		} catch (IOException e1) {
-		    e1.printStackTrace();
-		} catch (XmlPullParserException e2) {
-			e2.printStackTrace();
-		}
-		
-		/* 
-		 * TODO: Change the editor's text color.
-		 * Call the changeTextColor method using an EditText instance, mText.
-		 */
-		</pre></code>
+        ColorStateList colors = null;
+        try {
+            XmlResourceParser parser = getResources().getXml(R.color.text_colors);
+            colors = ColorStateList.createFromXml(getResources(), parser);
+            // handle exceptions
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        } catch (XmlPullParserException e2) {
+            e2.printStackTrace();
+        }
+        
+        /* 
+         * TODO: Change the editor's text color.
+         * Call the changeTextColor method using an EditText instance, mText.
+         */
+        </pre></code>
         <div>Answer Box 5:</div>
             <div id="answer_5" class="droptarget">
                 <div class="row1" id="r_answer_5"><pre class="rowp">{{answ.answer_5}}</pre></div>
@@ -740,8 +741,8 @@ public class NoteEditor extends Activity {
                 /*
                  * TODO: Get data from a note's URI.
                  * Call the queryData method by using the getContentResolver() method
-                 * that returns a ContentResolver instance.
-                 * Store the result of the queryData method to the orig Cursor instance.
+                 * that returns a ContentResolver instance (i.e. getContentResolver().queryData).
+                 * Assign the result of the called queryData method to the orig Cursor instance.
                  */
                 </pre></code>
                 <div>Answer Box 6:</div>
@@ -806,7 +807,7 @@ public class NoteEditor extends Activity {
             mCursor.close();
             mCursor = null;
 
-        	getContentResolver().delete(mUri, null, null);
+            getContentResolver().delete(mUri, null, null);
 
             char[] chAr = { ' ' };
 
@@ -816,7 +817,7 @@ public class NoteEditor extends Activity {
              */
             </pre></code>
             <div>Answer Box 7:</div>
-            <div id="answer_7" class="droptarget" ondrop="myFunction(event)" ondragover="allowDrop(event)">
+            <div id="answer_7" class="droptarget">
                 <div class="row1" id="r_answer_7"><pre class="rowp">{{answ.answer_7}}</pre></div>
                 <textarea type="text" style="display:none" name="t_answer_7" id="ti_answer_7" placeholder="tp_answer_7">{{answ.answer_7}}</textarea>
             </div>
@@ -841,12 +842,12 @@ public class NoteEditor extends Activity {
                 <br>
 
                 {%- for category, message in get_flashed_messages(with_categories = true) %}
-           		<div class = "alert alert-danger">
-              		{{ message }}
-           		</div>
-        		{%- endfor %}
+                <div class = "alert alert-danger">
+                    {{ message }}
+                </div>
+                {%- endfor %}
      
-    		  </form>
+              </form>
 
             </div>
 
@@ -856,7 +857,7 @@ public class NoteEditor extends Activity {
     <footer class="footer">
         <p>&copy; SENSE/AUEB 2016</p>
     </footer>
-	</div> <!-- end of survey -->
+    </div> <!-- end of survey -->
 
     <script type="text/javascript">
         function drag(ev) {
