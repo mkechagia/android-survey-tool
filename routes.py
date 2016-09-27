@@ -147,29 +147,48 @@ def login():
 # compiler results
 @app.route('/survey/results.html')
 def results():
+	srv_type = ''
+	page = ''
+
 	if ('email' in session):
+
+		# set the survey type based on the kind of the survey's main page
+		page = set_survey_type(get_rowid(session['email']))
+		if page == 'form_submit_ct.html':
+			srv_type = 'checked'
+		elif page == 'form_submit_rt.html':
+			srv_type = 'unchecked'
+
+		# get answers for the email in the session
 		answer = answers.query.filter_by(students_email=session['email']).first()
 		# dictionary with user's answers from the database
 		answ = {'answer_1' : answer.answer_1, 'answer_2' : answer.answer_2, \
 				'answer_3' : answer.answer_3, 'answer_4' : answer.answer_4, \
 				'answer_5' : answer.answer_5, 'answer_6' : answer.answer_6, \
 				'answer_7' : answer.answer_7}
-		filename = 'NoteEditor.java'
-		java_file_complete = glue_answer(filename, answ)
-		file_path = 'NotePad/src/com/example/android/notepad'
-		with open("%s/%s" % (file_path, filename), 'w') as f:
-			f.write("%s" % java_file_complete)
-		with Popen(['bash', 'compile.sh'], stdout = PIPE, stderr = PIPE, \
-				universal_newlines = True) as p:
-			try:
-				outs, errs = p.communicate(timeout = 5)
-			except TimeoutExpired:
-				p.kill()
-				outs, errs = p.communicate()
-			# Substitute references to real methods with fake methods
-			compile_out = replace_methods(outs)
-			# Format newlines for basic html appearance
-			compile_out = compile_out.replace('\n', '<br />')
+
+		# check for empty answer boxes
+		if (check_answer_boxes(answ)):
+			filename = 'NoteEditor.java'
+			java_file_complete = glue_answer(filename, answ, srv_type)
+			file_path = 'NotePad/src/com/example/android/notepad'
+			with open("%s/%s" % (file_path, filename), 'w') as f:
+				f.write("%s" % java_file_complete)
+			with Popen(['bash', 'compile.sh'], stdout = PIPE, stderr = PIPE, \
+					universal_newlines = True) as p:
+				try:
+					outs, errs = p.communicate(timeout = 5)
+				except TimeoutExpired:
+					p.kill()
+					outs, errs = p.communicate()
+				# Substitute references to real methods with fake methods
+				compile_out = replace_methods(outs, srv_type)
+				# Format newlines for basic html appearance
+				compile_out = compile_out.replace('\n', '<br />')
+				return render_template('results.html', answ=compile_out)
+		else:
+			# if there are empty answer boxes
+			compile_out = "Please fill all the answer boxes."
 			return render_template('results.html', answ=compile_out)
 
 @app.route('/logout.html')
@@ -256,6 +275,15 @@ def set_timestamp(session_email, visited_page):
 	t = timestamps(email = session_email, page = visited_page, timestamp = now)
 	db.session.add(t)
 	db.session.commit()
+
+# check for empty answer boxes
+def check_answer_boxes(answ_dict):
+	res = True
+	an_keys = list(answ_dict.keys())
+	for d, f in enumerate(an_keys):
+		if (answ_dict.get(an_keys[d]) == ''):
+			res = False
+	return res
 
 if __name__ == '__main__':
    db.create_all()

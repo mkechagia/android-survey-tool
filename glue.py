@@ -4,10 +4,8 @@ import copy
 from collections import defaultdict
 from string import Template
 
-global method_dict
-
 # initialize the dictionary for the methods with checked exceptions such as {fake method: real method}
-method_dict = {'deleteRecord' : 'delete', \
+method_dict_checked = {'deleteRecord' : 'delete', \
 		'editText' : 'setText_new', \
 		'insertData' : 'insert_new', \
 		'setLayout' : 'setContentView_new', \
@@ -34,22 +32,26 @@ method_dict_unchecked = {'deleteRecord' : 'delete', \
 # i.e. answer_block = {'answer_1' : fake_answer}
 # survey type refers to the different surveys 
 # (methods with checked exceptions Vs. methods with unchecked exceptions--documented and undocumented)
-def glue_answer(filepath, answers):
+def glue_answer(filepath, answers, survey_type):
+	method_dict = set_dict(survey_type)
 	# open the file
 	filein = open(filepath)
 	# read it
 	src = Template(filein.read())
 	# dictionary for answers with real Android's API methods
-	real_answers = bind_method(answers)
+	real_answers = bind_method(answers, method_dict)
 	#do the substitution
 	result = src.substitute(real_answers)
+	print ("glue")
+	print (survey_type)
+	print (method_dict)
 	return result
 
 # Bind the answers' methods to the real Android's API methods
 # answers is a dict, i.e. answers = {'answer_1' : fake_answer}
 # This function returns a dict of answers with real Android's
 # API methods, i.e. real_answers = {'answer_1' : real_answer}
-def bind_method(answers):
+def bind_method(answers, method_dict):
 	real_answers = {}
 	a_keys = list(answers.keys())
 	m_keys = list(method_dict.keys())
@@ -74,22 +76,23 @@ def bind_method(answers):
 			real_answers[a_keys[d]] = answers.get(a_keys[d])
 	return real_answers
 
-def replace_methods(compiler_output):
+def replace_methods(compiler_output, survey_type):
+	method_dict = set_dict(survey_type)
 	for fake, real in method_dict.items():
 		#compiler_output = compiler_output.replace(fake, real)
 		compiler_output = re.sub(real, fake, compiler_output)
 	if re.search("\bsetTextColor\b\(\bcolors\b\)", compiler_output):
 		compiler_output = re.sub("\bsetTextColor\b\(\bcolors\b\)", "changeTextColor(colors)", replace_output)
+	print ("replace")
+	print (survey_type)
+	print (method_dict)
 	return compiler_output
 
-'''
+# dict depending on the survey type
 def set_dict(survey_type):
-	method_dict = {}
 	if (survey_type == 'unchecked') or (survey_type == 'doc-unchecked'):
-		method_dict = copy.deepcopy(method_dict_unchecked)
+		return method_dict_unchecked
 	elif (survey_type == 'checked'):
-		method_dict = copy.deepcopy(method_dict_checked)
-	return method_dict
-'''
+		return method_dict_checked
 
 # vim: tabstop=8 noexpandtab shiftwidth=8 softtabstop=0
