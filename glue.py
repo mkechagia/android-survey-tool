@@ -42,9 +42,6 @@ def glue_answer(filepath, answers, survey_type):
 	real_answers = bind_method(answers, method_dict)
 	#do the substitution
 	result = src.substitute(real_answers)
-	print ("glue")
-	print (survey_type)
-	print (method_dict)
 	return result
 
 # Bind the answers' methods to the real Android's API methods
@@ -83,14 +80,11 @@ def replace_methods(compiler_output, survey_type):
 		compiler_output = re.sub(real, fake, compiler_output)
 	if re.search("\bsetTextColor\b\(\bcolors\b\)", compiler_output):
 		compiler_output = re.sub("\bsetTextColor\b\(\bcolors\b\)", "changeTextColor(colors)", replace_output)
-	print ("replace")
-	print (survey_type)
-	print (method_dict)
 	return compiler_output
 
 # dict depending on the survey type
 def set_dict(survey_type):
-	if (survey_type == 'unchecked') or (survey_type == 'doc-unchecked'):
+	if (survey_type == 'unchecked'):
 		return method_dict_unchecked
 	elif (survey_type == 'checked'):
 		return method_dict_checked
