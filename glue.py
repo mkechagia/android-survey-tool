@@ -80,7 +80,9 @@ def replace_methods(compiler_output, survey_type):
 		compiler_output = re.sub(real, fake, compiler_output)
 	if re.search("\bsetTextColor\b\(\bcolors\b\)", compiler_output):
 		compiler_output = re.sub("\bsetTextColor\b\(\bcolors\b\)", "changeTextColor(colors)", replace_output)
-	return compiler_output
+	# check for line numbers
+	comp_output = remove_line_numbers(compiler_output)
+	return comp_output
 
 # dict depending on the survey type
 def set_dict(survey_type):
@@ -88,5 +90,16 @@ def set_dict(survey_type):
 		return method_dict_unchecked
 	elif (survey_type == 'checked'):
 		return method_dict_checked
+
+# replace line numbers with spaces
+def remove_line_numbers(output):
+	out = ''
+	#.java:118
+	print ("Here is the output.")
+	print (output)
+	#if re.seach('.java:/d+', output):
+	#	print ("OKK")
+	out = re.sub(':[0-9]+', '', output)
+	return out
 
 # vim: tabstop=8 noexpandtab shiftwidth=8 softtabstop=0

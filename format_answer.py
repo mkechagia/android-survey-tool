@@ -1,9 +1,17 @@
 #!/usr/bin/python
 import re
+from bs4 import BeautifulSoup
 
 def format_answer(answer):
 	answ = ""
-	answ = re.sub("[\s\n\r\t]{2,}", "", answer)
+	an = ""
+	an = answer
+	if re.search("&nbsp;", answer):
+		an = re.sub("&nbsp;", " ", answer)
+	elif re.search(u'\xa0', answer):
+		an = re.sub(u'\xa0', " ", answer)
+	answ = re.sub("[\s\n\r\t]{2,}", "", an)
+	#answ = re.sub("[\s\n\r\t]{2,}", "", answer)
 	if re.search('{', answ):
 		answ = re.sub("{", " {\n\t", answ)
 	if re.search(';', answ):
