@@ -1,6 +1,5 @@
 #!/usr/bin/python
 import re
-from bs4 import BeautifulSoup
 
 def format_answer(answer):
 	answ = ""
