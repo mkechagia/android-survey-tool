@@ -185,6 +185,7 @@ def results():
 				compile_out = replace_methods(outs, srv_type)
 				# Format newlines for basic html appearance
 				compile_out = compile_out.replace('\n', '<br />')
+				compile_out += "<br><a href=\"../static/NoteEditor.java\", target=\"_blank\">View source code</a>"
 				return render_template('results.html', answ=compile_out)
 		else:
 			# if there are empty answer boxes
