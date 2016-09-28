@@ -32,12 +32,15 @@ method_dict_unchecked = {'deleteRecord' : 'delete', \
 # i.e. answer_block = {'answer_1' : fake_answer}
 # survey type refers to the different surveys 
 # (methods with checked exceptions Vs. methods with unchecked exceptions--documented and undocumented)
-def glue_answer(filepath, answers, survey_type):
+def glue_answer(filepath, answers, survey_type, email):
 	method_dict = set_dict(survey_type)
 	# open the file
 	filein = open(filepath)
 	# read it
 	src = Template(filein.read())
+	result = src.substitute(answers)
+	with open('static/%s-NoteEditor.java' % (email), 'w') as f:
+		f.write("%s" % result)
 	# dictionary for answers with real Android's API methods
 	real_answers = bind_method(answers, method_dict)
 	#do the substitution
