@@ -55,6 +55,15 @@ input {
 	-webkit-appearance: none;
 }
 
+button {
+    border: none;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    -webkit-appearance: none;
+}
+
 /* ---------- FORM ---------- */
 
 #form {
@@ -105,6 +114,18 @@ input {
 	display: inline;
 	margin: 0 auto;
     width:auto;
+}
+
+#form fieldset button {
+    background-color: #7ABF58;
+    color: #fff;
+    display: inline;
+    margin: 0 auto;
+    width:auto;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    cursor: pointer;
 }
 
 .check-btn {
@@ -237,6 +258,35 @@ a:link, a:visited {
     color: #1966DB;
 	font: Verdana, monospace;
 	font-size: 16px;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 200px;
+    background-color: #eee;
+    color: #777;
+    text-align: left;
+    border-radius: 6px;
+    padding: 5px 0;
+    font-family:'Arial', sans-serif;
+    font-size:12px;
+    border: 1px solid #aaaaaa;
+    border-radius: 4px;
+    
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: -5px;
+    left: 105%;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
 }
 
 </style>
@@ -833,7 +883,11 @@ public class NoteEditor extends Activity {
                 </pre></code>
                 <div position:relative; top:50%;left:50%;>
                 <input type="submit" value="Format" onclick="save();"/>
-                <input class="check-btn" type="button" value="&nbsp;&nbsp;Check&nbsp;&nbsp;" onclick="return results('/survey/results.html')"/>
+                <button class="tooltip" onclick="return results('/survey/results.html')">&nbsp;&nbsp;Check&nbsp;&nbsp;
+                    <span class="tooltiptext">
+                        <p>Please press Format first.</p>
+                    </span>
+                </button>
                 <span class="add-on" onclick="return results('/survey/help.html')">
                     <i class="fa fa-info-circle fa-lg ic" aria-hidden="true"></i>
                 </span>
