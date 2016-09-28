@@ -106,13 +106,9 @@ public class NoteEditor extends Activity {
             Rect r = mRect;
             Paint paint = mPaint;
 
-            // XXX: draw some text!
-            // Case for API method: drawText and IOOB
-
-            // Define the text size -> it can trow IllegalArgumentException
             paint.setTextSize(100);
 
-            // String for drawText
+            // String for the text
             String tmp = "Hello Android!";
             
             $answer_1
@@ -235,15 +231,8 @@ public class NoteEditor extends Activity {
 
         // Gets a handle to the EditText in the the layout.
         $answer_4
-
-        // XXX: Gets a handle to the EditText in the layout.
-        try {
-            mText = (EditText) findViewById(R.id.note);
-        } catch (RuntimeException e) {
-            e.printStackTrace();
-        }
         
-        // XXX: change EditText text color pragmatically by adding method EditText.setTextColor()
+        // change EditText text color
         ColorStateList colors = null;
         
         try {
@@ -332,10 +321,7 @@ public class NoteEditor extends Activity {
          */
         } else {
             setTitle(getText(R.string.error_title));
-
-            // XXX: Add some text
             mText.setText(getText(R.string.error_message));
-            // It can throw IndexOutOfBounds exception; when there is an
         }
     }
 
@@ -638,14 +624,10 @@ public class NoteEditor extends Activity {
         if (mCursor != null) {
             mCursor.close();
             mCursor = null;
-            
-            // XXX: Delete a note
     
             getContentResolver().delete(mUri, null, null);
 
             char[] chAr = { ' ' };
-
-            // XXX: Set nothing to note text
             
             $answer_7
         }
