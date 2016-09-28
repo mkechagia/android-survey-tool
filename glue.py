@@ -84,8 +84,8 @@ def replace_methods(compiler_output, survey_type):
 	if re.search("\bsetTextColor\b\(\bcolors\b\)", compiler_output):
 		compiler_output = re.sub("\bsetTextColor\b\(\bcolors\b\)", "changeTextColor(colors)", replace_output)
 	# check for line numbers
-	comp_output = remove_line_numbers(compiler_output)
-	return comp_output
+	#comp_output = remove_line_numbers(compiler_output)
+	return compiler_output
 
 # dict depending on the survey type
 def set_dict(survey_type):
