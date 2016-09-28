@@ -5,15 +5,15 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
     <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?lang=javascript&amp;"></script>
+	<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?lang=javascript&amp;"></script>
     <script src="https://cdn.rawgit.com/leafo/sticky-kit/v1.1.2/jquery.sticky-kit.min.js"></script>
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
     <meta charset="utf-8">
-    
+	
     <title>Android Programming Survey</title>
 
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Varela+Round">
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Varela+Round">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js" type="text/javascript"></script>
 
 <style>
@@ -39,20 +39,20 @@
 
 
 body {
-    background-color: #C0C0C0;
-    color: #000;
-    font-family: "Varela Round", Arial, Helvetica, sans-serif;
-    font-size: 16px;
-    line-height: 1.2em;
+	background-color: #C0C0C0;
+	color: #000;
+	font-family: "Varela Round", Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	line-height: 1.2em;
 }
 
 input {
-    border: none;
-    font-family: inherit;
-    font-size: inherit;
-    font-weight: inherit;
-    line-height: inherit;
-    -webkit-appearance: none;
+	border: none;
+	font-family: inherit;
+	font-size: inherit;
+	font-weight: inherit;
+	line-height: inherit;
+	-webkit-appearance: none;
 }
 
 button {
@@ -67,52 +67,52 @@ button {
 /* ---------- FORM ---------- */
 
 #form {
-    margin: 1.5px auto;
-    width: 1100px;
+	margin: 1.5px auto;
+	width: 1100px;
 }
 
 #form h2 {
     background-color: #7ABF58;
-    -webkit-border-radius: 20px 20px 0 0;
-    -moz-border-radius: 20px 20px 0 0;
-    border-radius: 20px 20px 0 0;
-    color: #fff;
-    font-size: 28px;
-    padding: 15px 26px;
+	-webkit-border-radius: 20px 20px 0 0;
+	-moz-border-radius: 20px 20px 0 0;
+	border-radius: 20px 20px 0 0;
+	color: #fff;
+	font-size: 28px;
+	padding: 15px 26px;
 }
 
 #form h2 span[class*="fontawesome-"] {
-    margin-right: 14px;
+	margin-right: 14px;
 }
 
 #form fieldset {
     background-color: #F7F9F9;
-    -webkit-border-radius: 0 0 20px 20px;
-    -moz-border-radius: 0 0 20px 20px;
-    border-radius: 0 0 20px 20px;
-    padding: 20px 26px;
+	-webkit-border-radius: 0 0 20px 20px;
+	-moz-border-radius: 0 0 20px 20px;
+	border-radius: 0 0 20px 20px;
+	padding: 20px 26px;
 }
 
 #form fieldset p {
-    color: #777;
-    margin-bottom: 14px;
+	color: #777;
+	margin-bottom: 14px;
 }
 
 #form fieldset p:last-child {
-    margin-bottom: 0;
+	margin-bottom: 0;
 }
 
 #form fieldset input {
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
 }
 
 #form fieldset input[type="submit"] {
-    background-color: #7ABF58;
-    color: #fff;
-    display: inline;
-    margin: 0 auto;
+	background-color: #7ABF58;
+	color: #fff;
+	display: inline;
+	margin: 0 auto;
     width:auto;
 }
 
@@ -138,7 +138,7 @@ button {
 }
 
 .ic {
-    cursor:pointer;
+	cursor:pointer;
 }
 
 .wrapper {
@@ -208,7 +208,7 @@ button {
 }
 
 .rowp {
-    width: 585px;
+	width: 585px;
     height: 135px;
     display: block;
     margin: 0 auto;
@@ -242,7 +242,7 @@ button {
     color: #777;
     font-family:'Courier New', monospace;
     font-size:12px;
-    width: auto;
+    width:auto; 
 }
 
 /*! Color themes for Google Code Prettify | MIT License | github.com/jmblog/color-themes-for-google-code-prettify */
@@ -256,8 +256,8 @@ a:link, a:visited {
 
 .name {
     color: #1966DB;
-    font: Verdana, monospace;
-    font-size: 16px;
+	font: Verdana, monospace;
+	font-size: 16px;
 }
 
 .tooltip {
@@ -267,9 +267,9 @@ a:link, a:visited {
 
 .tooltip .tooltiptext {
     visibility: hidden;
-    width: 200px;
-    background-color: #eee;
-    color: #777;
+    width: 150px;
+    height: auto;
+    background-color: yellow;
     text-align: left;
     border-radius: 6px;
     padding: 5px 0;
@@ -277,12 +277,9 @@ a:link, a:visited {
     font-size:12px;
     border: 1px solid #aaaaaa;
     border-radius: 4px;
-    
     /* Position the tooltip */
     position: absolute;
-    z-index: 1;
-    top: -5px;
-    left: 105%;
+    z-index: 10;
 }
 
 .tooltip:hover .tooltiptext {
@@ -333,20 +330,23 @@ a:link, a:visited {
             <a href="{{ url_for('api') }}">API reference documentation</a>.</p>
 
             <div class="wrapper">
-            
+
             <div class= "dragtarget" id="dragtarget">           
             <div class="styled-div" ondragstart="drag(event);" draggable="true" id="{">{</div>        
             <div class="styled-div" ondragstart="drag(event);" draggable="true" id="}">}</div>
             <div class="styled-div" ondragstart="drag(event);" draggable="true" id=";">;</div>
             <div class="styled-div" ondragstart="drag(event);" draggable="true" id="(">(</div>
             <div class="styled-div" ondragstart="drag(event);" draggable="true" id=")">)</div>
+            <div class="styled-div" ondragstart="drag(event);" draggable="true" id="!">!</div>
+            <div class="styled-div" ondragstart="drag(event);" draggable="true" id="?">?</div>
             <div class="styled-div" ondragstart="drag(event);" draggable="true" id="=">=</div>
             <div class="styled-div" ondragstart="drag(event);" draggable="true" id=".">.</div>
             <div class="styled-div" ondragstart="drag(event);" draggable="true" id=":">:</div>
             <div class="styled-div" ondragstart="drag(event);" draggable="true" id="0">&nbsp;0&nbsp;</div>
-            <div class="styled-div" ondragstart="drag(event);" draggable="true" id="aExc"> aExc</div>
+            <div class="styled-div" ondragstart="drag(event);" draggable="true" id="space">&nbsp;</div>
+            <div class="styled-div" ondragstart="drag(event);" draggable="true" id="aExc">&nbsp;aExc</div>
             <div class="styled-div" ondragstart="drag(event);" draggable="true" id="canvas">canvas</div>
-            <div class="styled-div" ondragstart="drag(event);" draggable="true" id="catch">&nbsp;catch&nbsp;</div>
+            <div class="styled-div" ondragstart="drag(event);" draggable="true" id="catch">catch</div>
             <div class="styled-div" ondragstart="drag(event);" draggable="true" id="changeTextColor">changeTextColor(colors)</div>
             <div class="styled-div" ondragstart="drag(event);" draggable="true" id="drawTxt(tmp,0,9,20,30,paint)">drawTxt(tmp,0,9,20,30,paint)</div>
             <div class="styled-div" ondragstart="drag(event);" draggable="true" id="editText(chAr, 0, 1)">editText(chAr,0,1)</div>
@@ -360,7 +360,7 @@ a:link, a:visited {
             <div class="styled-div" ondragstart="drag(event);" draggable="true" id="insertData(intent.getData(),null)">insertData(intent.getData(),null)</div>
             <div class="styled-div" ondragstart="drag(event);" draggable="true" id="mText">mText</div>
             <div class="styled-div" ondragstart="drag(event);" draggable="true" id="mUri">mUri</div>
-            <div class="styled-div" ondragstart="drag(event);" draggable="true" id="new">new</div>
+            <div class="styled-div" ondragstart="drag(event);" draggable="true" id="new">new&nbsp;</div>
             <div class="styled-div" ondragstart="drag(event);" draggable="true" id="NotFoundException">NotFoundException</div>
             <div class="styled-div" ondragstart="drag(event);" draggable="true" id="null">null</div>
             <div class="styled-div" ondragstart="drag(event);" draggable="true" id="NullPointerException">NullPointerException</div>
@@ -370,7 +370,7 @@ a:link, a:visited {
             <div class="styled-div" ondragstart="drag(event);" draggable="true" id="RuntimeException">RuntimeException</div>
             <div class="styled-div" ondragstart="drag(event);" draggable="true" id="setLayout(R.layout.editor)">setLayout(R.layout.note_editor)</div>
             <div class="styled-div" ondragstart="drag(event);" draggable="true" id="throw">throw&nbsp;</div>
-            <div class="styled-div" ondragstart="drag(event);" draggable="true" id="try">try&nbsp;</div>
+            <div class="styled-div" ondragstart="drag(event);" draggable="true" id="try">try</div>
             </div>
 
             <div class="form-code">
@@ -476,12 +476,12 @@ public class NoteEditor extends Activity {
              * The object canvas is an instance of the Canvas class. 
              */
             </pre></code>
-                <div>Answer Box 1:</div>
+            	<div>Answer Box 1:</div>
                 <div id="answer_1" class="droptarget">
                     <div class="row1" id="r_answer_1"><pre class="rowp">{{answ.answer_1}}</pre></div>
                     <textarea type="text" style="display:none" name="t_answer_1" id="ti_answer_1" placeholder="tp_answer_1">{{answ.answer_1}}</textarea>
                 </div>
-                <br>
+            	<br>
                 <input type="button" class="check-btn" value="Clear" name="c_answer_1" onclick="clearDiv('answer_1');"/>
             <br>
             <br>
@@ -649,22 +649,22 @@ public class NoteEditor extends Activity {
         <br>
         <pre><code>
         // Change EditText text color
-        ColorStateList colors = null;
-        try {
-            XmlResourceParser parser = getResources().getXml(R.color.text_colors);
-            colors = ColorStateList.createFromXml(getResources(), parser);
-            // handle exceptions
-        } catch (IOException e1) {
-            e1.printStackTrace();
-        } catch (XmlPullParserException e2) {
-            e2.printStackTrace();
-        }
-        
-        /* 
-         * TODO: Change the editor's text color.
-         * Call the changeTextColor method using an EditText instance, mText.
-         */
-        </pre></code>
+		ColorStateList colors = null;
+		try {
+		    XmlResourceParser parser = getResources().getXml(R.color.text_colors);
+		    colors = ColorStateList.createFromXml(getResources(), parser);
+		    // handle exceptions
+		} catch (IOException e1) {
+		    e1.printStackTrace();
+		} catch (XmlPullParserException e2) {
+			e2.printStackTrace();
+		}
+		
+		/* 
+		 * TODO: Change the editor's text color.
+		 * Call the changeTextColor method using an EditText instance, mText.
+		 */
+		</pre></code>
         <div>Answer Box 5:</div>
             <div id="answer_5" class="droptarget">
                 <div class="row1" id="r_answer_5"><pre class="rowp">{{answ.answer_5}}</pre></div>
@@ -857,7 +857,7 @@ public class NoteEditor extends Activity {
             mCursor.close();
             mCursor = null;
 
-            getContentResolver().delete(mUri, null, null);
+        	getContentResolver().delete(mUri, null, null);
 
             char[] chAr = { ' ' };
 
@@ -896,12 +896,12 @@ public class NoteEditor extends Activity {
                 <br>
 
                 {%- for category, message in get_flashed_messages(with_categories = true) %}
-                <div class = "alert alert-danger">
-                    {{ message }}
-                </div>
-                {%- endfor %}
+           		<div class = "alert alert-danger">
+              		{{ message }}
+           		</div>
+        		{%- endfor %}
      
-              </form>
+    		  </form>
 
             </div>
 
@@ -911,31 +911,33 @@ public class NoteEditor extends Activity {
     <footer class="footer">
         <p>&copy; SENSE/AUEB 2016</p>
     </footer>
-    </div> <!-- end of survey -->
+	</div> <!-- end of survey -->
 
     <script type="text/javascript">
-        function drag(ev) {
-            ev.dataTransfer.setData("text", ev.target.id);
-        }
+    	function drag(ev) {
+    		ev.dataTransfer.setData("text", ev.target.id);
+		}
 
-        function allowDrop(ev) {
-            ev.preventDefault();
-        }
+    	function allowDrop(ev) {
+    		ev.preventDefault();
+		}
 
-        function drop(ev) {
-            ev.preventDefault();
-            var data = ev.dataTransfer.getData("text");
-            var elmnt = document.getElementById(data).firstChild;
-            var cln = elmnt.cloneNode(true);
-            var para = document.createElement("div")
-            para.setAttribute('class', 'styled-button-3');
-            para.setAttribute('id', elmnt);
-            para.appendChild(cln);
-            ev.target.appendChild(para);
-        }
+		document.addEventListener("drop", function(ev) {
+    		ev.preventDefault();
+            if (ev.target.className != "styled-button-3") {
+    		    var data = ev.dataTransfer.getData("text");
+    		    var elmnt = document.getElementById(data).firstChild;
+    		    var cln = elmnt.cloneNode(true);
+    		    var para = document.createElement("div")
+    		    para.setAttribute('class', 'styled-button-3');
+                para.setAttribute('id', elmnt);
+                para.appendChild(cln);
+                ev.target.appendChild(para);
+            }
+		});
 
         // event propagation for dynamically added elements
-        $(document).ready ( function () {
+        $(document).ready(function() {
             // click just once on a word to delete
             $(document).on("click", ".styled-button-3", function () {
                 $(this).remove();

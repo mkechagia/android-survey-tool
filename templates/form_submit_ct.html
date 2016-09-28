@@ -242,7 +242,7 @@ button {
     color: #777;
     font-family:'Courier New', monospace;
     font-size:12px;
-    width: auto;
+    width:auto; 
 }
 
 /*! Color themes for Google Code Prettify | MIT License | github.com/jmblog/color-themes-for-google-code-prettify */
@@ -267,9 +267,9 @@ a:link, a:visited {
 
 .tooltip .tooltiptext {
     visibility: hidden;
-    width: 200px;
-    background-color: #eee;
-    color: #777;
+    width: 150px;
+    height: auto;
+    background-color: yellow;
     text-align: left;
     border-radius: 6px;
     padding: 5px 0;
@@ -277,12 +277,9 @@ a:link, a:visited {
     font-size:12px;
     border: 1px solid #aaaaaa;
     border-radius: 4px;
-    
     /* Position the tooltip */
     position: absolute;
-    z-index: 1;
-    top: -5px;
-    left: 105%;
+    z-index: 10;
 }
 
 .tooltip:hover .tooltiptext {
@@ -340,10 +337,13 @@ a:link, a:visited {
             <div class="styled-div" ondragstart="drag(event);" draggable="true" id=";">;</div>
             <div class="styled-div" ondragstart="drag(event);" draggable="true" id="(">(</div>
             <div class="styled-div" ondragstart="drag(event);" draggable="true" id=")">)</div>
+            <div class="styled-div" ondragstart="drag(event);" draggable="true" id="!">!</div>
+            <div class="styled-div" ondragstart="drag(event);" draggable="true" id="?">?</div>
             <div class="styled-div" ondragstart="drag(event);" draggable="true" id="=">=</div>
             <div class="styled-div" ondragstart="drag(event);" draggable="true" id=".">.</div>
             <div class="styled-div" ondragstart="drag(event);" draggable="true" id=":">:</div>
             <div class="styled-div" ondragstart="drag(event);" draggable="true" id="0">&nbsp;0&nbsp;</div>
+            <div class="styled-div" ondragstart="drag(event);" draggable="true" id="space">&nbsp;</div>
             <div class="styled-div" ondragstart="drag(event);" draggable="true" id="aExc">&nbsp;aExc</div>
             <div class="styled-div" ondragstart="drag(event);" draggable="true" id="canvas">canvas</div>
             <div class="styled-div" ondragstart="drag(event);" draggable="true" id="catch">catch</div>
@@ -361,7 +361,7 @@ a:link, a:visited {
             <div class="styled-div" ondragstart="drag(event);" draggable="true" id="MissingResourceException">MissingResourceException</div>
             <div class="styled-div" ondragstart="drag(event);" draggable="true" id="mText">mText</div>
             <div class="styled-div" ondragstart="drag(event);" draggable="true" id="mUri">mUri</div>
-            <div class="styled-div" ondragstart="drag(event);" draggable="true" id="new">new</div>
+            <div class="styled-div" ondragstart="drag(event);" draggable="true" id="new">new&nbsp;</div>
             <div class="styled-div" ondragstart="drag(event);" draggable="true" id="null">null</div>
             <div class="styled-div" ondragstart="drag(event);" draggable="true" id="NullResourceException">NullResourceException</div>
             <div class="styled-div" ondragstart="drag(event);" draggable="true" id="orig">orig</div>
@@ -923,20 +923,22 @@ public class NoteEditor extends Activity {
     		ev.preventDefault();
 		}
 
-		function drop(ev) {
-		    ev.preventDefault();
-		    var data = ev.dataTransfer.getData("text");
-		    var elmnt = document.getElementById(data).firstChild;
-		    var cln = elmnt.cloneNode(true);
-		    var para = document.createElement("div")
-		    para.setAttribute('class', 'styled-button-3');
-            para.setAttribute('id', elmnt);
-            para.appendChild(cln);
-            ev.target.appendChild(para);
-		}
+		document.addEventListener("drop", function(ev) {
+    		ev.preventDefault();
+            if (ev.target.className != "styled-button-3") {
+    		    var data = ev.dataTransfer.getData("text");
+    		    var elmnt = document.getElementById(data).firstChild;
+    		    var cln = elmnt.cloneNode(true);
+    		    var para = document.createElement("div")
+    		    para.setAttribute('class', 'styled-button-3');
+                para.setAttribute('id', elmnt);
+                para.appendChild(cln);
+                ev.target.appendChild(para);
+            }
+		});
 
         // event propagation for dynamically added elements
-        $(document).ready ( function () {
+        $(document).ready(function() {
             // click just once on a word to delete
             $(document).on("click", ".styled-button-3", function () {
                 $(this).remove();
