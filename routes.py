@@ -4,13 +4,14 @@ from signup import SignupForm
 from flask_wtf import Form
 from wtforms import validators
 from wtforms.fields.html5 import EmailField
-from models import app, db, students, answers, timestamps
+from models import app, db, students, answers, timestamps, submissions
 #import validators
 from validators import email
 #from wtforms.validators import Required
 #from wtforms.validators import email
 import os
 from sqlalchemy import update
+from sqlalchemy import func
 from collections import defaultdict
 from subprocess import Popen, PIPE, TimeoutExpired
 from glue import glue_answer, replace_methods
@@ -70,8 +71,10 @@ def new():
 					session['email'] = student.email
 					#return redirect(url_for('show_all')) -> this is for debugging
 					session['logged_in'] = True
+					# timestamp
+					now = datetime.utcnow()
 					# create a new answer
-					answ = answers(students_email = session['email'], \
+					answ = answers(students_email = session['email'], timestamp = now, \
 						answer_1 = '', \
 						answer_2 = '', \
 						answer_3 = '', \
@@ -101,6 +104,9 @@ def survey():
 		formatted_answers = []
 		# find answers of the user with the email in the session
 		answ = answers.query.filter_by(students_email = session['email']).first()
+		# update the timestamp
+		now = datetime.utcnow()
+		answ.timestamp = now
 		# format user's answer; request.form based on the name of the textarea
 		for k, l in enumerate(form_list):
 			# format user's answer; request.form based on the name of the textarea
@@ -114,7 +120,7 @@ def survey():
 		answ.answer_5 = formatted_answers[4]
 		answ.answer_6 = formatted_answers[5]
 		answ.answer_7 = formatted_answers[6]
-		# commit all user's answers to the db
+		# commit timestamp and all user's answers to the db
 		db.session.commit()
 		# get user's current aswers
 		answ = answers.query.filter_by(students_email = session['email']).first()
@@ -186,6 +192,12 @@ def results():
 				# Format newlines for basic html appearance
 				compile_out = compile_out.replace('\n', '<br />')
 				compile_out += "<br><a href=\"../static/%s-NoteEditor.java\", target=\"_blank\">View source code</a>" % (session['email'])
+				
+				# answers to string
+				str_answers = answers_to_str(answer)
+				# store submission and compile output to the db
+				store_submission_output(session['email'], str_answers, outs)
+
 				return render_template('results.html', answ=compile_out)
 		else:
 			# if there are empty answer boxes
@@ -202,6 +214,8 @@ def logout():
 
 @app.route('/survey/help.html')
 def help():
+	if ('email' in session):
+		set_timestamp(session['email'], 'help.html')
 	return render_template('help.html')
 
 @app.route('/survey/api/')
@@ -285,6 +299,36 @@ def check_answer_boxes(answ_dict):
 		if (answ_dict.get(an_keys[d]) == ''):
 			res = False
 	return res
+
+# store submission and compile output to the db
+def store_submission_output(session_email, answers, out):
+	counter = 0
+	# for the timestamp
+	now = datetime.utcnow()
+
+	# add new record - submission to the db
+	submission = submissions(email = session_email, count_submission = counter, timestamp = now, answer = answers, output = out)
+	db.session.add(submission)
+	db.session.commit()
+
+	# get the number of the submissions per user until now
+	counter = db.session.query(submissions).filter(submissions.email == session_email).count()
+	# update the counter of the record
+	submission.count_submission = counter
+	db.session.commit()
+	
+# return answer record to string
+def answers_to_str(answer):
+	an = ""
+	an_1 = "answer 1: " + answer.answer_1
+	an_2 = "answer 2: " + answer.answer_2
+	an_3 = "answer 3: " + answer.answer_3
+	an_4 = "answer 4: " + answer.answer_4
+	an_5 = "answer 5: " + answer.answer_5
+	an_6 = "answer 6: " + answer.answer_6
+	an_7 = "answer 7: " + answer.answer_7
+	an = (an_1+", "+an_2+", "+an_3+", "+ an_4+", "+an_5+", "+an_6+", "+an_7)
+	return an
 
 if __name__ == '__main__':
    db.create_all()

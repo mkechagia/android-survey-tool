@@ -27,10 +27,13 @@ class students(db.Model):
    def __repr__(self):
         return '<User %r>' % (self.email)
 
+# Final user answers
 class answers(db.Model):
    __tablename__ = 'answers'
    id = Column(Integer, primary_key=True)
    students_email = Column(Integer, ForeignKey('students.email'))
+   # when was user's last submission
+   timestamp = db.Column(db.String(1000))
    answer_1 = db.Column(db.String(1000))
    answer_2 = db.Column(db.String(1000))
    answer_3 = db.Column(db.String(1000))
@@ -43,6 +46,7 @@ class answers(db.Model):
    def __repr__(self):
         return '<Answer %r>' % (self.students_email)
 
+# History of what html pages (instructions, API, wiki) users opened
 class timestamps(db.Model):
    __tablename__ = 'timestamps'
    id = Column(Integer, primary_key=True)
