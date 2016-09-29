@@ -269,7 +269,7 @@ a:link, a:visited {
     visibility: hidden;
     width: 150px;
     height: auto;
-    background-color: yellow;
+    background-color: #DAF7A6;
     text-align: left;
     border-radius: 6px;
     padding: 5px 0;
@@ -472,7 +472,7 @@ public class NoteEditor extends Activity {
 
             /* 
              * TODO: Draw a welcome text before a note.
-             * Call the drawTxt method using the already created canvas object.
+             * Tip: Call the drawTxt method using the already created canvas object.
              * The object canvas is an instance of the Canvas class. 
              */
             </pre></code>
@@ -547,7 +547,7 @@ public class NoteEditor extends Activity {
 
             /* 
              * TODO: Get the general note URI, and insert an empty record in the provider.
-             * Call the insertData method using the getContentResolver() method
+             * Tip: Call the insertData method using the getContentResolver() method
              * to get a ContentResolver instance (i.e. getContentResolver().insertData).
              * Then, assign the record to the already created object mUri, which is an instance of the Uri class.
              */
@@ -619,7 +619,7 @@ public class NoteEditor extends Activity {
 
         /* 
          * TODO: Set the layout for the NotePad editor.
-         * The layout is a file in the application's resources (i.e. res/layout/note_editor.xml).
+         * Tip: The layout is a file in the application's resources (i.e. res/layout/note_editor.xml).
          * Call the setLayout method that has a layout resource as a parameter.
          */
         </pre></code>
@@ -635,7 +635,7 @@ public class NoteEditor extends Activity {
         <pre><code>
         /*
          * TODO: Set a handler to the text editor (EditText object).
-         * Assign to mText the output of the findViewId method.
+         * Tip: Assign to mText the output of the findViewId method.
          */
         </pre></code>
         <div>Answer Box 4:</div>
@@ -662,7 +662,7 @@ public class NoteEditor extends Activity {
 		
 		/* 
 		 * TODO: Change the editor's text color.
-		 * Call the changeTextColor method using an EditText instance, mText.
+		 * Tip: Call the changeTextColor method using an EditText instance, mText.
 		 */
 		</pre></code>
         <div>Answer Box 5:</div>
@@ -790,7 +790,7 @@ public class NoteEditor extends Activity {
                     
                 /*
                  * TODO: Get data from a note's URI.
-                 * Call the queryData method by using the getContentResolver() method
+                 * Tip: Call the queryData method by using the getContentResolver() method
                  * that returns a ContentResolver instance (i.e. getContentResolver().queryData).
                  * Assign the result of the called queryData method to the orig Cursor instance.
                  */
@@ -863,7 +863,7 @@ public class NoteEditor extends Activity {
 
             /*
              * TODO: Clear the text of a note.
-             * Call the method editText using an EditText instance, mText.
+             * Tip: Call the method editText using an EditText instance, mText.
              */
             </pre></code>
             <div>Answer Box 7:</div>
@@ -884,7 +884,7 @@ public class NoteEditor extends Activity {
                 <input type="submit" value="Format" onclick="save();"/>
                 <button class="tooltip" onclick="return results('/survey/results.html')">&nbsp;&nbsp;Check&nbsp;&nbsp;
                     <span class="tooltiptext">
-                        <p>Please press Format first.</p>
+                        <p>Please remember to press Format first.</p>
                     </span>
                 </button>
                 <span class="add-on" onclick="return results('/survey/help.html')">
