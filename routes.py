@@ -51,12 +51,12 @@ def index():
 def new():
 	answ = ""
 	if (request.method == 'POST'):
-		if (not request.form['email'] or not request.form['password'] or not request.form['password_2'] or not request.form['job'] or not request.form['code'] or not request.form['android']):
+		if (not request.form['email'] or not request.form['password'] or not request.form['password_2'] or not request.form['education'] or not request.form['company'] or not request.form['job'] or not request.form['code'] or not request.form['java'] or not request.form['android']):
 			flash('Please fill all the fields and selection boxes.', 'error')
 		elif (request.form['password'] != request.form['password_2']):
 			flash('Your passwords should be the same.', 'error')
 		else:
-			student = students(email = request.form['email'], password=request.form['password'], job=request.form['job'], code=request.form['code'], android=request.form['android'])
+			student = students(email = request.form['email'], password=request.form['password'], education=request.form['education'], company=request.form['company'], job=request.form['job'], code=request.form['code'], java=request.form['java'], android=request.form['android'])
 			# check if the email already exists---unique user
 			if (not db.session.query(students).filter(students.email == student.email).count() == 0):
 				flash('The email is already taken.', 'error')

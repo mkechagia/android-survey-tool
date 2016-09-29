@@ -16,8 +16,11 @@ class students(db.Model):
    __tablename__ = 'students'
    email = db.Column(db.String(200), unique=True, primary_key = True) 
    password = db.Column(db.String(100))
-   job = db.Column(db.String(1000))
+   education = db.Column(db.String(500))
+   company = db.Column(db.String(500))
+   job = db.Column(db.String(500))
    code = db.Column(db.String(100))
+   java = db.Column(db.String(100))
    android = db.Column(db.String(100))
    answers = relationship("answers", uselist=False, back_populates="students")
 
@@ -46,6 +49,23 @@ class timestamps(db.Model):
    email = db.Column(db.String(200))
    page = db.Column(db.String(1000))
    timestamp = db.Column(db.String(1000))
+
+   def __repr__(self):
+        return '<timestamps %r>'
+
+# History of user's submissions and compile outputs
+class submissions(db.Model):
+   __tablename__ = 'submissions'
+   id = Column(Integer, primary_key=True)
+   email = db.Column(db.String(200))
+   # no of the current submission
+   count_submission = db.Column(Integer)
+   # submission timestamp
+   timestamp = db.Column(db.String(1000))
+   # user answers
+   answer = db.Column(db.String(5000))
+   # compiler output
+   output = db.Column(db.String(10000))
 
    def __repr__(self):
         return '<timestamps %r>'

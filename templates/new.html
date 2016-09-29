@@ -12,6 +12,7 @@
     <script src="http://vsn4ik.github.io/bootstrap-checkbox/dist/js/bootstrap-checkbox.min.js" ></script>
     <link rel="stylesheet" type="text/css" media="screen" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.5/css/bootstrap-select.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.5/js/bootstrap-select.min.js"></script>
+
   </head>
 
   <body>
@@ -31,35 +32,65 @@
               {{ message }}
            </div>
         {%- endfor %}
-        <form class="form-signin" action = "/new" method = "post">
+        <form class="form-signin" action="/new" method = "post">
+
          <h4>Personal Details</h4>
+
          <br>
+
          <div align="left">
             Please fill all the following fields in order to get access to the survey.
          </div>
+
          <br>
+
          <label for = "email" class="sr-only">Email</label>
          <input type = "text" name = "email" class="form-control" placeholder = "email"/>
          <label for = "password" class="sr-only">Password</label>
          <input type = "password" name = "password" class="form-control" placeholder = "password"/>
          <label for = "password_2" class="sr-only">Password</label>
          <input type = "password" name = "password_2" class="form-control" placeholder = "repeat password"/>
+
          <br>
-         <h4>Programming Experience</h4>
+         
+         <h4>Programming and Job Details</h4>
+
          <br>
+
          <div align="left"> 
-            What is your current job? Please, write down your job title and if you like include for which company are you working for. If you are a student, please let us know your level (BSc, MSc or PhD student).
+            What is the most advanced degree that you have or you are enrolled now?
             <br>
-            <br>
-            <textarea name = "job" class="form-control"></textarea>
-         </div>
+            <div align="center">
+              <select class="selectpicker" id = "education_picker" data-width="fit" class="form-control">
+                <option>BSc</option>
+                <option>Msc</option>
+                <option>PhD</option>
+              </select>
+              <textarea id="t_education" name="education" class="form-control" style="display:none;"></textarea>
+            </div>
+          </div>
+         
          <br>
-         <div align="left"> How many years do you write code?
-          <br>
+
+         <div align="left"> 
+            In which company or university (if you are a student or academic) are you working now?
+            <br>
+            <input type = "text" name = "company" class = "form-control" placeholder = "Company"/>
+         </div>
+
+         <br>
+
+         <div align="left">What is your current job title? If you are a student or academic provide your level (e.g. BSc, MSc, or PhD student at Foo University.)
+            <br>
+            <input type = "text" name = "job" class="form-control" placeholder = "Job title"/>
+         </div>
+         
+         <br>
+
+         <div align="left">How many years do you write code?
           <br>
           <div align="center">
-          <select class="selectpicker" data-width="fit" class="form-control">
-            <option></option>
+          <select class="selectpicker" id = "code_picker" data-width="fit" class="form-control">
             <option> < 3 years</option>
             <option> > 3 and < 6 years</option>
             <option> > 6 years and < 9 years</option>
@@ -68,14 +99,32 @@
           <textarea id="t_code" name="code" class="form-control" style="display:none;"></textarea>
           </div>
          </div>
+
          <br>
-         <div align="left"> Have you ever developed an Android application? </div>
+
+         <div align="left">How many years do you write Java code?
+          <br>
+          <div align="center">
+          <select class="selectpicker" id = "java_picker" data-width="fit" class="form-control">
+            <option> < 3 years</option>
+            <option> > 3 and < 6 years</option>
+            <option> > 6 years and < 9 years</option>
+            <option> > 9 years</option>
+          </select>
+          <textarea id="t_java" name="java" class="form-control" style="display:none;"></textarea>
+          </div>
+         </div>
+
+         <br>
+
+         <div align="left">Have you ever developed an Android application?</div>
          <br>
          <input type="checkbox" id="id_android" name="android_box" data-group-cls="btn-group-lg" class="form-control">
          <textarea id="t_android" name="android" class="form-control" style="display:none;">false</textarea>
+         
          <br>
          <br>
-         <br>
+
          <input id="btnSignUp" class="btn btn-lg btn-success btn-block" type = "submit" value = "Sign up"/>
         </form>
       </div>
@@ -88,14 +137,37 @@
     <script type="text/javascript">
         // check box
         $(':checkbox').checkboxpicker({onLabel:"YES", offLabel:"NO"});
+
         $('#id_android').change(function() {
           var data = $(this).is(':checked');
           $('#t_android').text(data);
         });
 
-        $("select.selectpicker").change(function(){
-          var selected = $(".selectpicker option:selected").val();
-          $('#t_code').text(selected);
+        $("#education_picker").change(function() {
+          // currently selected value
+          var selected = $('#education_picker').val();
+          // currently selected text
+          var sel_text = $('#education_picker :selected').text();
+          // set the selected text to the text input
+          $('#t_education').text(sel_text);
+        });
+
+        $("#code_picker").change(function() {
+          // currently selected value
+          var selected = $('#code_picker').val();
+          // currently selected text
+          var sel_text = $('#code_picker :selected').text();
+          // set the selected text to the text input
+          $('#t_code').text(sel_text);
+        });
+
+        $("#java_picker").change(function() {
+          // currently selected value
+          var selected = $('#java_picker').val();
+          // currently selected text
+          var sel_text = $('#java_picker :selected').text();
+          // set the selected text to the text input
+          $('#t_java').text(sel_text);
         });
     </script>
 

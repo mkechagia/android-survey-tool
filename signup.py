@@ -7,6 +7,10 @@ from models import db, students
 class SignupForm(Form):
     email = EmailField('email', [validators.Email("Please enter your email address.")])
     password = PasswordField('password')
-    submit = SubmitField('submit')
+    education = TextField('education')
+    company = TextField('company')
     job = TextField('job')
+    code = TextField('code')
+    java = TextField('java')
     android = TextField('android')
+    submit = SubmitField('submit')
