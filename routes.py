@@ -92,10 +92,10 @@ def new():
 	if ('email' in session):
 		# check if there is already any submission
 		submission = submissions.query.filter_by(email = session['email']).first()
-		if (submission.count_submission != 0):
-			return render_template('new.html')
-		else:
+		if (submission is None):
 			return render_template(set_survey_type(get_rowid(session['email'])), answ = answ)
+		else:
+			return render_template('new.html')
 	else:
 		return render_template('new.html')
 
