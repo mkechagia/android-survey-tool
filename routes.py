@@ -195,7 +195,7 @@ def results():
 				compile_out = replace_methods(outs, srv_type)
 				# Format newlines for basic html appearance
 				compile_out = compile_out.replace('\n', '<br />')
-				compile_out += "<br><a href=\"../static/%s-NoteEditor.java\", target=\"_blank\">View source code</a>" % (session['email'])
+				compile_out += "<br><a href=\"../static/%s-NoteEditor.java\", target=\"_blank\">View source code</a><br><p>Press refresh on your browser to see the last source code version on a new tab.</p>" % (session['email'])
 				
 				# answers to string
 				str_answers = answers_to_str(answer)
