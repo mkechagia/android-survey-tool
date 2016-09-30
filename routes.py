@@ -58,8 +58,9 @@ def new():
 			flash('Your passwords should be the same.', 'error')
 		else:
 			student = students(email = request.form['email'], password=request.form['password'], education=request.form['education'], company=request.form['company'], job=request.form['job'], code=request.form['code'], java=request.form['java'], android=request.form['android'])
-			# check if the email already exists---unique user
-			if (not db.session.query(students).filter(students.email == student.email).count() == 0):
+			# check if the email already exists (when answers table is not initialized yet) ---unique user
+			if (not db.session.query(students).filter(students.email == student.email).count() == 0) and \
+				(submissions.query.filter_by(email = student.email).first() is None):
 				flash('The email is already taken.', 'error')
 			else:
 				# check for valid email address
