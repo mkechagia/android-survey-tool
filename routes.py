@@ -19,7 +19,7 @@ import format_answer
 import random
 import re
 from datetime import datetime
-# obtain a connection to a database 
+# obtain a connection to a database 
 from sqlalchemy import create_engine
 e = create_engine('sqlite:///students.sqlite3')
 
@@ -58,10 +58,11 @@ def new():
 			flash('Your passwords should be the same.', 'error')
 		else:
 			student = students(email = request.form['email'], password=request.form['password'], education=request.form['education'], company=request.form['company'], job=request.form['job'], code=request.form['code'], java=request.form['java'], android=request.form['android'])
-			# check if the email already exists (when answers table is not initialized yet) ---unique user
-			if (not db.session.query(students).filter(students.email == student.email).count() == 0) and \
-				(answers.query.filter_by(students_email = student.email).first() is None):
-				flash('The email is already taken.', 'error')
+			# check if the email already exists---unique user
+			if (not db.session.query(students).filter(students.email == student.email).count() == 0):
+				# check that we are in the sign up page
+				if ('email' not in session):
+					flash('The email is already taken.', 'error')
 			else:
 				# check for valid email address
 				is_valid = email(student.email)
@@ -91,12 +92,9 @@ def new():
 				else:
 					flash('The email is not valid.', 'error')
 	if ('email' in session):
-		# check if there is already any submission
-		submission = submissions.query.filter_by(email = session['email']).first()
-		if (submission is None):
-			return render_template(set_survey_type(get_rowid(session['email'])), answ = answ)
-		else:
-			return render_template('new.html')
+		# find answers of the user with the email in the session
+		answ = answers.query.filter_by(students_email = session['email']).first()
+		return render_template(set_survey_type(get_rowid(session['email'])), answ = answ)
 	else:
 		return render_template('new.html')
 
