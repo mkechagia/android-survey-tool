@@ -16,7 +16,9 @@ ant clean debug
 C. To run the app:
 
 cd android_survey
+
 cd venv/bin
+
 source activate
 
 python routes.py >survey.out 2>survey.err &
